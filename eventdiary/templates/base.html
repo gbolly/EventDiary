@@ -1,0 +1,172 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{% block head_title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+        <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a class="navbar-brand logo" href="#">TheEventDiary</a>
+            <div class="main-page go-right">
+                <a class="nav-link " href="#">LOREM</a><a data-header-link="jobs" class="nav-link " href="/jobs">OPIUM</a>
+                <a class="nav-link " href="#">VERTISE</a>
+                <a class="sign-up-modal round-button hidden-xs" href="/user/register">Sign Up&nbsp;&nbsp;/&nbsp;&nbsp;Sign In</a>
+            </div>
+        </header>
+        <main id="main" class="main-container">
+            <div class="homepage">
+                <div class="top-section new-user">
+                    <div class="auth-modal"></div>
+                    <div id="top-image" class="bg-img">
+                        <div class="choice">
+                            <h1>Some random stuffs i have not thought about would go in here.</h1>
+                            <div class="value-prop">
+                                <h2>Not sure what you are looking for?</h2>
+                                <form>
+                                    <a class="find green-round-button" href="#">Find the Center</a>
+                                    <a class="choose-myself purple-round-button" href="#choose-tile">I Know What I'm Looking For</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="chose-center" class="event-tiles">
+                <h1>Somethings</h1>
+                <h2>Other Things</h2>
+                <div class="our-offerings">
+                    <div class="lagos">
+                        <div class="bg-image-wrapper">
+                            <div class="bg-image">
+                                <a class="link" href="/advice"></a>
+                                <h4>Centers in Lagos</h4>
+                                <p>Check out incredible centers in lagos metropolies from the mainland to the island</p>
+                                <a class="mobile-header off-round-button" href="/advice">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ph">
+                        <div class="bg-image-wrapper">
+                            <div class="bg-image">
+                                <a class="link" href="/jobs"></a>
+                                <h4>Centers in Port-Harcourt</h4>
+                                <p>Some nice text should go in here</p>
+                                <a class="mobile-header off-round-button" href="/jobs">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="our-offerings">
+                    <div class="abj">
+                        <div class="bg-image-wrapper">
+                            <div class="bg-image">
+                                <a class="link" href="/companies"></a>
+                                <h4>Centers in Abuja</h4>
+                                <p>Glamourous centers in Abuja</p>
+                                <a class="mobile-header off-round-button" href="/companies">Look Inside <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ib">
+                        <div class="bg-image-wrapper">
+                            <div class="bg-image">
+                                <a class="link" href="/coaching"></a>
+                                <h4>Centers in Ibadan</h4>
+                                <p>Some more text &amp; more</p>
+                                <a class="mobile-header off-round-button" href="/coaching">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h4>What</h4>
+            </div>
+            <div class="for-employers">
+                <div class="employer-intro">
+                    <h5>Center Owners</h5>
+                    <p>Renting out your centers just got easier.</p>
+                    <a href="/employers">Learn more »</a>
+                </div>
+                <a class="employer-video" href="#">
+                    <img src="static/img/temp-player.png">
+                </a>
+            </div>
+            <div>
+                <h4>What</h4>
+            </div>
+        </main>
+
+        <div id="footer">
+            <div class="container">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <a class="footer-logo" alt="Free Career Advice" href="/"><h3>TheEventDiaryLogo</h3></a>
+                    <div class="copyright">© 2016 TheEventDiary</div>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                    <div class="column internal-link">
+                        <h6>About TheEventDiary</h6>
+                        <a href="/about">About Us</a>
+                        <a href="/team">Team</a>
+                        <a href="/jobs/c-The-Muse">Careers</a>
+                        <a href="/contact">Contact Us</a>
+                        <a href="/browse-jobs">Browse Centers</a>
+                        <a href="/user/terms">Terms of Use</a>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                    <div class="column internal-link">
+                        <h6>Popular Centers in Lagos</h6>
+                        <a href="#">list of centers</a>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                    <div class="column internal-link">
+                        <h6>Popular Centers in Abuja</h6>
+                        <a href="#">list of centers</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="column social_col">
+                        <h6>Join The Conversation</h6>
+                        <a href="#">list of TheEventDiary's social medias</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+
+        <script src="{% static 'js/main.js' %}"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>
