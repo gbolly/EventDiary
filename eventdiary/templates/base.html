@@ -26,7 +26,8 @@
             <div class="main-page go-right">
                 <a class="nav-link " href="#">LOREM</a><a data-header-link="jobs" class="nav-link " href="/jobs">OPIUM</a>
                 <a class="nav-link " href="#">VERTISE</a>
-                <a class="sign-up-modal round-button hidden-xs" href="/user/register">Sign Up&nbsp;&nbsp;/&nbsp;&nbsp;Sign In</a>
+                <a class="btn-info sign-up-modal round-button hidden-xs" data-toggle="modal" data-target="#myModal" href="/signup/">Sign In</a>
+                <a class="btn-info sign-up-modal round-button hidden-xs" href="/signup/">Register Here</a>
             </div>
         </header>
         <main id="main" class="main-container">
@@ -112,6 +113,24 @@
             <div>
                 <h4>What</h4>
             </div>
+                {% block login_modal %}
+                    <div id="myModal" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                {% endblock %}
         </main>
 
         <div id="footer">

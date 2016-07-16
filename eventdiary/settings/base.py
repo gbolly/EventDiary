@@ -15,6 +15,7 @@ import os
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,6 +44,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'web.eventdiaryusers',
+    'web.diaryowners'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,6 +60,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'eventdiary.urls'
+AUTH_USER_MODEL = 'eventdiaryusers.User'
 
 TEMPLATES = [
     {
@@ -83,9 +87,9 @@ WSGI_APPLICATION = 'eventdiary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'theeventdiary',
-        'USER': 'theeventdiary',
-        'PASSWORD': '',
+        'NAME': 'eventdiary',
+        'USER': 'eventdiary',
+        'PASSWORD': 'pastor01',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -113,4 +117,11 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+)
+
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 )

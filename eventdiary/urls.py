@@ -18,6 +18,7 @@ from django.contrib import admin
 from .views import home
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^$', home, name='home'),
+    url(r'^signup/', include('web.eventdiaryusers.urls', namespace='eventdiaryusers')),
+    url(r'^admin/', include(admin.site.urls)),
 ]
