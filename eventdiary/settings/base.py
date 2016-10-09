@@ -43,6 +43,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'web.accounts',
+    'web.deals',
+    'web.authentication',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,6 +108,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = get_env_variable('ACCESS_KEY')
+MAILGUN_SERVER_NAME = get_env_variable('SERVER_NAME')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

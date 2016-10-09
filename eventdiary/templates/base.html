@@ -17,18 +17,23 @@
         </style>
         <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
-        <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
     </head>
     <body>
-        <header class="header">
-            <a class="navbar-brand logo" href="#">TheEventDiary</a>
-            <div class="main-page go-right">
-                <a class="nav-link " href="#">LOREM</a><a data-header-link="jobs" class="nav-link " href="/jobs">OPIUM</a>
-                <a class="nav-link " href="#">VERTISE</a>
-                <a class="sign-up-modal round-button hidden-xs" href="/user/register">Sign Up&nbsp;&nbsp;/&nbsp;&nbsp;Sign In</a>
-            </div>
-        </header>
+        {% block navbar %}
+            <header class="header">
+                <a class="navbar-brand logo" href="#">TheEventDiary</a>
+                <div class="main-page go-right">
+                    <a class="nav-link " href="#">LOREM</a><a data-header-link="jobs" class="nav-link " href="/jobs">OPIUM</a>
+                    <a class="nav-link " href="#">VERTISE</a>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                        <a class="sign-up-modal round-button hidden-xs" href="/register">Sign Up</a>
+                        <a class="sign-up-modal round-button hidden-xs" href="/login">Sign In</a>
+                    {% endif %}
+                </div>
+            </header>
+        {% endblock navbar %}
         <main id="main" class="main-container">
             <div class="homepage">
                 <div class="top-section new-user">

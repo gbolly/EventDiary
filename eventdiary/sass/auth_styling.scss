@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display|Arvo|Montserrat|Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+$black: #212121;
+$cool-grey: #9fa3a7;
+$dark: #2e3240;
+$dark-sky-blue: #28abec;
+$greyish-brown: #525252;
+$pale-grey: #e8e9ed;
+$sun-yellow: #ffcc2e;
+$warm-grey: #757575;
+$white: #eeeeee;
+$sky-blue: #54c7fc;
+
+
+body {
+    // background: red;
+}
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: $dark;
+  font-size: 25px;
+  .logo-span {
+    width: 72.5px;
+    height: 19px;
+    font-family: 'Playfair Display', serif;
+    font-size: 29px;
+    font-weight: 900;
+    font-style: italic;
+    font-stretch: normal;
+    color: $dark-sky-blue;
+  }
+}

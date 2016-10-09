@@ -1,0 +1,18 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display|Arvo|Montserrat|Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: #2e3240;
+  font-size: 25px; }
+  .logo .logo-span {
+    width: 72.5px;
+    height: 19px;
+    font-family: 'Playfair Display', serif;
+    font-size: 29px;
+    font-weight: 900;
+    font-style: italic;
+    font-stretch: normal;
+    color: #28abec; }
+
+/*# sourceMappingURL=auth_styling.css.map */
