@@ -1,18 +1,168 @@
 @import url(https://fonts.googleapis.com/css?family=Playfair+Display|Arvo|Montserrat|Roboto+Slab|Open+Sans:400italic,700italic,400,700);
-.logo {
+.nav-container {
+  z-index: 20;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  font-style: normal;
-  color: #2e3240;
-  font-size: 25px; }
-  .logo .logo-span {
-    width: 72.5px;
-    height: 19px;
-    font-family: 'Playfair Display', serif;
-    font-size: 29px;
-    font-weight: 900;
-    font-style: italic;
+  background: #333 !important;
+  border-color: #fff;
+  border-radius: 0;
+  font-size: 12px; }
+  .nav-container .brand .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #eeeeee;
+    font-size: 25px;
+    text-decoration: none; }
+    .nav-container .brand .logo .logo-span {
+      width: 72.5px;
+      height: 19px;
+      font-family: 'Playfair Display', serif;
+      font-size: 29px;
+      font-weight: 900;
+      font-style: italic;
+      font-stretch: normal;
+      color: #28abec; }
+  .nav-container .container-fluid {
+    padding-left: 70px;
+    padding-right: 70px;
+    margin-top: 12px; }
+    @media only screen and (min-width: 769px) and (max-width: 992px) {
+      .nav-container .container-fluid {
+        padding: 9px; }
+        .nav-container .container-fluid .navbar-header {
+          margin: 0; } }
+    @media only screen and (min-width: 992px) and (max-width: 1200) {
+      .nav-container .container-fluid {
+        padding: 0; } }
+  @media (max-width: 768px) {
+    .nav-container .collapse {
+      height: 200px; } }
+  @media only screen and (min-width: 769px) and (max-width: 992px) {
+    .nav-container .collapse {
+      margin: 0px 28px; } }
+  @media (max-width: 768px) {
+    .nav-container .collapse .navbar-header {
+      margin: 0; } }
+  .nav-container .nav-list {
+    height: 6.5px;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
     font-stretch: normal;
-    color: #28abec; }
+    letter-spacing: 1.2px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: 160px;
+    width: 50%;
+    color: #ccc; }
+    @media only screen and (min-width: 769px) and (max-width: 1071px) {
+      .nav-container .nav-list {
+        margin-left: 80px; } }
+    .nav-container .nav-list li a {
+      color: #eeeeee; }
+      .nav-container .nav-list li a:hover {
+        color: #9fa3a7; }
+  .nav-container .navbar-right .option {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 1.2px;
+    color: #9fa3a7;
+    margin-top: 6px; }
+  .nav-container .navbar-right .login-option {
+    transition: background 200ms ease-out;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
+    line-height: 1.2em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 40px;
+    border-radius: 50px;
+    border: solid 2px #eeeeee;
+    color: #eeeeee; }
+    .nav-container .navbar-right .login-option:hover {
+      background-color: #09abf4;
+      color: #eeeeee; }
+    @media (max-width: 768px) {
+      .nav-container .navbar-right .login-option {
+        border: none; } }
+
+.content {
+  display: flex;
+  margin-right: 0; }
+  .content .form-card {
+    margin: 50px 45px;
+    text-align: center; }
+    .content .form-card h1 {
+      font-size: 30px;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      margin: 0 60px;
+      line-height: 1.2em;
+      font-weight: normal;
+      color: #9fa3a7; }
+    .content .form-card .reg-form {
+      margin-top: 15px; }
+    .content .form-card .custom-form-group .errorlist {
+      text-align: left;
+      margin-left: 10px; }
+      .content .form-card .custom-form-group .errorlist li {
+        list-style-type: none;
+        color: #bb1717; }
+    .content .form-card .custom-form-group .custom-input-group input {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      width: 80%;
+      height: 40px;
+      border-radius: 1px;
+      font-size: 15px;
+      padding: 7px 12px;
+      border: solid 1px #e8e9ed;
+      margin: 15px 0; }
+    .content .form-card .center-buttons .btn-form-submit {
+      margin: 16px 0;
+      background: #28abec;
+      color: #eeeeee;
+      width: 100px;
+      height: 45px;
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; }
+    .content .form-card .center-buttons #facebooklogin {
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 1px;
+      font-size: 15px; }
+  .content .existing-account {
+    margin: 200px auto; }
+    .content .existing-account h2 {
+      font-weight: 200;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0px;
+      font-size: 25px;
+      text-shadow: none;
+      color: #9fa3a7;
+      text-align: center; }
+    .content .existing-account .login-div {
+      border: solid 1px #54c7fc;
+      border-radius: 2px;
+      width: 120px;
+      height: 40px;
+      text-align: center;
+      margin: 10px auto;
+      padding-top: 10px; }
+      .content .existing-account .login-div #user_login_link {
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        color: #212121; }
+      .content .existing-account .login-div:hover {
+        background: #54c7fc;
+        color: #eeeeee; }
 
 /*# sourceMappingURL=auth_styling.css.map */
