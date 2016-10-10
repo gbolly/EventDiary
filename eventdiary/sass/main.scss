@@ -1,3 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display|Arvo|Montserrat|Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+$black: #212121;
+$cool-grey: #9fa3a7;
+$dark: #2e3240;
+$dark-sky-blue: #28abec;
+$greyish-brown: #525252;
+$pale-grey: #e8e9ed;
+$sun-yellow: #ffcc2e;
+$warm-grey: #757575;
+$white: #eeeeee;
+$sky-blue: #54c7fc;
 body {
     margin: 0;
     padding: 0;
@@ -7,11 +18,35 @@ body {
     color: #333;
     width: auto;
     font-size: 13px;
-    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;
     a {
         cursor: pointer;
         line-height: 1.2em;
         text-decoration: none !important;
+    }
+    ul {
+        list-style-type: none;
+    }
+}
+
+.brand {
+    .logo {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        color: $white;
+        font-size: 25px;
+        text-decoration: none;
+        .logo-span {
+            width: 72.5px;
+            height: 19px;
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            font-weight: 900;
+            font-style: italic;
+            font-stretch: normal;
+            color: $dark-sky-blue;
+        }
     }
 }
 
@@ -342,6 +377,39 @@ body {
     margin: 0;
     position: relative;
     background: url('../img/footer-bg.jpg');
+    .container {
+        color: $white;
+        margin: 0 auto;
+        padding: 50px 0px;
+        a {
+            color: $white;
+        }
+        .copyright {
+            font-size: 14px;
+            color: #e4e4e4;
+            display: inline-block;
+            font-family: "ProximaLight", Helvetica;
+        }
+    }
+    .column {
+        font-size: 15px;
+        text-align: left;
+        line-height: 2em;
+        h6 {
+            font-size: 15px;
+            font-weight: normal;
+            text-transform: uppercase;
+            margin: 10px 0;
+            color: #53b6d0;
+        }
+        ul {
+            padding-left: 0;
+        }
+    }
+    .internal-link {
+        padding: 5px 0;
+        display: block;
+    }
 }
 
 

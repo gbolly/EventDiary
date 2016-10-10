@@ -12,26 +12,6 @@ $sky-blue: #54c7fc;
 
 
 .nav-container {
-    .brand {
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-style: normal;
-            color: $white;
-            font-size: 25px;
-            text-decoration: none;
-            .logo-span {
-                width: 72.5px;
-                height: 19px;
-                font-family: 'Playfair Display', serif;
-                font-size: 29px;
-                font-weight: 900;
-                font-style: italic;
-                font-stretch: normal;
-                color: $dark-sky-blue;
-            }
-        }
-    }
     z-index: 20;
     font-family: 'Montserrat', sans-serif;
     background: #333 !important;

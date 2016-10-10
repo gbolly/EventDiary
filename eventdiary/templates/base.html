@@ -22,7 +22,11 @@
     <body>
         {% block navbar %}
             <header class="header">
-                <a class="navbar-brand logo" href="#">TheEventDiary</a>
+                <div class="brand">
+                   <a href="/">
+                       <p class="logo">theevent<span class="logo-span">diary</span></p>
+                   </a>
+                </div>
                 <div class="main-page go-right">
                     <a class="nav-link " href="#">LOREM</a><a data-header-link="jobs" class="nav-link " href="/jobs">OPIUM</a>
                     <a class="nav-link " href="#">VERTISE</a>
@@ -125,18 +129,24 @@
         <div id="footer">
             <div class="container">
                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                    <a class="footer-logo" alt="Free Career Advice" href="/"><h3>TheEventDiaryLogo</h3></a>
+                    <div class="brand">
+                       <a href="/">
+                           <p class="logo">theevent<span class="logo-span">diary</span></p>
+                       </a>
+                    </div>
                     <div class="copyright">© 2016 TheEventDiary</div>
                 </div>
                 <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
                     <div class="column internal-link">
                         <h6>About TheEventDiary</h6>
-                        <a href="/about">About Us</a>
-                        <a href="/team">Team</a>
-                        <a href="/jobs/c-The-Muse">Careers</a>
-                        <a href="/contact">Contact Us</a>
-                        <a href="/browse-jobs">Browse Centers</a>
-                        <a href="/user/terms">Terms of Use</a>
+                        <ul>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/about">Team</a></li>
+                            <li><a href="/about">Careers</a></li>
+                            <li><a href="/about">Contact Us</a></li>
+                            <li><a href="/about">Browse Centers</a></li>
+                            <li><a href="/about">Terms of Use</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
