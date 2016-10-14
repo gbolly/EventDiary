@@ -1,34 +1,10 @@
-{% extends "base.html" %}
+{% extends "standard_page.html" %}
 {% load static %}
 
 {% block extended_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/auth_styling.css' %}" />
 {% endblock extended_css %}
 
-{% block navbar %}
-    <div class="navbar navbar-default nav-container">
-        <div class="container-fluid">
-            <div class="nav-header">
-                <div class="brand">
-                   <a href="/">
-                       <p class="logo">theevent<span class="logo-span">diary</span></p>
-                   </a>
-                </div>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="nav navbar-nav nav-list">
-                  <li><a href="">some links</a></li>
-                  <li><a href="">some links</a></li>
-                  <li><a href="">some links</a></li>
-                  <li><a href="">some links</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="option"><a href="/login" class="login-option">log in</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-{% endblock %}
 {% block main %}
     <div class="row content">
         {% if messages %}

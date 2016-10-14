@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'web.accounts',
     'web.deals',
     'web.authentication',
+    'web.centers',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,6 +59,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
+
+# AUTH_USER_MODEL = 'accounts.UserProfile'
 
 ROOT_URLCONF = 'eventdiary.urls'
 

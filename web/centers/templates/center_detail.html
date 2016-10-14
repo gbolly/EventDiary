@@ -1,0 +1,14 @@
+{% extends "standard_page.html" %}
+{% load static %}
+
+{% block main %}
+    <div>
+        <h1>{{ center.name }}</h1>
+        {{ center.price }}
+        {{ center.owner }}
+        {{ center.location }}
+        {{ center.address }}
+        {{ center.description|linebreaksbr }}
+    </div>
+{% endblock %}
+

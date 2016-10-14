@@ -17,11 +17,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 from .views import home
-# from web.deals.views import HomePageView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('web.authentication.urls')),
     url(r'^$', home, name='home'),
     url(r'^account/', include('web.accounts.urls')),
+    url(r'^center/', include('web.centers.urls')),
 ]

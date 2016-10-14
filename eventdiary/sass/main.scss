@@ -9,10 +9,14 @@ $sun-yellow: #ffcc2e;
 $warm-grey: #757575;
 $white: #eeeeee;
 $sky-blue: #54c7fc;
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
-    margin: 0;
     padding: 0;
-    height: 100%;
     text-rendering: optimizeLegibility;
     background-repeat: repeat;
     color: #333;
@@ -27,6 +31,14 @@ body {
     ul {
         list-style-type: none;
     }
+}
+
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -200px;
 }
 
 .brand {

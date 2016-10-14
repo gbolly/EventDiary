@@ -1,0 +1,105 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display|Arvo|Montserrat|Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+$black: #212121;
+$cool-grey: #9fa3a7;
+$dark: #2e3240;
+$dark-sky-blue: #28abec;
+$greyish-brown: #525252;
+$pale-grey: #e8e9ed;
+$sun-yellow: #ffcc2e;
+$warm-grey: #757575;
+$white: #eeeeee;
+$sky-blue: #54c7fc;
+
+
+.nav-container {
+    z-index: 20;
+    font-family: 'Montserrat', sans-serif;
+    background: #333 !important;
+    border-color: #fff;
+    border-radius: 0;
+    font-size: 12px;
+    .container-fluid {
+        padding-left: 70px;
+        padding-right: 70px;
+        margin-top: 12px;
+        @media only screen and (min-width: 769px) and (max-width: 992px) {
+            padding: 9px;
+            .navbar-header {
+                margin: 0;
+            }
+        }
+        @media only screen and (min-width: 992px) and (max-width: 1200) {
+            padding: 0;
+        }
+    }
+    .collapse {
+        @media (max-width: 768px) {
+            height: 200px;
+        }
+        @media only screen and (min-width: 769px) and (max-width: 992px) {
+            margin: 0px 28px;
+        }
+        .navbar-header {
+            @media (max-width: 768px) {
+                margin: 0;
+            }
+        }
+    }
+    .nav-list {
+        height: 6.5px;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: 1.2px;
+        text-align: center;
+        text-transform: uppercase;
+        margin-left: 160px;
+        width: 50%;
+        color: #ccc;
+        @media only screen and (min-width: 769px) and (max-width: 1071px) {
+            margin-left: 80px;
+        }
+        li {
+            a {
+                color: $white;
+                &:hover {
+                    color: $cool-grey;
+                }
+            }
+        }
+    }
+    .navbar-right {
+        .option {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            letter-spacing: 1.2px;
+            color: $cool-grey;
+            margin-top: 6px;
+        }
+        .login-option {
+            transition: background 200ms ease-out;
+            display: inline-block;
+            vertical-align: middle;
+            background-color: transparent;
+            line-height: 1.2em;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 40px;
+            border-radius: 50px;
+            border: solid 2px $white;
+            color: $white;
+            &:hover {
+                background-color: #09abf4;
+                color: $white;
+            }
+            @media (max-width: 768px) {
+                border: none;
+            }
+        }
+    }
+}

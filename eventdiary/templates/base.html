@@ -17,7 +17,10 @@
         </style>
         <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
-        {% block extended_css %}{% endblock extended_css %}
+        {% block standard_css %}  
+            {% block extended_css %}
+            {% endblock extended_css %}
+        {% endblock standard_css %}
     </head>
     <body>
         {% block navbar %}
@@ -28,7 +31,7 @@
                    </a>
                 </div>
                 <div class="main-page go-right">
-                    <a class="nav-link " href="#">LOREM</a><a data-header-link="jobs" class="nav-link " href="/jobs">OPIUM</a>
+                    <a class="nav-link " href="#">LOREM</a><a data-header-link="jobs" class="nav-link " href="#">OPIUM</a>
                     <a class="nav-link " href="#">VERTISE</a>
                     {% if request.user.is_authenticated %}
                         <a href="{% url 'logout' %}">Logout</a>
@@ -39,92 +42,94 @@
                 </div>
             </header>
         {% endblock navbar %}
-        {% block main %}
-            <main id="main" class="main-container">
-                <div class="homepage">
-                    <div class="top-section new-user">
-                        <div class="auth-modal"></div>
-                        <div id="top-image" class="bg-img">
-                            <div class="choice">
-                                <h1>Some random stuffs i have not thought about would go in here.</h1>
-                                <div class="value-prop">
-                                    <h2>Not sure what you are looking for?</h2>
-                                    <form>
-                                        <a class="find green-round-button" href="#">Find the Center</a>
-                                        <a class="choose-myself purple-round-button" href="#choose-tile">I Know What I'm Looking For</a>
-                                    </form>
+        <div class="wrapper">
+            {% block main %}
+                <main id="main" class="main-container">
+                    <div class="homepage">
+                        <div class="top-section new-user">
+                            <div class="auth-modal"></div>
+                            <div id="top-image" class="bg-img">
+                                <div class="choice">
+                                    <h1>Some random stuffs i have not thought about would go in here.</h1>
+                                    <div class="value-prop">
+                                        <h2>Not sure what you are looking for?</h2>
+                                        <form>
+                                            <a class="find green-round-button" href="#">Find the Center</a>
+                                            <a class="choose-myself purple-round-button" href="#choose-tile">I Know What I'm Looking For</a>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="chose-center" class="event-tiles">
-                    <h1>Somethings</h1>
-                    <h2>Other Things</h2>
-                    <div class="our-offerings">
-                        <div class="lagos">
-                            <div class="bg-image-wrapper">
-                                <div class="bg-image">
-                                    <a class="link" href="/advice"></a>
-                                    <h4>Centers in Lagos</h4>
-                                    <p>Check out incredible centers in lagos metropolies from the mainland to the island</p>
-                                    <a class="mobile-header off-round-button" href="/advice">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
+                    <div id="chose-center" class="event-tiles">
+                        <h1>Somethings</h1>
+                        <h2>Other Things</h2>
+                        <div class="our-offerings">
+                            <div class="lagos">
+                                <div class="bg-image-wrapper">
+                                    <div class="bg-image">
+                                        <a class="link" href="/advice"></a>
+                                        <h4>Centers in Lagos</h4>
+                                        <p>Check out incredible centers in lagos metropolies from the mainland to the island</p>
+                                        <a class="mobile-header off-round-button" href="/advice">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ph">
+                                <div class="bg-image-wrapper">
+                                    <div class="bg-image">
+                                        <a class="link" href="/jobs"></a>
+                                        <h4>Centers in Port-Harcourt</h4>
+                                        <p>Some nice text should go in here</p>
+                                        <a class="mobile-header off-round-button" href="/jobs">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="ph">
-                            <div class="bg-image-wrapper">
-                                <div class="bg-image">
-                                    <a class="link" href="/jobs"></a>
-                                    <h4>Centers in Port-Harcourt</h4>
-                                    <p>Some nice text should go in here</p>
-                                    <a class="mobile-header off-round-button" href="/jobs">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
+                        <div class="our-offerings">
+                            <div class="abj">
+                                <div class="bg-image-wrapper">
+                                    <div class="bg-image">
+                                        <a class="link" href="/companies"></a>
+                                        <h4>Centers in Abuja</h4>
+                                        <p>Glamourous centers in Abuja</p>
+                                        <a class="mobile-header off-round-button" href="/companies">Look Inside <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ib">
+                                <div class="bg-image-wrapper">
+                                    <div class="bg-image">
+                                        <a class="link" href="/coaching"></a>
+                                        <h4>Centers in Ibadan</h4>
+                                        <p>Some more text &amp; more</p>
+                                        <a class="mobile-header off-round-button" href="/coaching">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="our-offerings">
-                        <div class="abj">
-                            <div class="bg-image-wrapper">
-                                <div class="bg-image">
-                                    <a class="link" href="/companies"></a>
-                                    <h4>Centers in Abuja</h4>
-                                    <p>Glamourous centers in Abuja</p>
-                                    <a class="mobile-header off-round-button" href="/companies">Look Inside <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ib">
-                            <div class="bg-image-wrapper">
-                                <div class="bg-image">
-                                    <a class="link" href="/coaching"></a>
-                                    <h4>Centers in Ibadan</h4>
-                                    <p>Some more text &amp; more</p>
-                                    <a class="mobile-header off-round-button" href="/coaching">Look Inisde <i class="fa fa-arrow-right visible-xs" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <h4>What</h4>
                     </div>
-                </div>
-                <div>
-                    <h4>What</h4>
-                </div>
-                <div class="for-employers">
-                    <div class="employer-intro">
-                        <h5>Center Owners</h5>
-                        <p>Renting out your centers just got easier.</p>
-                        <a href="/employers">Learn more »</a>
+                    <div class="for-employers">
+                        <div class="employer-intro">
+                            <h5>Center Owners</h5>
+                            <p>Renting out your centers just got easier.</p>
+                            <a href="/employers">Learn more »</a>
+                        </div>
+                        <a class="employer-video" href="#">
+                            <img src="static/img/temp-player.png">
+                        </a>
                     </div>
-                    <a class="employer-video" href="#">
-                        <img src="static/img/temp-player.png">
-                    </a>
-                </div>
-                <div>
-                    <h4>What</h4>
-                </div>
-            </main>
-        {% endblock main %}
+                    <div>
+                        <h4>What</h4>
+                    </div>
+                </main>
+            {% endblock main %}
+        </div>
 
         <div id="footer">
             <div class="container">

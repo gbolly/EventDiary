@@ -19,6 +19,8 @@ from web.accounts.forms import UserProfileForm
 from web.accounts.models import UserProfile
 from web.authentication.views import LoginRequiredMixin
 
+from web.centers.models import ALL_LOCATIONS, NIGERIAN_LOCATIONS
+
 
 class UserProfileView(LoginRequiredMixin, TemplateView):
     """

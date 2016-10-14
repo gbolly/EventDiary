@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,gBAAiB;EACb,aAAa,EAAE,KAAK;EACpB,YAAY,EAAE,KAAK;EACnB,MAAM,EAAE,SAAS;;AAGrB,KAAM;EACF,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,KAAK;EACd,aAAa,EAAE,MAAM;EACrB,gBAAgB,EAAE,IAAI;EACtB,aAAa,EAAE,MAAM;EACrB,MAAM,EAAE,8BAA0B",
+"sources": ["../../../sass/centers/center_styling.scss"],
+"names": [],
+"file": "center_styling.css"
+}

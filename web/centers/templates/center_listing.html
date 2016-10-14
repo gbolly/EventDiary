@@ -1,0 +1,28 @@
+{% extends "standard_page.html" %}
+{% load static %}
+
+{% block extended_css %}
+    <link rel="stylesheet" href="{% static 'css/centers/center_styling.css' %}">
+{% endblock extended_css %}
+
+{% block main %}
+    <!-- deals listing section -->
+    <div class="row container-fluid" id="deals-section">
+        {% for centers in center %}
+        <div class="col-md-4">
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">{{ centers.name }}</h4>
+                <p class="card-text">Description: {{ centers.description|truncatechars:20 }}</p>
+                <p class="card-text">Location: {{ centers.location }}</p>
+                <p class="card-text">Price: {{ centers.price }}</p>
+                <p class="card-text"><small class="text-muted">Last updated {{ centers.date_last_modified }}</small></p>
+                <a href="#" class="btn btn-primary">More Details</a>
+                <a href="#" class="btn btn-primary">Request center</a>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

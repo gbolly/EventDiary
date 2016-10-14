@@ -1,0 +1,14 @@
+.container-fluid {
+  padding-right: 100px;
+  padding-left: 100px;
+  margin: 30px auto; }
+
+.card {
+  position: relative;
+  display: block;
+  margin-bottom: .75rem;
+  background-color: #fff;
+  border-radius: .25rem;
+  border: 1px solid rgba(0, 0, 0, 0.125); }
+
+/*# sourceMappingURL=center_styling.css.map */
