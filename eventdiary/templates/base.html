@@ -8,6 +8,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel='stylesheet' type='text/css' href='{% static 'css/font-awesome.css' %}' />
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <style>
             body {
@@ -31,9 +32,11 @@
                    </a>
                 </div>
                 <div class="main-page go-right">
-                    <a class="nav-link " href="#">LOREM</a><a data-header-link="jobs" class="nav-link " href="#">OPIUM</a>
-                    <a class="nav-link " href="#">VERTISE</a>
+                    <a class="nav-link" href="#">LOREM</a>
+                    <a class="nav-link" href="#">OPIUM</a>
+                    <a class="nav-link" href="#">VERTISE</a>
                     {% if request.user.is_authenticated %}
+                        <a class="nav-link">Welcome {{user}}</a>
                         <a href="{% url 'logout' %}">Logout</a>
                     {% else %}
                         <a class="sign-up-modal round-button hidden-xs" href="/register">Sign Up</a>
@@ -54,7 +57,7 @@
                                     <div class="value-prop">
                                         <h2>Not sure what you are looking for?</h2>
                                         <form>
-                                            <a class="find green-round-button" href="#">Find the Center</a>
+                                            <a class="find green-round-button" href="/center">Find the Center</a>
                                             <a class="choose-myself purple-round-button" href="#choose-tile">I Know What I'm Looking For</a>
                                         </form>
                                     </div>

@@ -1,6 +1,9 @@
 from django.db import models
-from web.accounts.models import UserProfile
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
+from django_libs.models_mixins import TranslationModelMixin
+from hvad.models import TranslatableModel, TranslatedFields
+from web.accounts.models import UserProfile
 
 
 # States in Nigeria
@@ -23,15 +26,11 @@ NIGERIAN_LOCATIONS = [
 ALL_LOCATIONS = NIGERIAN_LOCATIONS
 
 class Center(models.Model):
-    """Deals within the troupon system are represented by this
-        model.
-        title, deal_address, advertiser and category are required.
-        Other fields are optional.
-    """
 
     price = models.IntegerField()
     capacity = models.IntegerField()
-    owner = models.ForeignKey(UserProfile)
+    # owner = models.CharField(max_length=100, null=False, blank=False)
+    owner = models.ForeignKey(User)
     description = models.TextField(blank=True, default='')
     slug = models.SlugField(blank=True, null=False, unique=True)
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -40,27 +39,57 @@ class Center(models.Model):
     active = models.BooleanField(default=False)
     date_created = models.DateField(auto_now_add=True)
     date_last_modified = models.DateField(auto_now=True)
+    image = models.ImageField(upload_to='center_images', null=True)
+    is_available = models.BooleanField()
 
-    def thumbnail_image_url(self):
-        """Returns a thumbnail image URL
-        """
-        image_url = self.image.build_url(
-            width=SITE_IMAGES['thumbnail_image_width'],
-            height=SITE_IMAGES['thumbnail_image_height'],
-            crop="fit",
-        )
-        return image_url
+    # def thumbnail_image_url(self):
+    #     """Returns a thumbnail image URL
+    #     """
+    #     image_url = self.image.build_url(
+    #         width=SITE_IMAGES['thumbnail_image_width'],
+    #         height=SITE_IMAGES['thumbnail_image_height'],
+    #         crop="fit",
+    #     )
+    #     return image_url
 
     def state_name(self):
         """Returns the state name
         """
-        if self.country == 1:
-            return dict(NIGERIAN_LOCATIONS).get(self.state)
-        else:
-            return dict(KENYAN_LOCATIONS).get(self.state)
+        return dict(NIGERIAN_LOCATIONS).get(self.location)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return "/deals/{}/" .format(self.id)
+        return "/center/{}/" .format(self.id)
+
+
+class Booking(models.Model):
+    center = models.ForeignKey(Center)
+    owner = models.ForeignKey(User)
+    booking_start_date = models.DateField()
+    booking_end_date = models.DateField()
+    customer_name = models.CharField(max_length=100, null=False, blank=False)
+    phone_number = models.IntegerField()
+    is_approved = models.BooleanField(default=False)
+
+
+class BookingStatus(TranslationModelMixin, TranslatableModel):
+    """
+    Master data containing all booking status.
+    For translatable fields check ``BookingStatusTranslation``.
+    :slug: A unique slug identifier.
+    translated:
+    :name: The displayable name for the status.
+    """
+    slug = models.SlugField(
+        verbose_name=_('Slug'),
+    )
+
+    translations = TranslatedFields(
+        name=models.CharField(
+            verbose_name=_('Name'),
+            max_length=128,
+        )
+    )
+        

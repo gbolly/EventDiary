@@ -26,7 +26,15 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if request.user.is_authenticated %}
-                        <li class="option"><a href="{% url 'logout' %}">Logout</a></li>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" type="button" data-toggle="dropdown">Hi {{ user }}
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/account/profile">Profile</a></li>
+                                <li><a href="/center">Book a Center</a></li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </div>
                     {% else %}
                       <li class="option"><a href="/login" class="login-option">Sign in</a></li>
                       <li class="option"><a class="login-option hidden-xs" href="/register">Sign Up</a></li>

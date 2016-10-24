@@ -107,7 +107,7 @@ class UserLoginView(View):
                 # Redirect to a success page.
                 referer_view = self.get_referer_view(self.request)
 
-                return redirect('/')
+                return redirect('/center')
             else:
                 # Set error context
                 error_msg = self.cls_default_msgs['invalid_param']

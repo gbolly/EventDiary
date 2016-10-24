@@ -19,10 +19,7 @@ body {
     list-style-type: none; }
 
 .wrapper {
-  min-height: 100%;
-  /* Equal to height of footer */
-  /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: -200px; }
+  min-height: 100%; }
 
 .brand .logo {
   font-family: 'Montserrat', sans-serif;

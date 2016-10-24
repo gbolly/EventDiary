@@ -31,7 +31,7 @@ def get_env_variable(var_name):
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["theeventdiary.herokuapp.com"]
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'font_awesome',
     'web.accounts',
     'web.deals',
     'web.authentication',
@@ -97,6 +98,9 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+
+DATABASES["default"] = dj_database_url.config()
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -120,6 +124,13 @@ MAILGUN_SERVER_NAME = get_env_variable('SERVER_NAME')
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = "staticfiles"
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

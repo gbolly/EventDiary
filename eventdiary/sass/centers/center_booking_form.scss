@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display|Arvo|Montserrat|Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+$black: #212121;
+$cool-grey: #9fa3a7;
+$dark: #2e3240;
+$dark-sky-blue: #28abec;
+$greyish-brown: #525252;
+$pale-grey: #e8e9ed;
+$sun-yellow: #ffcc2e;
+$warm-grey: #757575;
+$white: #eeeeee;
+$sky-blue: #54c7fc;
+
+.form-card {
+    margin: 50px 45px;
+    text-align: center;
+    h1 {
+        font-size: 30px;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        margin: 0 60px;
+        line-height: 1.2em;
+        font-weight: normal;
+        color: $cool-grey;
+    }
+    .reg-form {
+        margin-top: 15px;
+    }
+    .custom-form-group {
+        .errorlist {
+            text-align: left;
+            margin-left: 10px;
+            li {
+                list-style-type: none;
+                color: #bb1717;
+            }
+        }
+        .custom-input-group {
+            input {
+                font-family: 'Playfair Display', serif;
+                font-style: italic;
+                width: 80%;
+                height: 40px;
+                border-radius: 1px;
+                font-size: 15px;
+                padding: 7px 12px;
+                border: solid 1px $pale-grey;
+                margin: 15px 0;
+            }
+        }
+    }
+    .center-buttons {
+        .btn-form-submit {
+            margin: 16px 0;
+            background: $dark-sky-blue;
+            color: $white;
+            width: 100px;
+            height: 45px;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+        }
+    }
+}

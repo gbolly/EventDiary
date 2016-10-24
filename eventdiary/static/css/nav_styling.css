@@ -46,33 +46,35 @@
       color: #eeeeee; }
       .nav-container .nav-list li a:hover {
         color: #9fa3a7; }
-  .nav-container .navbar-right .option {
+  .nav-container .navbar-right {
+    margin-top: 15px;
+    font-size: 13px;
+    text-transform: capitalize;
     font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
-    letter-spacing: 1.2px;
-    color: #9fa3a7;
-    margin-top: 6px; }
-  .nav-container .navbar-right .login-option {
-    transition: background 200ms ease-out;
-    display: inline-block;
-    vertical-align: middle;
-    background-color: transparent;
-    line-height: 1.2em;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 40px;
-    border-radius: 50px;
-    border: solid 2px #eeeeee;
-    color: #eeeeee; }
-    .nav-container .navbar-right .login-option:hover {
-      background-color: #09abf4;
+    letter-spacing: 1.2px; }
+    .nav-container .navbar-right a {
+      color: #9fa3a7; }
+    .nav-container .navbar-right .login-option {
+      transition: background 200ms ease-out;
+      display: inline-block;
+      vertical-align: middle;
+      background-color: transparent;
+      line-height: 1.2em;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 10px 40px;
+      border-radius: 50px;
+      border: solid 2px #eeeeee;
       color: #eeeeee; }
-    @media (max-width: 768px) {
-      .nav-container .navbar-right .login-option {
-        border: none; } }
+      .nav-container .navbar-right .login-option:hover {
+        background-color: #09abf4;
+        color: #eeeeee; }
+      @media (max-width: 768px) {
+        .nav-container .navbar-right .login-option {
+          border: none; } }
 
 /*# sourceMappingURL=nav_styling.css.map */

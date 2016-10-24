@@ -3,15 +3,10 @@
 
 {% block extended_css %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-{% endblock extended_css %}
+{% endblock %}
 
-{% block sidebar_menu %}
-  {% with active_tab='My profile' %}
-    {{ block.super }}
-  {% endwith %}
-{% endblock sidebar_menu %}
 
-{% block subview %}
+{% block main %}
   <div class="row">
     <div class="col-sm-7">
 
@@ -70,4 +65,4 @@
     </div>
   </div>
 
-{% endblock subview %}
+{% endblock %}
