@@ -1,0 +1,72 @@
+{% extends "standard_page.html" %}
+{% load static %}
+
+{% block extended_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/auth_styling.css' %}" />
+{% endblock extended_css %}
+
+{% block main %}
+    <div class="row content">
+        {% if messages %}
+          <div class="col-sm-12 no-left">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ message|safe }}
+                </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="col-xs-11 col-sm-5 col-lg-6 form-card">
+            <header class="row">
+                <div class="col-lg-4">
+                    <h1>Register</h1>
+                </div>
+            </header>
+            <div class="row reg-form">
+                <div class="col-sm-12">
+                    <form action="{% url 'register' %}" method="POST"><input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                        <div class="custom-form-group">
+                            {{ form.email.errors }}
+                            <div class="custom-input-group">
+                                <input type="email" name="email" id="email" placeholder="Your Email">
+                            </div>
+                        </div>
+                        <div class="custom-form-group">
+                            {{ form.username.errors }}
+                            <div class="custom-input-group">
+                                <input type="text" name="username" id="username" placeholder="Your Username">
+                            </div>
+                        </div>
+                        <div class="custom-form-group">
+                            {{ form.password1.errors }}
+                            <div class="custom-input-group">
+                                <input type="password" name="password1" id="password1" placeholder="Your Password (at least 6 characters)">
+                            </div>
+                        </div>
+                        <div class="custom-form-group">
+                            {{ form.password2.errors }}
+                            <div class="custom-input-group">
+                                <input type="password" name="password2" id="password2" placeholder="Retype Password">
+                            </div>
+                        </div>
+                        <div class="row center-buttons">
+                            <div>
+                                <button type="submit" style=""class="btn btn-action btn-form-submit">Sign up</button>
+                            </div>    
+                            <div>
+                                <a href="/accounts/facebook/login/?process=login" id="facebooklogin">Sign up with facebook</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 existing-account" >
+            <h2>Already have an account?</h2>
+            <div class="login-div">
+                <a href="{% url 'login' %}" id="user_login_link">Log in</a>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

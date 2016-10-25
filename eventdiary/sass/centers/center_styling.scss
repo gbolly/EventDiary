@@ -1,0 +1,47 @@
+.header-text {
+    padding: 15px 100px;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: lighter;
+}
+
+.container-fluid {
+    padding: 0 100px;
+    .card {
+        position: relative;
+        display: block;
+        margin-bottom: .75rem;
+        background-color: #fff;
+        border-radius: .25rem;
+        border: 1px solid rgba(0,0,0,.125);
+        padding: 0 0 20px 0;
+
+        .card-img-top {
+            width: 100%;
+        }
+
+        .card-block {
+            padding: 15px;
+
+            .card-title {
+                text-transform: uppercase;
+            }
+
+            .updated {
+                display: inline-block
+            }
+
+            .read-on {
+                float: right;
+                a {
+                    text-transform: uppercase;
+                }
+            }
+
+            .book {
+               margin: 30px 0 0 100px;
+            }
+        }
+    }
+}
+

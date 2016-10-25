@@ -2,4 +2,5 @@ db.sqlite3
 __pycache__
 *.DS_Store
 *.pyc
+.sass-cache/
 EventDiary.sublime-workspace
