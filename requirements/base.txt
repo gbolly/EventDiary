@@ -1,6 +1,7 @@
 bcrypt==3.1.0
 cffi==1.7.0
 dj-database-url==0.4.1
+dj-static==0.0.6
 Django==1.8.5
 django-allauth==0.25.2
 django-allauth-bootstrap==0.2
@@ -11,6 +12,9 @@ django-font-awesome==4.6.1
 django-hvad==1.6.0
 django-libs==1.67.7
 django-mailgun==0.9.1
+django-toolbelt==0.0.1
+envvars==0.3.0
+gunicorn==19.6.0
 hashids==1.1.0
 oauthlib==1.1.2
 Pillow==3.4.1
@@ -22,4 +26,5 @@ requests-oauthlib==0.6.2
 sendgrid==1.5.14
 six==1.10.0
 smtpapi==0.2.0
+static3==0.7.0
 wheel==0.24.0

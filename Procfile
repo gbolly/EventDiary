@@ -1,1 +1,1 @@
-web: gunicorn theeventdiary.wsgi
+web: gunicorn eventdiary.wsgi

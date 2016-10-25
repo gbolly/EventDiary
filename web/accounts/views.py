@@ -6,7 +6,7 @@ import time
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.core.context_processors import csrf
+from django.views.decorators import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.shortcuts import redirect, get_object_or_404, render

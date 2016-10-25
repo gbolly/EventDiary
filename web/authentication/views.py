@@ -3,7 +3,7 @@ import re
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.core.context_processors import csrf
+from django.views.decorators import csrf
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import validate_email, ValidationError
 from django.contrib import messages

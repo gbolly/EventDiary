@@ -27,8 +27,12 @@ def get_env_variable(var_name):
         error_msg = "Set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable('SECRET_KEY')
+# # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = get_env_variable('SECRET_KEY')
+
+import envvars
+envvars.load()
+SECRET_KEY = envvars.get('SECRET_KEY')
 
 
 ALLOWED_HOSTS = ["theeventdiary.herokuapp.com"]
@@ -43,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'envvars',
     'web.accounts',
     'web.deals',
     'web.authentication',
@@ -99,7 +104,7 @@ DATABASES = {
 
 import dj_database_url
 
-DATABASES["default"] = dj_database_url.config()
+DATABASES["default"] = dj_database_url.config(default="postgres://rjbyqqzvnoeqdt:VZzuOnZCrJUht0fuHayOMK4ZLT@ec2-54-243-212-72.compute-1.amazonaws.com:5432/d2heelj89ka1ca")
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -115,8 +120,8 @@ USE_L10N = True
 USE_TZ = True
 
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-MAILGUN_ACCESS_KEY = get_env_variable('ACCESS_KEY')
-MAILGUN_SERVER_NAME = get_env_variable('SERVER_NAME')
+MAILGUN_ACCESS_KEY = envvars.get('ACCESS_KEY')
+MAILGUN_SERVER_NAME = envvars.get('SERVER_NAME')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
