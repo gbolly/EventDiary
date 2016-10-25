@@ -3,7 +3,7 @@ import re
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.views.decorators import csrf
+from django.views.decorators.csrf import csrf_protect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import validate_email, ValidationError
 from django.contrib import messages
@@ -332,13 +332,14 @@ class UserRegistrationView(View):
     """
     template_name = 'register.html'
 
+    @method_decorator(csrf_protect)
     def get(self, request, *args, **kwargs):
         """
         Handles the GET request to the 'register' named route.
         Returns: A HttpResponse with register template.
         """
         args = {}
-        args.update(csrf(request))
+        args.update(request)
         return render(request, 'register.html', args)
 
     def post(self, request):
