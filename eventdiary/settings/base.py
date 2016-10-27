@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'envvars',
+    'anymail',
     'web.accounts',
     'web.deals',
     'web.authentication',
@@ -119,9 +120,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-MAILGUN_ACCESS_KEY = envvars.get('ACCESS_KEY')
-MAILGUN_SERVER_NAME = envvars.get('SERVER_NAME')
+# EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+# MAILGUN_ACCESS_KEY = envvars.get('ACCESS_KEY')
+# MAILGUN_SERVER_NAME = envvars.get('SERVER_NAME')
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": envvars.get('ACCESS_KEY'),
+    "MAILGUN_SENDER_DOMAIN": envvars.get('SERVER_NAME'),
+}
+
+EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
+DEFAULT_FROM_EMAIL = envvars.get('SERVER_NAME')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

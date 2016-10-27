@@ -14,13 +14,14 @@ from django.views.generic.base import TemplateView
 from django.views.generic import View
 from django.template import RequestContext, loader, Engine
 from django.utils.decorators import method_decorator
+from django.core.mail import EmailMultiAlternatives
 
 from forms import UserSignupForm
 from hashs import UserHasher as Hasher
 from forms import EmailForm, ResetPasswordForm
 # from emails import SendGrid
 
-EMAIL_SENDER = 'TheEventDiary <okerayigbolahan@yahoo.com>'
+EMAIL_SENDER = 'info@theeventdiary.com'
 class LoginRequiredMixin(object):
     """
     This class acts as a mixin to enforce user authentication.
@@ -198,9 +199,9 @@ class ForgotPasswordView(View):
                     request,
                     {'recovery_hash_url': recovery_hash_url})
                 recovery_email = SendGrid.compose(
-                    sender='Troupon <troupon@andela.com>',
+                    sender='Theeventdiary <Theeventdiary@andela.com>',
                     recipient=registered_user.email,
-                    subject='Troupon: Password Recovery',
+                    subject='Theeventdiary: Password Recovery',
                     html=loader.get_template(
                         'authentication/forgot_password_recovery_email.html'
                     ).render(recovery_email_context),
@@ -322,7 +323,7 @@ class ResetPasswordView(View):
             'reset_password_form': reset_password_form,
         }
         context.update(csrf(request))
-        return render(request, 'authentication/reset_password.html', context)
+        return render(request, 'reset_password.html', context)
 
 
 class UserRegistrationView(View):
@@ -342,6 +343,7 @@ class UserRegistrationView(View):
         args.update(request)
         return render(request, 'register.html', args)
 
+    @method_decorator(csrf_protect)
     def post(self, request):
         """Handles POST requests to 'register' named route.
         Raw data posted from form is received here,bound to form
@@ -356,7 +358,7 @@ class UserRegistrationView(View):
         signup_new_user = User.objects.filter(email__exact=email)
         if signup_new_user:
             args = {}
-            args.update(csrf(request))
+            args.update(request)
             mssg = "Email already taken please signup with another email"
             messages.add_message(request, messages.INFO, mssg)
             return render(request, 'register.html', args)
@@ -373,6 +375,7 @@ class UserRegistrationView(View):
                     kwargs={'activation_hash': activation_hash},
                 )
             )
+
             # compose the email
             activation_email_context = RequestContext(
                 request,
@@ -380,58 +383,59 @@ class UserRegistrationView(View):
                  'username': new_user.username,
                 },
             )
-            activation_email = SendGrid.compose(
-                sender=EMAIL_SENDER,
-                recipient=new_user.email,
-                subject='TheEventDiary: ACTIVATE ACCOUNT',
-                html=loader.get_template(
-                    'authentication/activate_account_email.html'
-                ).render(activation_email_context),
-                text=loader.get_template(
-                    'authentication/activate_account_email.txt'
-                ).render(activation_email_context),
-            )
-            # send mail to new_user
-            activation_status = SendGrid.send(activation_email)
+
+            receipient = str(new_user.email)
+
+            subject, from_email, to = 'TheEventDiary: ACTIVATE ACCOUNT', EMAIL_SENDER, receipient
+            html_content=loader.get_template('activate_account_email.html').render(activation_email_context)
+            text_content=loader.get_template('activate_account_email.txt').render(activation_email_context)
+            # sender = EMAIL_SENDER
+
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            response = msg.send()
+            print(response, "*"*50)
+
             # inform the user of activation mail sent
-            if activation_status == 200:
+            if response == 1:
                 new_user_email = new_user.email
-                messages.add_message(
-                    request, messages.INFO, new_user_email)
+                messages.add_message(request, messages.INFO, new_user_email)
+                print(messages, "-"*50)
+
             return redirect(reverse('confirm_registration'))
 
         else:
             args = {}
-            args.update(csrf(request))
+            args.update(request)
             return render(request, 'register.html', {'form': usersignupform})
 
 
-# class ActivateAccountView(View):
-#     """
-#     This class handles account activation.
-#     """
+class ActivateAccountView(View):
+    """
+    This class handles account activation.
+    """
 
-#     def get(self, request, *args, **kwargs):
-#         """Handles GET requests to 'activate_account' named route.
-#         Returns: A template displaying that activation was successful
-#         Raises: A Http404 error.
-#         """
-#         # get the activation_hash captured in url
-#         activation_hash = kwargs['activation_hash']
+    def get(self, request, *args, **kwargs):
+        """Handles GET requests to 'activate_account' named route.
+        Returns: A template displaying that activation was successful
+        Raises: A Http404 error.
+        """
+        # get the activation_hash captured in url
+        activation_hash = kwargs['activation_hash']
 
-#         # reverse the hash to get the user (auto-authentication)
-#         user = Hasher.reverse_hash(activation_hash)
+        # reverse the hash to get the user (auto-authentication)
+        user = Hasher.reverse_hash(activation_hash)
 
-#         if user is not None:
-#             if not user.is_active:
-#                 user.is_active = True
-#                 user.save()
-#                 if user.is_active:
-#                     return render(request, 
-#                                   'authentication/activation_successful.html')
+        if user is not None:
+            if not user.is_active:
+                user.is_active = True
+                user.save()
+                if user.is_active:
+                    return render(request, 
+                                  'activation_successful.html')
 
-#         else:
-#             raise Http404("/User does not exist")
+        else:
+            raise Http404("/User does not exist")
 
 
 class UserConfirm(TemplateView):
@@ -440,7 +444,7 @@ class UserConfirm(TemplateView):
     Attributes:
         template_name.
     """
-    template_name = 'authentication/confirm.html'
+    template_name = 'confirm.html'
 
     def get(self, request, *args, **kwargs):
         """

@@ -10,7 +10,7 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 from django.utils import timezone
 from django.db.models.signals import pre_save
-# from troupon.settings.base import SITE_IMAGES
+# from Theeventdiary.settings.base import SITE_IMAGES
 
 # Country Choices
 COUNTRY_CHOICES = [(1, 'Nigeria'), (2, 'Kenya')]
@@ -55,7 +55,7 @@ DEAL_TYPES = [(1, 'Physical'), (2, 'Virtual')]
 
 
 class Deal(models.Model):
-    """Deals within the troupon system are represented by this
+    """Deals within the Theeventdiary system are represented by this
         model.
         title, deal_address, advertiser and category are required.
         Other fields are optional.
@@ -143,7 +143,7 @@ class ImageMixin(object):
 
 
 class Advertiser(ImageMixin, models.Model):
-    """Advertisers within the troupon system are represented by this
+    """Advertisers within the Theeventdiary system are represented by this
         model.
         name is required. Other fields are optional.
     """
@@ -175,7 +175,7 @@ class Advertiser(ImageMixin, models.Model):
 
 
 class Category(ImageMixin, models.Model):
-    """Categories of deal within the troupon system are represented by
+    """Categories of deal within the Theeventdiary system are represented by
        this model.
         name is required.
     """

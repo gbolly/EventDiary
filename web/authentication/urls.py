@@ -1,7 +1,6 @@
 from django.conf.urls import url
 
-from web.authentication.views import UserLoginView, UserRegistrationView, UserConfirm,\
-                          UserLogoutView
+from web.authentication.views import UserLoginView, UserRegistrationView, UserConfirm, UserLogoutView, ActivateAccountView
 
 
 urlpatterns = [
@@ -32,9 +31,9 @@ urlpatterns = [
 
     # pattern maps to view handling `GET` requests to
     # /activation/<activation_hash>
-    # url(r'^activation/(?P<activation_hash>([a-z0-9A-Z])+)$',
-    #     ActivateAccountView.as_view(),
-    #     name='activate_account'),
+    url(r'^activation/(?P<activation_hash>([a-z0-9A-Z])+)$',
+        ActivateAccountView.as_view(),
+        name='activate_account'),
 
     # # pattern maps to view handling `GET` requests to
     # # /recovery/
