@@ -1,0 +1,80 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display|Arvo|Montserrat|Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+.nav-container {
+  z-index: 20;
+  font-family: 'Montserrat', sans-serif;
+  background: #333 !important;
+  border-color: #fff;
+  border-radius: 0;
+  font-size: 12px; }
+  .nav-container .container-fluid {
+    padding-left: 70px;
+    padding-right: 70px;
+    margin-top: 12px; }
+    @media only screen and (min-width: 769px) and (max-width: 992px) {
+      .nav-container .container-fluid {
+        padding: 9px; }
+        .nav-container .container-fluid .navbar-header {
+          margin: 0; } }
+    @media only screen and (min-width: 992px) and (max-width: 1200) {
+      .nav-container .container-fluid {
+        padding: 0; } }
+  @media (max-width: 768px) {
+    .nav-container .collapse {
+      height: 200px; } }
+  @media only screen and (min-width: 769px) and (max-width: 992px) {
+    .nav-container .collapse {
+      margin: 0px 28px; } }
+  @media (max-width: 768px) {
+    .nav-container .collapse .navbar-header {
+      margin: 0; } }
+  .nav-container .nav-list {
+    height: 6.5px;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 1.2px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: 160px;
+    width: 50%;
+    color: #ccc; }
+    @media only screen and (min-width: 769px) and (max-width: 1071px) {
+      .nav-container .nav-list {
+        margin-left: 80px; } }
+    .nav-container .nav-list li a {
+      color: #eeeeee; }
+      .nav-container .nav-list li a:hover {
+        color: #9fa3a7; }
+  .nav-container .navbar-right {
+    margin-top: 15px;
+    font-size: 13px;
+    text-transform: capitalize;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 1.2px; }
+    .nav-container .navbar-right a {
+      color: #9fa3a7; }
+    .nav-container .navbar-right .login-option {
+      transition: background 200ms ease-out;
+      display: inline-block;
+      vertical-align: middle;
+      background-color: transparent;
+      line-height: 1.2em;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 10px 40px;
+      border-radius: 50px;
+      border: solid 2px #eeeeee;
+      color: #eeeeee; }
+      .nav-container .navbar-right .login-option:hover {
+        background-color: #09abf4;
+        color: #eeeeee; }
+      @media (max-width: 768px) {
+        .nav-container .navbar-right .login-option {
+          border: none; } }
+
+/*# sourceMappingURL=nav_styling.css.map */
