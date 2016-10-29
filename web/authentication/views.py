@@ -19,7 +19,6 @@ from django.core.mail import EmailMultiAlternatives
 from forms import UserSignupForm
 from hashs import UserHasher as Hasher
 from forms import EmailForm, ResetPasswordForm
-# from emails import SendGrid
 
 EMAIL_SENDER = 'info@theeventdiary.com'
 class LoginRequiredMixin(object):
@@ -389,12 +388,10 @@ class UserRegistrationView(View):
             subject, from_email, to = 'TheEventDiary: ACTIVATE ACCOUNT', EMAIL_SENDER, receipient
             html_content=loader.get_template('activate_account_email.html').render(activation_email_context)
             text_content=loader.get_template('activate_account_email.txt').render(activation_email_context)
-            # sender = EMAIL_SENDER
 
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             response = msg.send()
-            print(response, "*"*50)
 
             # inform the user of activation mail sent
             if response == 1:
@@ -431,8 +428,7 @@ class ActivateAccountView(View):
                 user.is_active = True
                 user.save()
                 if user.is_active:
-                    return render(request, 
-                                  'activation_successful.html')
+                    return render(request, 'activation_successful.html')
 
         else:
             raise Http404("/User does not exist")
