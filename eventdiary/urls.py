@@ -9,8 +9,8 @@ from .views import home
 if settings.DEBUG:
     urlpatterns = [
         url(r'^admin/', include(admin.site.urls)),
-        url(r'^', include('web.authentication.urls')),
         url(r'^$', home, name='home'),
+        url(r'^', include('web.authentication.urls')),
         url(r'^account/', include('web.accounts.urls')),
         url(r'^center/', include('web.centers.urls')),
         # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),

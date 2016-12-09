@@ -21,7 +21,6 @@ class BookingForm(forms.Form):
 
     def save(self):
         booking = Center.objects.get(id=self.center.id)
-        print booking, "0"*50
         booking.customer_name = self.cleaned_data['customer_name']
         booking.booking_start_date = self.cleaned_data['booking_start_date']
         booking.booking_end_date = self.cleaned_data['booking_end_date']

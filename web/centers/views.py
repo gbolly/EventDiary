@@ -30,18 +30,15 @@ def booking_view(request, name, model_class=Center, form_class=BookingForm, temp
             booking = form.save()
             # change the redirect page to a thank you page
             return HttpResponseRedirect(reverse('center_detail', kwargs={'name': name}))
-
         else :
             return render(request, 'centers/booking_form.html', {'form': form})
 
     else:
         form = form_class(request.user, center)
-        # print "in super else", "*"*50, dir(form)
-
-        return render_to_response(template_name, {
+        return render(request, template_name, {
             'center': center,
             'form': form,
-        }, context_instance=RequestContext(request))
+        })
         
 
     # ------ MIXINS ------ #
