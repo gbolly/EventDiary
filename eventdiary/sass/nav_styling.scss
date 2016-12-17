@@ -54,7 +54,7 @@ $sky-blue: #54c7fc;
         letter-spacing: 1.2px;
         text-align: center;
         text-transform: uppercase;
-        margin-left: 100px;
+        margin-left: 150px;
         width: 50%;
         color: #ccc;
         @media only screen and (min-width: 769px) and (max-width: 1071px) {
@@ -71,16 +71,17 @@ $sky-blue: #54c7fc;
     }
     .navbar-right {
         width: auto;
-        font-size: 13px;
+        font-size: 15px;
         text-transform: capitalize;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
         font-style: normal;
         font-stretch: normal;
         letter-spacing: 1.2px;
+        margin-top: 15px;
 
         li {
-            padding-right: 22px;
+            padding-right: 12px;
         }
 
         a {

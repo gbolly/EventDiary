@@ -198,7 +198,7 @@ class ForgotPasswordView(View):
                     request,
                     {'recovery_hash_url': recovery_hash_url})
                 recovery_email = SendGrid.compose(
-                    sender='Theeventdiary <Theeventdiary@andela.com>',
+                    sender='Theeventdiary <mail@theeventdiary.com>',
                     recipient=registered_user.email,
                     subject='Theeventdiary: Password Recovery',
                     html=loader.get_template(

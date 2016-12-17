@@ -12,7 +12,7 @@
                 <div id="top-image" class="bg-image">
                     <h1>{{ center.name }}</h1>
                     <div class="ctas center">
-                        <a class="bright-blue-round-button book-now" href="{% url 'booking_create' name=center.name %}">Book now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        <a class="bright-blue-round-button book-now" href="{% url 'booking_create' slug=center.slug %}">Book now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </section>
@@ -50,7 +50,7 @@
                                 <div class="btn-cta">
                                     <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
                                         <div class="apply center">
-                                            <a class="bright-blue-round-button btn-block apply-external" href="{% url 'booking_create' name=center.name %}" target="_blank">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                            <a class="bright-blue-round-button btn-block apply-external" href="{% url 'booking_create' slug=center.slug %}" target="_blank">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>

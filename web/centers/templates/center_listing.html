@@ -1,4 +1,5 @@
 {% extends "standard_page.html" %}
+{% load cloudinary %}
 {% load static %}
 
 {% block extended_css %}
@@ -12,7 +13,7 @@
         {% for centers in center %}
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top" src="{{centers.image}}" alt="{{centers.name}}">
+                <img class="card-img-top" src="{{cloudinary}}" alt="{{centers.name}}">
                 <div class="card-block">
                     <h4 class="card-title">{{ centers.name }}</h4>
                     <p class="card-text">{{ centers.description|truncatechars:20 }}</p>
@@ -20,9 +21,9 @@
                     <p class="card-text">{{ centers.price }}</p>
                     <p class="card-text updated"><small class="text-muted">Last updated {{ centers.date_last_modified }}</small></p>
                     <p class="read-on">
-                        <a href="{% url 'center_detail' name=centers.name %}">More details</a>
+                        <a href="{% url 'center_detail' slug=centers.slug %}">More details</a>
                     </p>
-                    <a href="{% url 'booking_create' name=centers.name %}" class="btn btn-primary book">Book Center</a>
+                    <a href="{% url 'booking_create' slug=centers.slug %}" class="btn btn-primary book">Book Center</a>
                 </div>
             </div>
         </div>

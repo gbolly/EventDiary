@@ -27,7 +27,8 @@ body {
   font-style: normal;
   color: #eeeeee;
   font-size: 25px;
-  text-decoration: none; }
+  text-decoration: none;
+  margin-left: 30px; }
   .brand .logo .logo-span {
     width: 72.5px;
     height: 19px;
@@ -43,6 +44,14 @@ body {
   z-index: 20;
   width: 97%;
   padding: 2em 0; }
+  .header span {
+    color: #fff; }
+  .header .sign-up {
+    padding-right: 10px; }
+  .header .sign-in {
+    padding-left: 10px; }
+  .header .list-a-center:hover {
+    background-color: #28abec; }
 
 .main-container {
   position: relative;
@@ -108,8 +117,8 @@ body {
     font-family: sans-serif;
     text-transform: uppercase;
     color: #fff;
-    padding: 10px 20px;
-    font-size: 12px;
+    padding: 10px 15px;
+    font-size: 13px;
     outline: none; }
 
 .go-right {
