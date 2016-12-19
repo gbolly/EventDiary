@@ -150,6 +150,8 @@ MEDIA_URL = '/media/'
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
+DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
+
 cloudinary.config(
   cloud_name = "theeventdiary",
   api_key = "717232858138761",

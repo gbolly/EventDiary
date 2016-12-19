@@ -23,16 +23,20 @@ def center_detail(request, slug):
 
 def booking_view(request, slug, model_class=Center, form_class=BookingForm, template_name='centers/booking_form.html'):
     center = get_object_or_404(model_class, slug=slug)
-
+    args = dict()
     if request.POST:
         form = form_class(request.user, center, request.POST)
-        
-        if form.is_valid():
-            booking = form.save()
-            # change the redirect page to a thank you page
-            return HttpResponseRedirect(reverse('center_detail', kwargs={'slug': slug}))
-        else :
-            return render(request, 'centers/booking_form.html', {'form': form})
+        if request.user.is_authenticated():
+            if form.is_valid():
+                booking = form.save(commit=False)
+                booking.center = center
+                booking.is_approved = False
+                booking.save()
+                args["slug"] = slug
+                args["center"] = center.name
+                return render(request, 'thank_you.html', {"center":center.name})
+            else :
+                return render(request, template_name, {'form': form})
 
     else:
         form = form_class(request.user, center)
@@ -50,41 +54,9 @@ def new_center(request):
                 center.owner = request.user
                 center.active = True
                 center.slug = form.cleaned_data['name'].replace(" ", "")
-                print center.slug
                 center.date_created = timezone.now()
                 center.date_last_modified = timezone.now()
-                center.save()
-                print "saved=============="
                 return render(request, 'center_detail.html', {'center': center})
     else:
         form = CenterForm()
         return render(request, 'centers/new_center.html', {'form': form})
-        
-
-    # ------ MIXINS ------ #
-
-# class BookingViewMixin(object):
-#     model = Booking
-#     form_class = BookingForm
-
-# ------ MODEL VIEWS ------ #
-
-# class BookingCreateView(BookingViewMixin, CreateView):
-#     """View to create a new ``Booking`` instance."""
-#     def get_success_url(self):
-#         return reverse('booking_create', kwargs={'pk': self.object.pk})
-
-#     def get_form_kwargs(self, *args, **kwargs):
-#         kwargs = super(BookingCreateView, self).get_form_kwargs(
-#             *args, **kwargs)
-#         if self.request.user.is_authenticated():
-#             kwargs.update({'user': self.request.user})
-#         else:
-#             # If the user is not authenticated, get the current session
-#             if not self.request.session.exists(
-#                     self.request.session.session_key):
-#                 self.request.session.create()
-#             kwargs.update({'session': Session.objects.get(
-#                 session_key=self.request.session.session_key)})
-#             print kwargs
-#         return kwargs

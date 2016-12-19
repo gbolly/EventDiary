@@ -1,0 +1,12 @@
+{% extends "standard_page.html" %}
+{% load static %}
+
+{% block head_title %}Successful Booking{% endblock %}
+
+{% block extended_css %}
+    <link rel="stylesheet" href="{% static 'css/centers/center_booking_form.css' %}" />
+{% endblock %}
+
+{% block main %}
+    <h2>Your booking well received. Thank you for booking {{center}}. We would get back to you as soon as we confirm you date of appointment to for your center tour.</h2>
+{% endblock %}
