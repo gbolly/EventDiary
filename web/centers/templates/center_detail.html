@@ -10,9 +10,9 @@
         <div id="center-container" class="center-individual">
             <section class="top-block">
                 <div id="top-image" class="bg-image">
-                    <h1>{{ center.name }}</h1>
+                    <h1>{{ center_name }}</h1>
                     <div class="ctas center">
-                        <a class="bright-blue-round-button book-now" href="{% url 'booking_create' name=center.name %}">Book now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        <a class="bright-blue-round-button book-now" href="{% url 'booking_create' slug=center_slug %}">Book now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </section>
@@ -21,19 +21,19 @@
                     <section class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="sidebar">
                             <div class="sidebar-content">
-                                <a class="side-header" href="#">{{center.owner}}</a>
-                                <p>With a capcacity of up to {{center.capacity}}</p>
-                                <p>{{ center.address }}</p>
-                                <h3>More about {{center.owner}}</h3>
+                                <a class="side-header" href="#">{{center_owner}}</a>
+                                <p>With a capcacity of up to {{center_capacity}}</p>
+                                <p>{{ center_address }}</p>
+                                <h3>More about {{center_owner}}</h3>
                                 <div class="other-data">
                                     <div class="data-block">
                                         <div class="data-col">
                                             <h4 class="location">Location</h4>
-                                            <div>{{ center.state_name }}</div>
+                                            <div>{{ center_location }}</div>
                                         </div>
                                         <div class="data-col">
                                             <h4 class="price">Price</h4>
-                                            <div>{{ center.price }}</div>
+                                            <div>{{ center_price }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -44,13 +44,13 @@
                         <div class="center-body">
                             <div class="center-post">
                                 <div class="center-post-description">
-                                    <p>{{ center.description }}</p>
+                                    <p>{{ center_description }}</p>
                                     <p>&nbsp;</p>
                                 </div>
                                 <div class="btn-cta">
                                     <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
                                         <div class="apply center">
-                                            <a class="bright-blue-round-button btn-block apply-external" href="{% url 'booking_create' name=center.name %}" target="_blank">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                            <a class="bright-blue-round-button btn-block apply-external" href="{% url 'booking_create' slug=center_slug %}" target="_blank">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>

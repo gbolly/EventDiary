@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_libs.models_mixins import TranslationModelMixin
 from hvad.models import TranslatableModel, TranslatedFields
+from cloudinary.models import CloudinaryField
 from web.accounts.models import UserProfile
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # States in Nigeria
@@ -29,8 +31,7 @@ class Center(models.Model):
 
     price = models.IntegerField()
     capacity = models.IntegerField()
-    # owner = models.CharField(max_length=100, null=False, blank=False)
-    owner = models.ForeignKey(User)
+    owner = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField(blank=True, default='')
     slug = models.SlugField(blank=True, null=False, unique=True)
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -39,18 +40,13 @@ class Center(models.Model):
     active = models.BooleanField(default=False)
     date_created = models.DateField(auto_now_add=True)
     date_last_modified = models.DateField(auto_now=True)
-    image = models.ImageField(upload_to='center_images', null=True)
-    is_available = models.BooleanField()
-
-    # def thumbnail_image_url(self):
-    #     """Returns a thumbnail image URL
-    #     """
-    #     image_url = self.image.build_url(
-    #         width=SITE_IMAGES['thumbnail_image_width'],
-    #         height=SITE_IMAGES['thumbnail_image_height'],
-    #         crop="fit",
-    #     )
-    #     return image_url
+    image = CloudinaryField(
+        resource_type='image',
+        type='upload',
+        blank=True,
+        default="img/test-run-gb.jpeg"
+    )
+    is_available = models.BooleanField(default=True)
 
     def state_name(self):
         """Returns the state name
@@ -66,11 +62,10 @@ class Center(models.Model):
 
 class Booking(models.Model):
     center = models.ForeignKey(Center)
-    owner = models.ForeignKey(User)
     booking_start_date = models.DateField()
     booking_end_date = models.DateField()
     customer_name = models.CharField(max_length=100, null=False, blank=False)
-    phone_number = models.IntegerField()
+    phone_number = PhoneNumberField()
     is_approved = models.BooleanField(default=False)
 
 

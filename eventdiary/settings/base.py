@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.core.exceptions import ImproperlyConfigured
+import cloudinary
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
     'envvars',
     'anymail',
     'web.accounts',
@@ -147,3 +149,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
+
+cloudinary.config(
+  cloud_name = "theeventdiary",
+  api_key = "717232858138761",
+  api_secret = "P7ypHvEjMKDrc4OcLWfNSbo7mY4"
+)

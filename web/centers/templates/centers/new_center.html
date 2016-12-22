@@ -1,0 +1,13 @@
+{% extends "standard_page.html" %}
+{% load static %}
+
+{% block head_title %}Create Center{% endblock %}
+
+{% block main %}
+    <h1>New Center</h1>
+    <form method="POST" class="new-center-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

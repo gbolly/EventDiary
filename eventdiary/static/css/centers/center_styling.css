@@ -4,6 +4,13 @@
   text-transform: uppercase;
   font-weight: lighter; }
 
+.top {
+  padding-bottom: 20px; }
+  .top .location-search {
+    margin-top: 20px; }
+    .top .location-search form .add-on {
+      width: 86%; }
+
 .container-fluid {
   padding: 0 100px; }
   .container-fluid .card {
