@@ -4,4 +4,5 @@ __pycache__
 .env
 *.pyc
 .sass-cache/
+*.map
 EventDiary.sublime-workspace
