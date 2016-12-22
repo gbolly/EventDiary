@@ -38,7 +38,8 @@
     text-transform: uppercase;
     margin-left: 150px;
     width: 50%;
-    color: #ccc; }
+    color: #ccc;
+    padding: 0 115px; }
     @media only screen and (min-width: 769px) and (max-width: 1071px) {
       .nav-container .nav-list {
         margin-left: 80px; } }

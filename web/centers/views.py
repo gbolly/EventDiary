@@ -19,7 +19,17 @@ def center_listing(request):
 
 def center_detail(request, slug):
     center = get_object_or_404(Center, slug=slug)
-    return render(request, 'center_detail.html', {'center': center})
+    return render(request, 'center_detail.html', {
+        'center_name': center.name,
+        'center_img':center.image,
+        'center_description':center.description,
+        'center_location':center.state_name,
+        'center_price':center.price,
+        'center_owner':center.owner,
+        'center_capcity':center.capacity,
+        'center_address':center.address,
+        'center_slug':center.slug,
+    })
 
 def booking_view(request, slug, model_class=Center, form_class=BookingForm, template_name='centers/booking_form.html'):
     center = get_object_or_404(model_class, slug=slug)

@@ -8,7 +8,21 @@
 
 {% block main %}
     <!-- deals listing section -->
-    <h1 class="header-text">event centers you might like</h1>
+    <div class="row top">
+        <div class="col-md-8">
+            <h1 class="header-text">event centers you might like</h1>
+        </div>
+        <div class="col-md-4 location-search">
+            <form class="navbar-form" role="search">
+                <div class="input-group add-on">
+                    <input class="form-control" placeholder="Search by location" name="srch-term" id="srch-term" type="text">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row container-fluid" id="deals-section">
         {% for centers in center %}
             <div class="col-md-4">

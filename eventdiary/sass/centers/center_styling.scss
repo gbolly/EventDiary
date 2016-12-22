@@ -5,6 +5,18 @@
     font-weight: lighter;
 }
 
+.top {
+    padding-bottom: 20px;
+    .location-search {
+        margin-top: 20px;
+        form {
+            .add-on {
+                width: 86%;
+            }
+        }
+    }
+}
+
 .container-fluid {
     padding: 0 100px;
     .card {
