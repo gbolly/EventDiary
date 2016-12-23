@@ -35,12 +35,9 @@ import envvars
 envvars.load()
 SECRET_KEY = envvars.get('SECRET_KEY')
 
-
 ALLOWED_HOSTS = ["theeventdiary.herokuapp.com"]
 
-
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
