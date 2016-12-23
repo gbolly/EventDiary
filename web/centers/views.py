@@ -2,12 +2,11 @@ import cloudinary
 from django.contrib.auth.decorators import login_required
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, render_to_response
-from django.template import RequestContext
+from django.template import RequestContext, Engine
 from django.utils import timezone
-from django.views.generic.base import TemplateView
-from django.views.generic import CreateView
+from django.contrib import messages
 
 from .forms import BookingForm, CenterForm
 from .models import Center, Booking
@@ -56,6 +55,12 @@ def booking_view(request, slug, model_class=Center, form_class=BookingForm, temp
         })
 
 def new_center(request):
+    cls_default_msgs = {
+        'not_signed_in': 'You must be signed in to list your event center',
+        'invalid_param': 'Invalid parameters. \
+                        Please make sure you fill in all fields',
+    }
+
     if request.POST:
         form = CenterForm(request.POST)
         if request.user.is_authenticated():
@@ -67,6 +72,18 @@ def new_center(request):
                 center.date_created = timezone.now()
                 center.date_last_modified = timezone.now()
                 return render(request, 'center_detail.html', {'center': center})
+        else:
+            # Set error context
+            error_msg = cls_default_msgs['not_signed_in']
+            messages.add_message(request, messages.INFO, error_msg)
+
+            # Set template
+            template = Engine.get_default().get_template(
+                'login.html')
+
+            # Set result in RequestContext
+            context = RequestContext(request)
+            return HttpResponse(template.render(context))
     else:
         form = CenterForm()
         return render(request, 'centers/new_center.html', {'form': form})

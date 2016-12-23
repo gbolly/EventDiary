@@ -7,14 +7,14 @@
 {% block main %}
     <div class="row content">
         {% if messages %}
-          <div class="col-sm-12 no-left">
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    <a class="close" data-dismiss="alert">×</a>
-                    {{ message|safe }}
-                </div>
-            {% endfor %}
-          </div>
+            <div class="col-sm-12 no-left">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        <a class="close" data-dismiss="alert">×</a>
+                        {{ message|safe }}
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
         <div class="col-xs-11 col-sm-5 col-lg-6 form-card">
             <header class="row">
