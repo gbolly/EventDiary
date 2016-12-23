@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'cloudinary',
     'envvars',
     'anymail',
+    'phonenumber_field',
     'web.accounts',
     'web.deals',
     'web.authentication',
