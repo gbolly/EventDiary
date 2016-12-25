@@ -350,4 +350,13 @@ body {
     padding: 5px 0;
     display: block; }
 
+.col-sm-12.no-left {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+  vertical-align: middle;
+  left: 24%;
+  height: 50px;
+  position: absolute; }
+
 /*# sourceMappingURL=main.css.map */

@@ -3,6 +3,10 @@
 
 {% block head_title %}Create Center{% endblock %}
 
+{% block extended_css %}
+    <link rel="stylesheet" href="{% static 'css/centers/new_center.css' %}" />
+{% endblock %}
+
 {% block main %}
     <h1>New Center</h1>
     <form method="POST" class="new-center-form">

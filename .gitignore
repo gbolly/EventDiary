@@ -3,6 +3,7 @@ __pycache__
 *.DS_Store
 .env
 *.pyc
-.sass-cache/
+.sass-cache
+.sass-cache/*
 *.map
 EventDiary.sublime-workspace
