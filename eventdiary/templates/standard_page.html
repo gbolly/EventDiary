@@ -20,14 +20,11 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="nav navbar-nav nav-list">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/center">All Centers</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                  {# <li><a href="#">Book a Center</a></li> #}
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/center">All Centers</a></li>
+                    <li><a href="#">Contact Us</a></li>
                     {% if request.user.is_authenticated %}
-                        <div class="dropdown">
+                        <li class="dropdown">
                             <a class="dropdown-toggle" type="button" data-toggle="dropdown">Hi {{ user }}
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -38,10 +35,10 @@
                                 {% endif %}
                                 <li><a href="{% url 'logout' %}">Logout</a></li>
                             </ul>
-                        </div>
+                        </li>
                     {% else %}
-                      <li class="option"><a href="/login" class="login-option">Sign in</a></li>
-                      <li class="option"><a class="login-option hidden-xs" href="/register">Sign Up</a></li>
+                        <li class="option"><a href="/login" class="">Sign in</a></li>
+                        <li class="option"><a class="hidden-xs" href="/register">Sign Up</a></li>
                     {% endif %}
                 </ul>
             </div>
