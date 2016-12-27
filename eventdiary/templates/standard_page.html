@@ -3,6 +3,7 @@
 
 {% block standard_css %}
     <link rel="stylesheet" href="{% static 'css/nav_styling.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
     {% block extended_css %}
     {% endblock extended_css %}
 {% endblock standard_css %}
@@ -21,8 +22,8 @@
                 <ul class="nav navbar-nav nav-list">
                   <li><a href="/">Home</a></li>
                   <li><a href="/center">All Centers</a></li>
-                  {# <li><a href="#">Book a Center</a></li> #}
                   <li><a href="#">Contact Us</a></li>
+                  {# <li><a href="#">Book a Center</a></li> #}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if request.user.is_authenticated %}
@@ -32,6 +33,9 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/account/profile">Profile</a></li>
                                 <li><a href="/center">Book a Center</a></li>
+                                {% if request.user.is_admin %}
+                                  <li><a href="{% url 'new_center' %}">Add a new Center</a></li>
+                                {% endif %}
                                 <li><a href="{% url 'logout' %}">Logout</a></li>
                             </ul>
                         </div>

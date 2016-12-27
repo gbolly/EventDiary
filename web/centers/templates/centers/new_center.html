@@ -8,10 +8,22 @@
 {% endblock %}
 
 {% block main %}
-    <h1>New Center</h1>
-    <form method="POST" class="new-center-form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+    <div class="col-xs-11 col-sm-5 col-lg-6 form-card">
+        <h1>New Center</h1>
+        <div class="row reg-form">
+            <div class="col-sm-12">
+                <form method="POST" class="new-center-form">
+                    {% csrf_token %}
+                    <div class="custom-form-group">
+                        <div class="custom-input-group">
+                            {{ form.as_p }}
+                        </div>
+                    </div>
+                    <div class="row center-buttons">
+                        <input type="submit" value="Save" class="save btn btn-action btn-form-submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

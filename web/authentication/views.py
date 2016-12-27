@@ -2,7 +2,7 @@ import re
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_protect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import validate_email, ValidationError
@@ -152,7 +152,7 @@ class UserLogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(
-            reverse('home'),
+            reverse_lazy('home'),
             'Redirect to home page')
 
 
@@ -188,7 +188,7 @@ class ForgotPasswordView(View):
                 # generate a recovery hash url for that account:
                 recovery_hash = Hasher.gen_hash(registered_user)
                 recovery_hash_url = request.build_absolute_uri(
-                    reverse(
+                    reverse_lazy(
                         'account_reset_password',
                         kwargs={'recovery_hash': recovery_hash}
                     ))
@@ -308,7 +308,7 @@ class ResetPasswordView(View):
                     'Your password was changed successfully!')
 
                 # redirect the user to the sign in:
-                return redirect(reverse('signin'))
+                return redirect(reverse_lazy('signin'))
 
             except ObjectDoesNotExist:
                 # set an error message:
@@ -369,7 +369,7 @@ class UserRegistrationView(View):
             # generate an activation hash url for new user account
             activation_hash = Hasher.gen_hash(new_user)
             activation_hash_url = request.build_absolute_uri(
-                reverse(
+                reverse_lazy(
                     'activate_account',
                     kwargs={'activation_hash': activation_hash},
                 )
@@ -399,7 +399,7 @@ class UserRegistrationView(View):
                 messages.add_message(request, messages.INFO, new_user_email)
                 print(messages, "-"*50)
 
-            return redirect(reverse('confirm_registration'))
+            return redirect(reverse_lazy('confirm_registration'))
 
         else:
             args = {}

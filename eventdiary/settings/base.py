@@ -35,7 +35,7 @@ import envvars
 envvars.load()
 SECRET_KEY = envvars.get('SECRET_KEY')
 
-ALLOWED_HOSTS = ["theeventdiary.herokuapp.com"]
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 INSTALLED_APPS = (
@@ -105,7 +105,7 @@ DATABASES = {
 
 import dj_database_url
 
-DATABASES["default"] = dj_database_url.config(default="postgres://rjbyqqzvnoeqdt:VZzuOnZCrJUht0fuHayOMK4ZLT@ec2-54-243-212-72.compute-1.amazonaws.com:5432/d2heelj89ka1ca")
+DATABASES["default"] = dj_database_url.config()
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

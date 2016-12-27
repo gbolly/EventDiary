@@ -26,4 +26,4 @@ class BookingForm(forms.ModelForm):
 class CenterForm(forms.ModelForm):
     class Meta:
         model = Center
-        fields = ["price", "capacity", "description", "name", "location", "address", "image"]
+        fields = ["price", "capacity", "name", "location", "address", "image", "description"]

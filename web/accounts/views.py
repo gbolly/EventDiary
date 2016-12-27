@@ -37,7 +37,7 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
                 'choices': NIGERIAN_LOCATIONS, 'default': 25
             },
             'breadcrumbs': [
-                {'name': 'My Account', 'url': reverse('account')},
+                {'name': 'My Account', 'url': reverse_lazy('account')},
                 {'name': 'Profile', },
             ]
         })
@@ -73,6 +73,6 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
             messages.add_message(
                 request, messages.SUCCESS, 'Profile Updated!')
             return redirect(
-                reverse('account_profile'),
+                reverse_lazy('account_profile'),
                 context_instance=RequestContext(request)
             )
