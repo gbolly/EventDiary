@@ -8,21 +8,28 @@
 {% endblock %}
 
 {% block main %}
-    <div class="col-xs-11 col-sm-5 col-lg-6 form-card">
-        <h1>New Center</h1>
-        <div class="row reg-form">
-            <div class="col-sm-12">
-                <form method="POST" class="new-center-form">
-                    {% csrf_token %}
-                    <div class="custom-form-group">
-                        <div class="custom-input-group">
-                            {{ form.as_p }}
+    <div class="row">
+        <div class="col-xs-11 col-sm-5 col-lg-6 form-card">
+            <h1>New Center</h1>
+            <div class="row reg-form">
+                <div class="col-sm-12">
+                    <form method="POST" class="new-center-form">
+                        {% csrf_token %}
+                        <div class="custom-form-group">
+                            <div class="custom-input-group">
+                                {% for field in form %}
+                                    <div class="fieldWrapper">
+                                        {{ field.errors }}
+                                        {{ field.label_tag }} {{ field }}
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="row center-buttons">
-                        <input type="submit" value="Save" class="save btn btn-action btn-form-submit" />
-                    </div>
-                </form>
+                        <div class="row center-buttons">
+                            <input type="submit" value="Save" class="save btn btn-action btn-form-submit" />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
