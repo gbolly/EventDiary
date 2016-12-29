@@ -60,11 +60,30 @@ $sky-blue: #54c7fc;
         @media only screen and (min-width: 769px) and (max-width: 1071px) {
             margin-left: 80px;
         }
+        .open {
+            .dropdown-toggle {
+                background-color: #fff;
+                padding-bottom: 25px;
+                border-color: inherit;
+                // width: 142%;
+            }
+        }
         li {
             a {
                 color: $white;
                 &:hover {
-                    color: $cool-grey;
+                    color: #fff;
+                }
+            }
+        }
+        .dropdown-menu {
+            font-size: 12px;
+            border: 0;
+            a {
+                padding: 10px;
+                color: #555;
+                &:hover {
+                    color: #000;
                 }
             }
         }

@@ -42,10 +42,22 @@
     @media only screen and (min-width: 769px) and (max-width: 1071px) {
       .nav-container .nav-list {
         margin-left: 80px; } }
+    .nav-container .nav-list .open .dropdown-toggle {
+      background-color: #fff;
+      padding-bottom: 25px;
+      border-color: inherit; }
     .nav-container .nav-list li a {
       color: #eeeeee; }
       .nav-container .nav-list li a:hover {
-        color: #9fa3a7; }
+        color: #fff; }
+    .nav-container .nav-list .dropdown-menu {
+      font-size: 12px;
+      border: 0; }
+      .nav-container .nav-list .dropdown-menu a {
+        padding: 10px;
+        color: #555; }
+        .nav-container .nav-list .dropdown-menu a:hover {
+          color: #000; }
   .nav-container .navbar-right {
     width: auto;
     font-size: 15px;
