@@ -23,9 +23,16 @@
             <h1 class="header-text">event centers you might like</h1>
         </div>
         <div class="col-md-4 location-search">
-            <form class="navbar-form" role="search">
+            <form class="navbar-form" role="search" method="GET">
                 <div class="input-group add-on">
-                    <input class="form-control" placeholder="Search by location" name="srch-term" id="srch-term" type="text">
+                    {% for field in form %}
+                        {# {{field}} #}
+                        <div class="fieldWrapper">
+                            {{ field.errors }}
+                            {{ field.label_tag }} {{ field }}
+                        </div>
+                    {% endfor %}
+                    <input class="form-control" placeholder="Search by location" name="q" id="srch-term" type="text">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                     </div>
@@ -34,14 +41,14 @@
         </div>
     </div>
     <div class="row container-fluid" id="deals-section">
-        {% for centers in center %}
+        {% for centers in object_list %}
             <div class="col-md-4">
                 <div class="card">
                     <img class="card-img-top" src="{{centers.image}}" alt="{{centers.name}}">
                     <div class="card-block">
                         <h4 class="card-title">{{ centers.name }}</h4>
                         <p class="card-text">{{ centers.description|truncatechars:20 }}</p>
-                        <p class="card-text">{{ centers.state_name }}</p>
+                        <p class="card-text">{{centers.get_area_name}}, {{ centers.state_name }}</p>
                         <p class="card-text">{{ centers.price }}</p>
                         <p class="card-text updated"><small class="text-muted">Last updated {{ centers.date_last_modified }}</small></p>
                         <p class="read-on">

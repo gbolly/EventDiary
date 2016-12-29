@@ -7,14 +7,28 @@ from django.shortcuts import render, get_object_or_404, render_to_response
 from django.template import RequestContext, Engine
 from django.utils import timezone
 from django.contrib import messages
+from django.views.generic.list import ListView
 
 from .forms import BookingForm, CenterForm
 from .models import Center, Booking
 
+class CenterListView(ListView):
+    model = Center
+    template_name = 'center_listing.html'
+    paginate_by = 10
 
-def center_listing(request):
-    centers = Center.objects.filter(active=True).order_by('date_last_modified')
-    return render(request, 'center_listing.html', {'center': centers})
+    def get_context_data(self, **kwargs):
+        context = super(CenterListView, self).get_context_data(**kwargs)
+        return context
+
+    def get_queryset(self):
+        center = self.model.objects.all()
+        query = self.request.GET.get("q")
+        center_area = self.model.objects.get_area_name(query)
+        if query:
+            return center_area
+        else:
+            return center
 
 def center_detail(request, slug):
     center = get_object_or_404(Center, slug=slug)
@@ -23,9 +37,10 @@ def center_detail(request, slug):
         'center_img':center.image,
         'center_description':center.description,
         'center_location':center.state_name,
+        'center_area':center.area_name,
         'center_price':center.price,
         'center_owner':center.owner,
-        'center_capcity':center.capacity,
+        'center_capacity':center.capacity,
         'center_address':center.address,
         'center_slug':center.slug,
     })
@@ -71,7 +86,19 @@ def new_center(request):
                 center.slug = form.cleaned_data['name'].replace(" ", "")
                 center.date_created = timezone.now()
                 center.date_last_modified = timezone.now()
-                return render(request, 'center_detail.html', {'center': center})
+                center.save()
+                return render(request, 'center_detail.html', {
+                    'center_name': center.name,
+                    'center_img':center.image,
+                    'center_description':center.description,
+                    'center_location':center.state_name,
+                    'center_area':center.area_name,
+                    'center_price':center.price,
+                    'center_owner':center.owner,
+                    'center_capacity':center.capacity,
+                    'center_address':center.address,
+                    'center_slug':center.slug,
+                })
         else:
             # Set error context
             error_msg = cls_default_msgs['not_signed_in']
