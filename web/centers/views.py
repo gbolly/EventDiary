@@ -129,7 +129,7 @@ def edit_center(request, slug=None):
         form = CenterForm(request.POST, instance=center)
         if form.is_valid():
             form.save()
-            return render(request, "center_listing.html", locals())
+            return render(request, "updated_center.html", locals())
     else:
         form = CenterForm(instance=center)
     return render(request, 'center_edit.html', {'form': form})
