@@ -15,7 +15,7 @@
     border-radius: .25rem;
     border: 1px solid rgba(0, 0, 0, 0.125);
     padding: 0 0 20px 0; }
-    .container-fluid .card .card-img-top {
+    .container-fluid .card img {
       width: 100%; }
     .container-fluid .card .card-block {
       padding: 15px; }

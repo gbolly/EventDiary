@@ -20,14 +20,12 @@
         border-radius: .25rem;
         border: 1px solid rgba(0,0,0,.125);
         padding: 0 0 20px 0;
-
-        .card-img-top {
+        img {
             width: 100%;
         }
 
         .card-block {
             padding: 15px;
-
             .card-title {
                 text-transform: uppercase;
             }
