@@ -1,4 +1,6 @@
 import cloudinary
+from cloudinary.forms import cl_init_js_callbacks
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
@@ -11,6 +13,7 @@ from django.views.generic.list import ListView
 
 from .forms import BookingForm, CenterForm
 from .models import Center, Booking
+from context_processor import Image_Effects
 
 class CenterListView(ListView):
     model = Center
@@ -19,6 +22,7 @@ class CenterListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CenterListView, self).get_context_data(**kwargs)
+        context['Image_Effects'] = Image_Effects
         return context
 
     def get_queryset(self):
@@ -43,6 +47,7 @@ def center_detail(request, slug):
         'center_capacity':center.capacity,
         'center_address':center.address,
         'center_slug':center.slug,
+        'Image_Effects':Image_Effects,
     })
 
 def booking_view(request, slug, model_class=Center, form_class=BookingForm, template_name='centers/booking_form.html'):
@@ -52,6 +57,7 @@ def booking_view(request, slug, model_class=Center, form_class=BookingForm, temp
         form = form_class(request.user, center, request.POST)
         if request.user.is_authenticated():
             if form.is_valid():
+                print request.user.email, "--------"
                 booking = form.save(commit=False)
                 booking.center = center
                 booking.is_approved = False
@@ -75,9 +81,10 @@ def new_center(request):
         'invalid_param': 'Invalid parameters. \
                         Please make sure you fill in all fields',
     }
+    center_form = CenterForm()
 
     if request.POST:
-        form = CenterForm(request.POST)
+        form = CenterForm(request.POST, request.FILES)
         if request.user.is_authenticated():
             if form.is_valid():
                 center = form.save(commit=False)
@@ -102,7 +109,7 @@ def new_center(request):
         else:
             # Set error context
             error_msg = cls_default_msgs['not_signed_in']
-            messages.add_message(request, messages.INFO, error_msg)
+            messages.add_message(request, messages.INFO, error_msg, form.errors)
 
             # Set template
             template = Engine.get_default().get_template(
@@ -111,6 +118,5 @@ def new_center(request):
             # Set result in RequestContext
             context = RequestContext(request)
             return HttpResponse(template.render(context))
-    else:
-        form = CenterForm()
-        return render(request, 'centers/new_center.html', {'form': form})
+
+    return render(request, 'centers/new_center.html', {'form': center_form})

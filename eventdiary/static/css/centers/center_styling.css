@@ -28,6 +28,8 @@
         .container-fluid .card .card-block .read-on a {
           text-transform: uppercase; }
       .container-fluid .card .card-block .book {
-        margin: 30px 0 0 100px; }
+        display: block;
+        text-align: center;
+        padding: 12px; }
 
 /*# sourceMappingURL=center_styling.css.map */
