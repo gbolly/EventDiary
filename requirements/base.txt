@@ -13,6 +13,7 @@ django-hvad==1.6.0
 django-libs==1.67.7
 django-mailgun==0.9.1
 django-toolbelt==0.0.1
+django-widget-tweaks==1.4.1
 envvars==0.3.0
 gunicorn==19.6.0
 hashids==1.1.0
