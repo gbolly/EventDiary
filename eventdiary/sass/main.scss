@@ -172,7 +172,8 @@ body {
     float: right !important;
 }
 
-.round-button {
+.round-button,
+.grey-round-button {
     border-radius: 25px;
     letter-spacing: 1px;
     border-style: solid;
@@ -255,15 +256,29 @@ body {
     border-style: solid;
     border-width: 2px;
     border-color: #fff;
+    &:hover  {
+        color: #333;
+        text-decoration: none !important;
+        background-color: $cool-grey;
+    }
 }
 
-.event-tiles {
+.grey-round-button {
+    border-color: $warm-grey;
+    text-transform: uppercase;
+}
+
+.event-tiles,
+.center-owners,
+.other-vendors {
     text-align: center;
-    h1{
+    h1 {
         padding-top: 20px;
-        font-family: sans-serif;
+        font-family: "Avro", sans-serif;
+        font-size: 30px;
+        letter-spacing: 1px;
     }
-    h2{
+    h2 {
         text-transform: capitalize;
         padding-bottom: 20px;
         font-size: 20px;
@@ -368,14 +383,34 @@ body {
         }
     }
 }
-.for-employers {
+.center-owners {
+    padding-bottom: 25px;
+    padding-top: 35px;
+}
+
+.other-vendors {
+    padding-bottom: 63px;
+    h1 {
+        padding-bottom: 20px;
+    }
+    a {
+        padding: 13px 80px;
+    }
+    .disabled {
+        opacity: 0.65; 
+        cursor: not-allowed;
+        color: $warm-grey;
+    }
+}
+
+.for-owners {
     background-color: #963c3c;
     text-align: center;
-    .employer-intro, .employer-video {
+    .owner-intro, .owner-video {
         display: inline-block;
         vertical-align: top;
     }
-    .employer-intro {
+    .owner-intro {
         width: 30%;
         padding: 40px 20px 0 0;
     }

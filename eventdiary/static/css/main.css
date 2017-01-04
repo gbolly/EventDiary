@@ -126,7 +126,8 @@ body {
 .go-right {
   float: right !important; }
 
-.round-button {
+.round-button,
+.grey-round-button {
   border-radius: 25px;
   letter-spacing: 1px;
   border-style: solid;
@@ -201,44 +202,106 @@ body {
   border-style: solid;
   border-width: 2px;
   border-color: #fff; }
+  .off-round-button:hover {
+    color: #333;
+    text-decoration: none !important;
+    background-color: #9fa3a7; }
 
-.event-tiles {
+.grey-round-button {
+  border-color: #757575;
+  text-transform: uppercase; }
+
+.event-tiles,
+.center-owners,
+.other-vendors {
   text-align: center; }
-  .event-tiles h1 {
+  .event-tiles h1,
+  .center-owners h1,
+  .other-vendors h1 {
     padding-top: 20px;
-    font-family: sans-serif; }
-  .event-tiles h2 {
+    font-family: "Avro", sans-serif;
+    font-size: 30px;
+    letter-spacing: 1px; }
+  .event-tiles h2,
+  .center-owners h2,
+  .other-vendors h2 {
     text-transform: capitalize;
     padding-bottom: 20px;
     font-size: 20px;
     color: #666;
     font-family: sans-serif; }
-  .event-tiles .our-offerings {
+  .event-tiles .our-offerings,
+  .center-owners .our-offerings,
+  .other-vendors .our-offerings {
     display: table;
     width: 100%;
     color: #fff; }
-    .event-tiles .our-offerings .lagos, .event-tiles .our-offerings .ph, .event-tiles .our-offerings .abj, .event-tiles .our-offerings .ib {
+    .event-tiles .our-offerings .lagos, .event-tiles .our-offerings .ph, .event-tiles .our-offerings .abj, .event-tiles .our-offerings .ib,
+    .center-owners .our-offerings .lagos,
+    .center-owners .our-offerings .ph,
+    .center-owners .our-offerings .abj,
+    .center-owners .our-offerings .ib,
+    .other-vendors .our-offerings .lagos,
+    .other-vendors .our-offerings .ph,
+    .other-vendors .our-offerings .abj,
+    .other-vendors .our-offerings .ib {
       width: 50%;
       display: table-cell;
       vertical-align: top;
       position: relative; }
-      .event-tiles .our-offerings .lagos .bg-image-wrapper, .event-tiles .our-offerings .ph .bg-image-wrapper, .event-tiles .our-offerings .abj .bg-image-wrapper, .event-tiles .our-offerings .ib .bg-image-wrapper {
+      .event-tiles .our-offerings .lagos .bg-image-wrapper, .event-tiles .our-offerings .ph .bg-image-wrapper, .event-tiles .our-offerings .abj .bg-image-wrapper, .event-tiles .our-offerings .ib .bg-image-wrapper,
+      .center-owners .our-offerings .lagos .bg-image-wrapper,
+      .center-owners .our-offerings .ph .bg-image-wrapper,
+      .center-owners .our-offerings .abj .bg-image-wrapper,
+      .center-owners .our-offerings .ib .bg-image-wrapper,
+      .other-vendors .our-offerings .lagos .bg-image-wrapper,
+      .other-vendors .our-offerings .ph .bg-image-wrapper,
+      .other-vendors .our-offerings .abj .bg-image-wrapper,
+      .other-vendors .our-offerings .ib .bg-image-wrapper {
         position: relative; }
-      .event-tiles .our-offerings .lagos .bg-image, .event-tiles .our-offerings .ph .bg-image, .event-tiles .our-offerings .abj .bg-image, .event-tiles .our-offerings .ib .bg-image {
+      .event-tiles .our-offerings .lagos .bg-image, .event-tiles .our-offerings .ph .bg-image, .event-tiles .our-offerings .abj .bg-image, .event-tiles .our-offerings .ib .bg-image,
+      .center-owners .our-offerings .lagos .bg-image,
+      .center-owners .our-offerings .ph .bg-image,
+      .center-owners .our-offerings .abj .bg-image,
+      .center-owners .our-offerings .ib .bg-image,
+      .other-vendors .our-offerings .lagos .bg-image,
+      .other-vendors .our-offerings .ph .bg-image,
+      .other-vendors .our-offerings .abj .bg-image,
+      .other-vendors .our-offerings .ib .bg-image {
         padding: 4em; }
-      .event-tiles .our-offerings .lagos h4, .event-tiles .our-offerings .ph h4, .event-tiles .our-offerings .abj h4, .event-tiles .our-offerings .ib h4 {
+      .event-tiles .our-offerings .lagos h4, .event-tiles .our-offerings .ph h4, .event-tiles .our-offerings .abj h4, .event-tiles .our-offerings .ib h4,
+      .center-owners .our-offerings .lagos h4,
+      .center-owners .our-offerings .ph h4,
+      .center-owners .our-offerings .abj h4,
+      .center-owners .our-offerings .ib h4,
+      .other-vendors .our-offerings .lagos h4,
+      .other-vendors .our-offerings .ph h4,
+      .other-vendors .our-offerings .abj h4,
+      .other-vendors .our-offerings .ib h4 {
         font-family: sans-serif;
         font-size: 35px;
         text-transform: uppercase;
         margin: 40px 0 5px 0; }
-      .event-tiles .our-offerings .lagos p, .event-tiles .our-offerings .ph p, .event-tiles .our-offerings .abj p, .event-tiles .our-offerings .ib p {
+      .event-tiles .our-offerings .lagos p, .event-tiles .our-offerings .ph p, .event-tiles .our-offerings .abj p, .event-tiles .our-offerings .ib p,
+      .center-owners .our-offerings .lagos p,
+      .center-owners .our-offerings .ph p,
+      .center-owners .our-offerings .abj p,
+      .center-owners .our-offerings .ib p,
+      .other-vendors .our-offerings .lagos p,
+      .other-vendors .our-offerings .ph p,
+      .other-vendors .our-offerings .abj p,
+      .other-vendors .our-offerings .ib p {
         font-size: 16px;
         margin: 0px auto 30px;
         font-family: sans-serif;
         width: 400px; }
-    .event-tiles .our-offerings .lagos {
+    .event-tiles .our-offerings .lagos,
+    .center-owners .our-offerings .lagos,
+    .other-vendors .our-offerings .lagos {
       height: 350px; }
-      .event-tiles .our-offerings .lagos .bg-image {
+      .event-tiles .our-offerings .lagos .bg-image,
+      .center-owners .our-offerings .lagos .bg-image,
+      .other-vendors .our-offerings .lagos .bg-image {
         min-height: 100px;
         width: 100%;
         position: absolute;
@@ -248,11 +311,17 @@ body {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center; }
-      .event-tiles .our-offerings .lagos .mobile-header {
+      .event-tiles .our-offerings .lagos .mobile-header,
+      .center-owners .our-offerings .lagos .mobile-header,
+      .other-vendors .our-offerings .lagos .mobile-header {
         font-size: 14px; }
-    .event-tiles .our-offerings .ph {
+    .event-tiles .our-offerings .ph,
+    .center-owners .our-offerings .ph,
+    .other-vendors .our-offerings .ph {
       height: 350px; }
-      .event-tiles .our-offerings .ph .bg-image {
+      .event-tiles .our-offerings .ph .bg-image,
+      .center-owners .our-offerings .ph .bg-image,
+      .other-vendors .our-offerings .ph .bg-image {
         min-height: 100px;
         width: 100%;
         position: absolute;
@@ -262,11 +331,17 @@ body {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center; }
-      .event-tiles .our-offerings .ph .mobile-header {
+      .event-tiles .our-offerings .ph .mobile-header,
+      .center-owners .our-offerings .ph .mobile-header,
+      .other-vendors .our-offerings .ph .mobile-header {
         font-size: 14px; }
-    .event-tiles .our-offerings .abj {
+    .event-tiles .our-offerings .abj,
+    .center-owners .our-offerings .abj,
+    .other-vendors .our-offerings .abj {
       height: 350px; }
-      .event-tiles .our-offerings .abj .bg-image {
+      .event-tiles .our-offerings .abj .bg-image,
+      .center-owners .our-offerings .abj .bg-image,
+      .other-vendors .our-offerings .abj .bg-image {
         min-height: 100px;
         width: 100%;
         position: absolute;
@@ -276,11 +351,17 @@ body {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center; }
-      .event-tiles .our-offerings .abj .mobile-header {
+      .event-tiles .our-offerings .abj .mobile-header,
+      .center-owners .our-offerings .abj .mobile-header,
+      .other-vendors .our-offerings .abj .mobile-header {
         font-size: 14px; }
-    .event-tiles .our-offerings .ib {
+    .event-tiles .our-offerings .ib,
+    .center-owners .our-offerings .ib,
+    .other-vendors .our-offerings .ib {
       height: 350px; }
-      .event-tiles .our-offerings .ib .bg-image {
+      .event-tiles .our-offerings .ib .bg-image,
+      .center-owners .our-offerings .ib .bg-image,
+      .other-vendors .our-offerings .ib .bg-image {
         min-height: 100px;
         width: 100%;
         position: absolute;
@@ -290,30 +371,47 @@ body {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center; }
-      .event-tiles .our-offerings .ib .mobile-header {
+      .event-tiles .our-offerings .ib .mobile-header,
+      .center-owners .our-offerings .ib .mobile-header,
+      .other-vendors .our-offerings .ib .mobile-header {
         font-size: 14px; }
 
-.for-employers {
+.center-owners {
+  padding-bottom: 25px;
+  padding-top: 35px; }
+
+.other-vendors {
+  padding-bottom: 63px; }
+  .other-vendors h1 {
+    padding-bottom: 20px; }
+  .other-vendors a {
+    padding: 13px 80px; }
+  .other-vendors .disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    color: #757575; }
+
+.for-owners {
   background-color: #963c3c;
   text-align: center; }
-  .for-employers .employer-intro, .for-employers .employer-video {
+  .for-owners .owner-intro, .for-owners .owner-video {
     display: inline-block;
     vertical-align: top; }
-  .for-employers .employer-intro {
+  .for-owners .owner-intro {
     width: 30%;
     padding: 40px 20px 0 0; }
-  .for-employers h5, .for-employers p, .for-employers a {
+  .for-owners h5, .for-owners p, .for-owners a {
     color: #fff;
     text-align: left;
     display: block;
     font-family: sans-serif; }
-  .for-employers h5 {
+  .for-owners h5 {
     font-size: 40px;
     margin: 0px; }
-  .for-employers p {
+  .for-owners p {
     font-size: 17px;
     margin: 30px 0; }
-  .for-employers a {
+  .for-owners a {
     font-size: 14px;
     text-transform: uppercase;
     text-decoration: underline !important; }

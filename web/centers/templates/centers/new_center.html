@@ -1,5 +1,7 @@
 {% extends "standard_page.html" %}
 {% load static %}
+{% load cloudinary %}
+{% load widget_tweaks %}
 
 {% block head_title %}Create Center{% endblock %}
 
@@ -13,14 +15,14 @@
             <h1>New Center</h1>
             <div class="row reg-form">
                 <div class="col-sm-12">
-                    <form method="POST" class="new-center-form">
+                    <form method="POST" class="new-center-form" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="custom-form-group">
                             <div class="custom-input-group">
                                 {% for field in form %}
-                                    <div class="fieldWrapper">
+                                    <div class="{{field.label|lower}}">
                                         {{ field.errors }}
-                                        {{ field.label_tag }} {{ field }}
+                                        {{ field.label_tag}} {{ field|add_class:"form-field" }}
                                     </div>
                                 {% endfor %}
                             </div>

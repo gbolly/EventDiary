@@ -1,5 +1,6 @@
 {% extends "standard_page.html" %}
 {% load static %}
+{% load cloudinary %}
 
 {% block extended_css %}
     <link rel="stylesheet" href="{% static 'css/centers/center_individual_styling.css' %}">
@@ -9,6 +10,7 @@
     <div id="center">
         <div id="center-container" class="center-individual">
             <section class="top-block">
+                {% cloudinary center_img height='500' %}
                 <div id="top-image" class="bg-image">
                     <h1>{{ center_name }}</h1>
                     <div class="ctas center">
@@ -66,4 +68,3 @@
         </div>
     </div>
 {% endblock %}
-

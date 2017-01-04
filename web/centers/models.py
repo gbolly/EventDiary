@@ -63,20 +63,23 @@ class Center(models.Model):
     description = models.TextField(blank=True, default='')
     slug = models.SlugField(blank=True, null=False, unique=True)
     name = models.CharField(max_length=100, null=False, blank=False)
-    location = models.SmallIntegerField(choices=ALL_LOCATIONS, default=84)
+    location = models.SmallIntegerField(choices=ALL_LOCATIONS, default=25)
     address = models.CharField(max_length=100, blank=False, default='')
     area = models.SmallIntegerField(choices=ALL_AREA, default=33)
     active = models.BooleanField(default=False)
     date_created = models.DateField(auto_now_add=True)
     date_last_modified = models.DateField(auto_now=True)
-    image = CloudinaryField(
-        resource_type='image',
-        type='upload',
-        blank=True,
-        default="img/test-run-gb.jpeg"
-    )
+    image = CloudinaryField("image")
     is_available = models.BooleanField(default=True)
     objects = CenterManager()
+
+    """ Informative name for mode """
+    def __unicode__(self):
+        try:
+            public_id = self.image.public_id
+        except AttributeError:
+            public_id = ''
+        return "Photo <%s:%s>" % (self.name, public_id) or u''
 
     def state_name(self):
         """Returns the state name
@@ -99,6 +102,7 @@ class Booking(models.Model):
     booking_start_date = models.DateField()
     booking_end_date = models.DateField()
     customer_name = models.CharField(max_length=100, null=False, blank=False)
+    customer_email = models.EmailField(max_length=70, blank=True, null=True,)
     phone_number = PhoneNumberField()
     is_approved = models.BooleanField(default=False)
 
