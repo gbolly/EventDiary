@@ -27,8 +27,4 @@ class BookingForm(forms.ModelForm):
 class CenterForm(forms.ModelForm):
     class Meta:
         model = Center
-        # fields = '__all__'
         fields = ["name", "price", "capacity", "address", "location", "area", "image", "description"]
-
-class PhotoDirectForm(CenterForm):
-    image = CloudinaryJsFileField()

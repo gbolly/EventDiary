@@ -29,9 +29,12 @@
         float: right; }
         .container-fluid .card .card-block .read-on a {
           text-transform: uppercase; }
-      .container-fluid .card .card-block .book {
+      .container-fluid .card .card-block .book,
+      .container-fluid .card .card-block .edit {
         display: block;
         text-align: center;
         padding: 12px; }
+      .container-fluid .card .card-block .edit {
+        margin-top: 5px; }
 
 /*# sourceMappingURL=center_styling.css.map */

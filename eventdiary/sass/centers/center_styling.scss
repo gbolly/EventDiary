@@ -44,10 +44,14 @@
                 }
             }
 
-            .book {
+            .book,
+            .edit {
                display: block;
                text-align: center;
                padding: 12px;
+            }
+            .edit {
+                margin-top: 5px;
             }
         }
     }

@@ -120,3 +120,16 @@ def new_center(request):
             return HttpResponse(template.render(context))
 
     return render(request, 'centers/new_center.html', {'form': center_form})
+
+@login_required
+def edit_center(request, slug=None):
+    center = Center.objects.get(slug=slug)
+
+    if request.method == 'POST':
+        form = CenterForm(request.POST, instance=center)
+        if form.is_valid():
+            form.save()
+            return render(request, "center_listing.html", locals())
+    else:
+        form = CenterForm(instance=center)
+    return render(request, 'center_edit.html', {'form': form})

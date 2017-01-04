@@ -38,7 +38,7 @@
                        </a>
                     </li>
                     <li class="main-page go-right">
-                        <a class="nav-link" href="#">07000000000</a>
+                        <a class="nav-link" href="#">Call or Whatsapp - 08175395772</a>
                         <a class="nav-link" href="#">Contact Us</a>
                         {% if request.user.is_authenticated %}
                             <a class="nav-link">Welcome {{user}}</a>
@@ -207,5 +207,9 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
+
+        {% block extra_script %}
+            
+        {% endblock extra_script %}
     </body>
 </html>
