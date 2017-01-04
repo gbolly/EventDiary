@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'envvars',
     'anymail',
     'phonenumber_field',
+    'widget_tweaks',
     'web.accounts',
     'web.deals',
     'web.authentication',
