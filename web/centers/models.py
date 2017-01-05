@@ -69,7 +69,12 @@ class Center(models.Model):
     active = models.BooleanField(default=False)
     date_created = models.DateField(auto_now_add=True)
     date_last_modified = models.DateField(auto_now=True)
-    image = CloudinaryField("image")
+    image = CloudinaryField(
+        resource_type='image',
+        type='upload',
+        blank=True,
+        default="http://res.cloudinary.com/theeventdiary/image/upload/v1483614044/lg_m8sc17.jpg",
+    )
     is_available = models.BooleanField(default=True)
     objects = CenterManager()
 

@@ -57,7 +57,6 @@ def booking_view(request, slug, model_class=Center, form_class=BookingForm, temp
         form = form_class(request.user, center, request.POST)
         if request.user.is_authenticated():
             if form.is_valid():
-                print request.user.email, "--------"
                 booking = form.save(commit=False)
                 booking.center = center
                 booking.is_approved = False
@@ -126,7 +125,7 @@ def edit_center(request, slug=None):
     center = Center.objects.get(slug=slug)
 
     if request.method == 'POST':
-        form = CenterForm(request.POST, instance=center)
+        form = CenterForm(request.POST, request.FILES, instance=center)
         if form.is_valid():
             form.save()
             return render(request, "updated_center.html", locals())
