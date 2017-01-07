@@ -10,6 +10,7 @@ Image_Effects = dict(
     ),
     THUMBNAIL={
         "class": "thumbnail inline", "format": "jpg",
+        "id": "myImg",
         "crop": "fill", "height": 150, "width": 150,
     },
 

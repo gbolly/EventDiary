@@ -73,6 +73,8 @@
         font-family: Georgia !important;
         margin: 0 0 15px 0;
         line-height: 1.7em; }
+      .center-individual .center-post .center-post-description .thumbnail {
+        display: inline-block; }
     .center-individual .center-post .btn-cta {
       margin: 40px 0; }
       .center-individual .center-post .btn-cta .apply {

@@ -25,6 +25,11 @@
                                         {{ field.label_tag}} {{ field|add_class:"form-field" }}
                                     </div>
                                 {% endfor %}
+
+                                {{ formset.management_form }}
+                                {% for form in formset %}
+                                    {{ form }}
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="row center-buttons">

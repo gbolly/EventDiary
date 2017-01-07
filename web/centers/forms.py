@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin import widgets
 from cloudinary.forms import CloudinaryJsFileField, CloudinaryUnsignedJsFileField
 
-from .models import Booking, BookingStatus, Center
+from .models import Booking, BookingStatus, Center, CenterPhoto
 
 
 class BookingForm(forms.ModelForm):
@@ -27,4 +27,9 @@ class BookingForm(forms.ModelForm):
 class CenterForm(forms.ModelForm):
     class Meta:
         model = Center
-        fields = ["name", "price", "capacity", "address", "location", "area", "image", "description"]
+        fields = ["name", "price", "capacity", "address", "location", "area", "description"]
+
+class ImageForm(forms.ModelForm):    
+    class Meta:
+        model = CenterPhoto
+        fields = ['image']

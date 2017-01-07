@@ -43,8 +43,8 @@
         {% for centers in object_list %}
             <div class="col-md-4">
                 <div class="card">
-                    {% cloudinary centers.image Image_Effects.LISTING %}
-                    <div class="card-block">
+                    {% cloudinary image Image_Effects.LISTING %}
+               <div class="card-block">
                         <h4 class="card-title">{{ centers.name }}</h4>
                         <p class="card-text">{{centers.get_area_name}}, {{ centers.state_name }}</p>
                         <p class="card-text">{{ centers.price }}</p>

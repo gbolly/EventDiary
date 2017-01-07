@@ -56,7 +56,7 @@ class CenterManager(models.Manager):
                 return area
 
 class Center(models.Model):
-
+    user = models.ForeignKey(User)
     price = models.IntegerField()
     capacity = models.IntegerField()
     owner = models.CharField(max_length=100, null=False, blank=False)
@@ -69,22 +69,8 @@ class Center(models.Model):
     active = models.BooleanField(default=False)
     date_created = models.DateField(auto_now_add=True)
     date_last_modified = models.DateField(auto_now=True)
-    image = CloudinaryField(
-        resource_type='image',
-        type='upload',
-        blank=True,
-        default="http://res.cloudinary.com/theeventdiary/image/upload/v1483614044/lg_m8sc17.jpg",
-    )
     is_available = models.BooleanField(default=True)
     objects = CenterManager()
-
-    """ Informative name for mode """
-    def __unicode__(self):
-        try:
-            public_id = self.image.public_id
-        except AttributeError:
-            public_id = ''
-        return "Photo <%s:%s>" % (self.name, public_id) or u''
 
     def state_name(self):
         """Returns the state name
@@ -102,7 +88,27 @@ class Center(models.Model):
         """
         return dict(LAGOS_AREAS).get(self.area)
 
+class CenterPhoto(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True)
+    center = models.ForeignKey(Center, null=True, blank=True)
+    image = CloudinaryField(
+        resource_type='image',
+        type='upload',
+        blank=True,
+        default="http://res.cloudinary.com/theeventdiary/image/upload/v1483614044/lg_m8sc17.jpg",
+    )
+
+    """ Informative name for mode """
+    def __unicode__(self):
+        try:
+            public_id = self.image.public_id
+        except AttributeError:
+            public_id = ''
+        return "Photo <%s:%s>" % (self.center, public_id) or u''
+
+
 class Booking(models.Model):
+    user = models.ForeignKey(User)
     center = models.ForeignKey(Center)
     booking_start_date = models.DateField()
     booking_end_date = models.DateField()
