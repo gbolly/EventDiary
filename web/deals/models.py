@@ -13,7 +13,7 @@ from django.db.models.signals import pre_save
 # from Theeventdiary.settings.base import SITE_IMAGES
 
 # Country Choices
-COUNTRY_CHOICES = [(1, 'Nigeria'), (2, 'Kenya')]
+COUNTRY_CHOICES = [(1, 'Nigeria')]
 
 # States in Nigeria
 NIGERIAN_LOCATIONS = [

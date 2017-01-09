@@ -66,7 +66,7 @@ def booking_view(request, slug, model_class=Center, form_class=BookingForm, temp
                 return render(request, 'thank_you.html', {"center":center.name})
             else :
                 return render(request, template_name, {'form': form})
-
+        
     else:
         form = form_class(request.user, center)
         return render(request, template_name, {
