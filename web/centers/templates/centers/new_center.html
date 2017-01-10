@@ -19,13 +19,14 @@
                         {% csrf_token %}
                         <div class="custom-form-group">
                             <div class="custom-input-group">
-                                {% for field in form %}
-                                    <div class="{{field.label|lower}}">
-                                        {{ field.errors }}
-                                        {{ field.label_tag}} {{ field|add_class:"form-field" }}
-                                    </div>
-                                {% endfor %}
-
+                                {% if form.errors %}
+                                    {% for error in form.non_field_errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                {{form.as_p}}
                                 {{ formset.management_form }}
                                 {% for form in formset %}
                                     {{ form }}

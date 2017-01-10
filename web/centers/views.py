@@ -13,7 +13,7 @@ from django.views.generic.list import ListView
 from django.forms import modelformset_factory
 
 from .forms import BookingForm, CenterForm, ImageForm
-from .models import Center, Booking, CenterPhoto
+from .models import Center, Booking, State, LocalGovArea, CenterPhoto
 from context_processor import Image_Effects
 
 class CenterListView(ListView):
@@ -57,8 +57,8 @@ def center_detail(request, slug):
     return render(request, 'center_detail.html', {
         'center_name': center.name,
         'center_description':center.description,
-        'center_location':center.state_name,
-        'center_area':center.get_area_name,
+        'center_location':center.state,
+        'center_area':center.lga,
         'center_price':center.price,
         'center_owner':center.owner,
         'center_capacity':center.capacity,
@@ -99,14 +99,14 @@ def new_center(request):
         'invalid_param': 'Invalid parameters. \
                         Please make sure you fill in all fields',
     }
+
     center_form = CenterForm()
     ImageFormSet = modelformset_factory(CenterPhoto, form=ImageForm, extra=3)
     userid = request.user.id
 
+    form = CenterForm(request.POST or None, request.FILES or None)
+    formset = ImageFormSet(request.POST, request.FILES, queryset=CenterPhoto.objects.none())
     if request.POST:
-        form = CenterForm(request.POST)
-        formset = ImageFormSet(request.POST, request.FILES, queryset=CenterPhoto.objects.none())
-
         if request.user.is_authenticated():
             if form.is_valid() and formset.is_valid():
                 center = form.save(commit=False)
@@ -144,16 +144,14 @@ def new_center(request):
             # Set error context
             error_msg = cls_default_msgs['not_signed_in']
             messages.add_message(request, messages.INFO, error_msg, form.errors)
-
             # Set template
             template = Engine.get_default().get_template(
                 'login.html')
-
             # Set result in RequestContext
             context = RequestContext(request)
             return HttpResponse(template.render(context))
 
-    return render(request, 'centers/new_center.html', {'form': center_form, 'formset': ImageFormSet(queryset=CenterPhoto.objects.none())})
+    return render(request, 'centers/new_center.html', {'form': form, 'formset': ImageFormSet(queryset=CenterPhoto.objects.none())})
 
 @login_required
 def edit_center(request, slug=None):

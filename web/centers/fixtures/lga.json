@@ -1,0 +1,82 @@
+[
+  {
+    "model": "centers.localgovarea",
+    "pk": 1,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Aba North"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 2,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Aba South"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 3,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Arochukwu"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 4,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Bende"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 5,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Ikwuano"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 6,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Isiala-Ngwa North"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 7,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Isiala-Ngwa South"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 8,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Isuikwato"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 9,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Obi Nwa"
+    }
+  },
+  {
+    "model": "centers.localgovarea",
+    "pk": 10,
+    "fields": {
+      "state_id": 1,
+      "local_gov": "Ohafia"
+    }
+  }
+]

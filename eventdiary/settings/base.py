@@ -29,8 +29,6 @@ def get_env_variable(var_name):
         raise ImproperlyConfigured(error_msg)
 
 # # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = get_env_variable('SECRET_KEY')
-
 import envvars
 envvars.load()
 SECRET_KEY = envvars.get('SECRET_KEY')
@@ -50,6 +48,7 @@ INSTALLED_APPS = (
     'envvars',
     'fancybox',
     'phonenumber_field',
+    'smart_selects',
     'widget_tweaks',
     'web.accounts',
     'web.deals',
@@ -121,10 +120,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-# MAILGUN_ACCESS_KEY = envvars.get('ACCESS_KEY')
-# MAILGUN_SERVER_NAME = envvars.get('SERVER_NAME')
 
 ANYMAIL = {
     "MAILGUN_API_KEY": envvars.get('ACCESS_KEY'),
