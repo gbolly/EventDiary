@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.views.generic.list import ListView
 
 from .forms import BookingForm, CenterForm
-from .models import Center, Booking
+from .models import Center, Booking, State, LocalGovArea
 from context_processor import Image_Effects
 
 class CenterListView(ListView):
@@ -40,8 +40,8 @@ def center_detail(request, slug):
         'center_name': center.name,
         'center_img':center.image,
         'center_description':center.description,
-        'center_location':center.state_name,
-        'center_area':center.get_area_name,
+        'center_location':center.state,
+        'center_area':center.lga,
         'center_price':center.price,
         'center_owner':center.owner,
         'center_capacity':center.capacity,
@@ -80,10 +80,9 @@ def new_center(request):
         'invalid_param': 'Invalid parameters. \
                         Please make sure you fill in all fields',
     }
-    center_form = CenterForm()
 
+    form = CenterForm(request.POST or None, request.FILES or None)
     if request.POST:
-        form = CenterForm(request.POST, request.FILES)
         if request.user.is_authenticated():
             if form.is_valid():
                 center = form.save(commit=False)
@@ -109,16 +108,13 @@ def new_center(request):
             # Set error context
             error_msg = cls_default_msgs['not_signed_in']
             messages.add_message(request, messages.INFO, error_msg, form.errors)
-
             # Set template
             template = Engine.get_default().get_template(
                 'login.html')
-
             # Set result in RequestContext
             context = RequestContext(request)
             return HttpResponse(template.render(context))
-
-    return render(request, 'centers/new_center.html', {'form': center_form})
+    return render(request, 'centers/new_center.html', {'form': form})
 
 @login_required
 def edit_center(request, slug=None):

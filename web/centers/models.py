@@ -6,6 +6,7 @@ from hvad.models import TranslatableModel, TranslatedFields
 from cloudinary.models import CloudinaryField
 from web.accounts.models import UserProfile
 from phonenumber_field.modelfields import PhoneNumberField
+from smart_selects.db_fields import ChainedForeignKey
 
 
 # States in Nigeria
@@ -43,6 +44,18 @@ LAGOS_AREAS = [
 ALL_LOCATIONS = NIGERIAN_LOCATIONS
 ALL_AREA = LAGOS_AREAS
 
+def valid_pct(val):
+    if val.endswith("%"):
+       return float(val[:-1])/100
+    else:
+       try:
+          return float(val)
+       except ValueError:          
+          raise ValidationError(
+              _('%(value)s is not a valid pct'),
+                params={'value': value},
+           )
+
 class CenterManager(models.Manager):
 
     def get_area_name(self, area):
@@ -55,6 +68,19 @@ class CenterManager(models.Manager):
                 area = super(CenterManager, self).get_queryset().filter(area__icontains=i)
                 return area
 
+class State(models.Model):
+    name = models.CharField(max_length=100, null=False, blank=False)
+
+    def __unicode__(self):
+        return u'%s' % self.name
+
+class LocalGovArea(models.Model):
+    state = models.ForeignKey(State, related_name="state_lga")
+    name = models.CharField(max_length=100, null=False, blank=False)
+
+    def __unicode__(self):
+        return u'%s' % self.name
+
 class Center(models.Model):
 
     price = models.IntegerField()
@@ -63,12 +89,13 @@ class Center(models.Model):
     description = models.TextField(blank=True, default='')
     slug = models.SlugField(blank=True, null=False, unique=True)
     name = models.CharField(max_length=100, null=False, blank=False)
-    location = models.SmallIntegerField(choices=ALL_LOCATIONS, default=25)
+    state = models.ForeignKey(State, related_name="center_state")
+    lga = ChainedForeignKey(LocalGovArea, chained_field="state", chained_model_field="state")
     address = models.CharField(max_length=100, blank=False, default='')
-    area = models.SmallIntegerField(choices=ALL_AREA, default=33)
     active = models.BooleanField(default=False)
     date_created = models.DateField(auto_now_add=True)
     date_last_modified = models.DateField(auto_now=True)
+    commission = models.CharField(max_length=10, validators=[valid_pct])
     image = CloudinaryField(
         resource_type='image',
         type='upload',
@@ -89,7 +116,7 @@ class Center(models.Model):
     def state_name(self):
         """Returns the state name
         """
-        return dict(NIGERIAN_LOCATIONS).get(self.location)
+        return dict(NIGERIAN_LOCATIONS).get(self.state)
 
     def __str__(self):
         return self.name
@@ -100,7 +127,7 @@ class Center(models.Model):
     def get_area_name(self):
         """Returns the area name
         """
-        return dict(LAGOS_AREAS).get(self.area)
+        return dict(LAGOS_AREAS).get(self.lga)
 
 class Booking(models.Model):
     center = models.ForeignKey(Center)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Center, Booking
+from .models import Center, Booking, State, LocalGovArea
 
 
 class BookingModelAdmin(admin.ModelAdmin):
@@ -29,3 +29,5 @@ Thanks
 
 admin.site.register(Center)
 admin.site.register(Booking, BookingModelAdmin)
+admin.site.register(State)
+admin.site.register(LocalGovArea)

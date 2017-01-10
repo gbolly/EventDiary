@@ -1,0 +1,261 @@
+[
+  {
+    "model": "centers.state",
+    "pk": 1,
+    "fields": {
+      "state": "Abia"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 2,
+    "fields": {
+      "state": "Abuja"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 3,
+    "fields": {
+      "state": "Adamawa"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 4,
+    "fields": {
+      "state": "Akwa Ibom"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 5,
+    "fields": {
+      "state": "Anambra"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 6,
+    "fields": {
+      "state": "Bauchi"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 7,
+    "fields": {
+      "state": "Bayelsa"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 8,
+    "fields": {
+      "state": "Benue"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 9,
+    "fields": {
+      "state": "Borno"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 10,
+    "fields": {
+      "state": "Cross River"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 11,
+    "fields": {
+      "state": "Delta"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 12,
+    "fields": {
+      "state": "Ebonyi"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 13,
+    "fields": {
+      "state": "Edo"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 14,
+    "fields": {
+      "state": "Ekiti"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 15,
+    "fields": {
+      "state": "Enugu"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 16,
+    "fields": {
+      "state": "Gombe"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 17,
+    "fields": {
+      "state": "Imo"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 18,
+    "fields": {
+      "state": "Jigawa"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 19,
+    "fields": {
+      "state": "Kaduna"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 20,
+    "fields": {
+      "state": "Kano"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 21,
+    "fields": {
+      "state": "Kastina"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 22,
+    "fields": {
+      "state": "Kebbi"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 23,
+    "fields": {
+      "state": "Kogi"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 24,
+    "fields": {
+      "state": "Kwara"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 25,
+    "fields": {
+      "state": "Lagos"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 26,
+    "fields": {
+      "state": "Nasarawa"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 27,
+    "fields": {
+      "state": "Niger"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 28,
+    "fields": {
+      "state": "Ogun"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 29,
+    "fields": {
+      "state": "Ondo"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 30,
+    "fields": {
+      "state": "Osun"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 31,
+    "fields": {
+      "state": "Oyo"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 32,
+    "fields": {
+      "state": "Plateau"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 33,
+    "fields": {
+      "state": "Rivers"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 34,
+    "fields": {
+      "state": "Sokoto"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 35,
+    "fields": {
+      "state": "Taraba"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 36,
+    "fields": {
+      "state": "Yobe"
+    }
+  },
+  {
+    "model": "centers.state",
+    "pk": 37,
+    "fields": {
+      "state": "Zamfara"
+    }
+  }
+]
