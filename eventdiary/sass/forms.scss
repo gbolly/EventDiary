@@ -22,10 +22,11 @@ $sky-blue: #54c7fc;
         color: $cool-grey;
     }
     .reg-form {
-        margin: 15px 0 0 46px;
+        margin: 15px 0 0 60px;
         max-width: 500px;
     }
     .custom-form-group {
+        width: 130%;
         .errorlist {
             text-align: left;
             margin-left: 10px;
@@ -46,9 +47,13 @@ $sky-blue: #54c7fc;
                 border: solid 1px $pale-grey;
                 margin: 15px 0;
             }
+            .control-label {
+                text-transform: uppercase;
+            }
         }
     }
     .center-buttons {
+        text-align: center;
         .btn-form-submit {
             margin: 16px 0;
             background: $dark-sky-blue;

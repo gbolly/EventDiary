@@ -2,6 +2,7 @@
 {% load static %}
 {% load cloudinary %}
 {% load widget_tweaks %}
+{% load bootstrap3 %}
 
 {% block head_title %}Create Center{% endblock %}
 
@@ -11,30 +12,28 @@
 
 {% block main %}
     <div class="row">
-        <div class="col-xs-11 col-sm-5 col-lg-6 form-card">
+        <div class="col-xs-11 col-sm-5 form-card">
             <h1>New Center</h1>
-            <div class="row reg-form">
-                <div class="col-sm-12">
+            <div class="reg-form">
+                <div class="new-center">
                     <form method="POST" class="new-center-form" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="custom-form-group">
                             <div class="custom-input-group">
                                 {% if form.errors %}
                                     {% for error in form.non_field_errors %}
-                                        <div class="alert alert-danger">
-                                            <strong>{{ error|escape }}</strong>
-                                        </div>
+                                        {% bootstrap_alert error alert_type='error' %}
                                     {% endfor %}
                                 {% endif %}
-                                {{form.as_p}}
+                                {% bootstrap_form form %}
                                 {{ formset.management_form }}
                                 {% for form in formset %}
-                                    {{ form }}
+                                    {% bootstrap_form form %}
                                 {% endfor %}
                             </div>
                         </div>
                         <div class="row center-buttons">
-                            <input type="submit" value="Save" class="save btn btn-action btn-form-submit" />
+                            {% bootstrap_button "Save" button_type="submit" button_class="save btn btn-action btn-form-submit" %}
                         </div>
                     </form>
                 </div>

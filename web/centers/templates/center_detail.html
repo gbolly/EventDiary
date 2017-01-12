@@ -24,7 +24,10 @@
                         <div class="sidebar">
                             <div class="sidebar-content">
                                 <a class="side-header" href="#">{{center_owner}}</a>
-                                <p>With a capcacity of up to {{center_capacity}}</p>
+                                <p>Facilities available:</p>
+                                {% for facility in center_capacity %}
+                                    <li>{{facility}}</li>
+                                {% endfor %}
                                 <p>{{ center_address }}</p>
                                 <h3>More about {{center_name}}</h3>
                                 <div class="other-data">

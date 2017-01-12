@@ -24,10 +24,12 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ['customer_name', 'customer_email', 'phone_number', 'booking_start_date', 'booking_end_date']
 
+
 class CenterForm(forms.ModelForm):
     class Meta:
         model = Center
-        fields = ["name", "price", "capacity", "address", "state", "lga", "description"]
+        fields = ["name", "price", "theatre_arrangement", "banquet_arrangement", "center_type", "facility", "address", "state", "lga", "description", "policy"]
+
 
 class ImageForm(forms.ModelForm):    
     class Meta:

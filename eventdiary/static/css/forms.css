@@ -10,32 +10,38 @@
     font-weight: normal;
     color: #9fa3a7; }
   .form-card .reg-form {
-    margin: 15px 0 0 46px;
+    margin: 15px 0 0 60px;
     max-width: 500px; }
-  .form-card .custom-form-group .errorlist {
-    text-align: left;
-    margin-left: 10px; }
-    .form-card .custom-form-group .errorlist li {
-      list-style-type: none;
-      color: #bb1717; }
-  .form-card .custom-form-group .custom-input-group input {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    width: 80%;
-    height: 40px;
-    border-radius: 1px;
-    font-size: 15px;
-    padding: 7px 12px;
-    border: solid 1px #e8e9ed;
-    margin: 15px 0; }
-  .form-card .center-buttons .btn-form-submit {
-    margin: 16px 0;
-    background: #28abec;
-    color: #eeeeee;
-    width: 100px;
-    height: 45px;
-    text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px; }
+  .form-card .custom-form-group {
+    width: 130%; }
+    .form-card .custom-form-group .errorlist {
+      text-align: left;
+      margin-left: 10px; }
+      .form-card .custom-form-group .errorlist li {
+        list-style-type: none;
+        color: #bb1717; }
+    .form-card .custom-form-group .custom-input-group input {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      width: 80%;
+      height: 40px;
+      border-radius: 1px;
+      font-size: 15px;
+      padding: 7px 12px;
+      border: solid 1px #e8e9ed;
+      margin: 15px 0; }
+    .form-card .custom-form-group .custom-input-group .control-label {
+      text-transform: uppercase; }
+  .form-card .center-buttons {
+    text-align: center; }
+    .form-card .center-buttons .btn-form-submit {
+      margin: 16px 0;
+      background: #28abec;
+      color: #eeeeee;
+      width: 100px;
+      height: 45px;
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; }
 
 /*# sourceMappingURL=forms.css.map */
