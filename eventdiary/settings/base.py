@@ -125,11 +125,11 @@ USE_TZ = True
 
 ANYMAIL = {
     "MAILGUN_API_KEY": envvars.get('ACCESS_KEY'),
-    "MAILGUN_SENDER_DOMAIN": envvars.get('SERVER_NAME'),
+    "MAILGUN_SENDER_DOMAIN": envvars.get('SENDER_DOMAIN'),
 }
 
 EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
-DEFAULT_FROM_EMAIL = envvars.get('SERVER_NAME')
+DEFAULT_FROM_EMAIL = "info@theeventdiary.com"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
