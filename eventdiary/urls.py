@@ -7,9 +7,9 @@ from .views import home
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^chaining/', include('smart_selects.urls')),
     url(r'^$', home, name='home'),
     url(r'^', include('web.authentication.urls')),
     url(r'^account/', include('web.accounts.urls')),
     url(r'^center/', include('web.centers.urls')),
-    # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]

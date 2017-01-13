@@ -1,4 +1,35 @@
+.form-group {
+    &.price,
+    &.theatre-arrangement,
+    &.banquet-arrangement,
+    &.state,
+    &.lga3 {
+        width: 28.33333%;
+        display: inline-block;
+    }
+    #id_center_type,
+    #id_facility {
+        .checkbox {
+            width: 30%;
+            display: inline-block;
+        }
+        label {
+            padding-left: 0;
+        }
+        input {
+            height: initial;
+            margin: 5px 65px;
+        }
+    }
+}
+
 #id_description {
     width: 100%;
     height: 200px;
+}
+
+#form-0-image-clear_id,
+#form-1-image-clear_id {
+    height: initial;
+    width: initial;
 }

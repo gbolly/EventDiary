@@ -1,11 +1,15 @@
+from cloudinary.models import CloudinaryField
+from hvad.models import TranslatableModel, TranslatedFields
+from multiselectfield import MultiSelectField
+from phonenumber_field.modelfields import PhoneNumberField
+from smart_selects.db_fields import ChainedForeignKey
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_libs.models_mixins import TranslationModelMixin
-from hvad.models import TranslatableModel, TranslatedFields
-from cloudinary.models import CloudinaryField
+
 from web.accounts.models import UserProfile
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 # States in Nigeria
@@ -40,56 +44,87 @@ LAGOS_AREAS = [
     (45, 'Bode Thomas'), (46, 'Bourdillon'), (47, 'Chisco'), (48, 'Constain-Ijora Olopa'),
 ]
 
+VENUE_TYPE = (
+    (1, 'Multipurpose hall'), (2, 'Garden'), (3, 'Conference centre'), (4, 'Auditorium'),
+    (5, 'Field'), (6, 'Pool Side'), (7, 'Open side'), (8, 'Hotel event hall'),
+    (9, 'Club hall'), (10, 'Marquee'),
+)
+
+FACILITY = [
+    (1, 'Tables'), (2, 'Chairs'), (3, 'Changing Room'), (4, 'Power Supply'),
+    (5, 'Parking Space'), (6, 'Air Conditioner'), (7, 'Television'), (8, 'Security'),
+    (9, 'Sound System'), (10, 'Projector'), (9, 'Pulpit'), (10, 'Writing Board'),
+    (9, 'Rest Room'), (10, 'Fan'), (9, 'Stage'), (10, 'Staging Light'),
+    (9, 'Cold Room'), (10, 'Traffic controllers')
+]
+
 ALL_LOCATIONS = NIGERIAN_LOCATIONS
 ALL_AREA = LAGOS_AREAS
 
+def valid_pct(val):
+    if val.endswith("%"):
+       return float(val[:-1])/100
+    else:
+       try:
+          return float(val)
+       except ValueError:          
+          raise ValidationError(
+              _('%(value)s is not a valid pct'),
+                params={'value': value},
+           )
+
+class State(models.Model):
+    name = models.CharField(max_length=100, null=False, blank=False)
+
+    def __unicode__(self):
+        return u'%s' % self.name
+
+
+class LocalGovArea(models.Model):
+    state = models.ForeignKey(State, related_name="state_lga")
+    name = models.CharField(max_length=100, null=False, blank=False)
+
+    def __unicode__(self):
+        return u'%s' % self.name
+
+
 class CenterManager(models.Manager):
 
-    def get_area_name(self, area):
+    def get_lga_name(self, area):
         """Returns the area name
         """
-        c = str(area).capitalize()
-        places = dict(LAGOS_AREAS)
-        for i, k in places.iteritems():
-            if k == c:
-                area = super(CenterManager, self).get_queryset().filter(area__icontains=i)
-                return area
+        area_query = str(area).capitalize()
+        places = LocalGovArea.objects.all()
+        area = places.filter(name=area_query)
+        return area
+
 
 class Center(models.Model):
-
+    user = models.ForeignKey(User)
     price = models.IntegerField()
-    capacity = models.IntegerField()
+    theatre_arrangement = models.IntegerField()
+    banquet_arrangement = models.IntegerField()
     owner = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField(blank=True, default='')
     slug = models.SlugField(blank=True, null=False, unique=True)
     name = models.CharField(max_length=100, null=False, blank=False)
-    location = models.SmallIntegerField(choices=ALL_LOCATIONS, default=25)
+    state = models.ForeignKey(State, related_name="center_state")
+    lga = ChainedForeignKey(LocalGovArea, chained_field="state", chained_model_field="state")
     address = models.CharField(max_length=100, blank=False, default='')
-    area = models.SmallIntegerField(choices=ALL_AREA, default=33)
+    center_type = MultiSelectField(choices=VENUE_TYPE)
+    facility = MultiSelectField(choices=FACILITY)
+    policy = models.TextField(blank=True, default='')
     active = models.BooleanField(default=False)
     date_created = models.DateField(auto_now_add=True)
     date_last_modified = models.DateField(auto_now=True)
-    image = CloudinaryField(
-        resource_type='image',
-        type='upload',
-        blank=True,
-        default="http://res.cloudinary.com/theeventdiary/image/upload/v1483614044/lg_m8sc17.jpg",
-    )
+    commission = models.CharField(max_length=10, validators=[valid_pct])
     is_available = models.BooleanField(default=True)
     objects = CenterManager()
-
-    """ Informative name for mode """
-    def __unicode__(self):
-        try:
-            public_id = self.image.public_id
-        except AttributeError:
-            public_id = ''
-        return "Photo <%s:%s>" % (self.name, public_id) or u''
 
     def state_name(self):
         """Returns the state name
         """
-        return dict(NIGERIAN_LOCATIONS).get(self.location)
+        return dict(NIGERIAN_LOCATIONS).get(self.state)
 
     def __str__(self):
         return self.name
@@ -97,12 +132,46 @@ class Center(models.Model):
     def get_absolute_url(self):
         return "/center/{}/" .format(self.id)
 
-    def get_area_name(self):
-        """Returns the area name
+    def get_center_type(self):
+        """Returns the list of center type
         """
-        return dict(LAGOS_AREAS).get(self.area)
+        center_type_list = []
+        for center_type in self.center_type:
+            center_type_name = dict(VENUE_TYPE).get(int(center_type))
+            center_type_list.append(center_type_name)
+        return center_type_list
+
+    def get_facility(self):
+        """Returns the list of facility
+        """
+        facility_list = []
+        for facility in self.facility:
+            facility_name = dict(FACILITY).get(int(facility))
+            facility_list.append(facility_name)
+        return facility_list
+
+
+class CenterPhoto(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True)
+    center = models.ForeignKey(Center, null=True, blank=True)
+    image = CloudinaryField(
+        resource_type='image',
+        type='upload',
+        blank=True,
+        default="http://res.cloudinary.com/theeventdiary/image/upload/v1483614044/lg_m8sc17.jpg",
+    )
+
+    """ Informative name for mode """
+    def __unicode__(self):
+        try:
+            public_id = self.image.public_id
+        except AttributeError:
+            public_id = ''
+        return "Photo <%s:%s>" % (self.center, public_id) or u''
+
 
 class Booking(models.Model):
+    user = models.ForeignKey(User)
     center = models.ForeignKey(Center)
     booking_start_date = models.DateField()
     booking_end_date = models.DateField()

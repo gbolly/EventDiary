@@ -1,5 +1,25 @@
+.form-group.price, .form-group.theatre-arrangement, .form-group.banquet-arrangement, .form-group.state, .form-group.lga3 {
+  width: 28.33333%;
+  display: inline-block; }
+.form-group #id_center_type .checkbox,
+.form-group #id_facility .checkbox {
+  width: 30%;
+  display: inline-block; }
+.form-group #id_center_type label,
+.form-group #id_facility label {
+  padding-left: 0; }
+.form-group #id_center_type input,
+.form-group #id_facility input {
+  height: initial;
+  margin: 5px 65px; }
+
 #id_description {
   width: 100%;
   height: 200px; }
+
+#form-0-image-clear_id,
+#form-1-image-clear_id {
+  height: initial;
+  width: initial; }
 
 /*# sourceMappingURL=new_center.css.map */

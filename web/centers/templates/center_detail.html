@@ -10,7 +10,7 @@
     <div id="center">
         <div id="center-container" class="center-individual">
             <section class="top-block">
-                {% cloudinary center_img height='500' %}
+                {% cloudinary image height='500' %}
                 <div id="top-image" class="bg-image">
                     <h1>{{ center_name }}</h1>
                     <div class="ctas center">
@@ -24,7 +24,10 @@
                         <div class="sidebar">
                             <div class="sidebar-content">
                                 <a class="side-header" href="#">{{center_owner}}</a>
-                                <p>With a capcacity of up to {{center_capacity}}</p>
+                                <p>Facilities available:</p>
+                                {% for facility in center_capacity %}
+                                    <li>{{facility}}</li>
+                                {% endfor %}
                                 <p>{{ center_address }}</p>
                                 <h3>More about {{center_name}}</h3>
                                 <div class="other-data">
@@ -52,7 +55,23 @@
                                 <div class="center-post-description">
                                     <p>{{ center_description }}</p>
                                     <p>&nbsp;</p>
+                                    {% for photos in photo %}
+                                        <a href="#" class="pop">
+                                            {% cloudinary photos.image Image_Effects.THUMBNAIL %}
+                                        </a>
+                                        <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">              
+                                                    <div class="modal-body">
+                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                        <img src="" class="imagepreview" style="width: 100%;" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
+
                                 <div class="btn-cta">
                                     <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
                                         <div class="apply center">

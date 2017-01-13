@@ -463,4 +463,17 @@ body {
   text-transform: uppercase;
   font-weight: lighter; }
 
+.center-message {
+  position: fixed;
+  top: 50%;
+  left: 44%;
+  width: 40em;
+  height: 24em;
+  margin-top: -9em;
+  margin-left: -15em; }
+  .center-message .card-block h4 {
+    font-size: 30px; }
+  .center-message .card-block footer {
+    text-align: center; }
+
 /*# sourceMappingURL=main.css.map */

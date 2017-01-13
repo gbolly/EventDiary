@@ -10,9 +10,10 @@ from django.template import RequestContext, Engine
 from django.utils import timezone
 from django.contrib import messages
 from django.views.generic.list import ListView
+from django.forms import modelformset_factory
 
-from .forms import BookingForm, CenterForm
-from .models import Center, Booking
+from .forms import BookingForm, CenterForm, ImageForm
+from .models import Center, Booking, State, LocalGovArea, CenterPhoto
 from context_processor import Image_Effects
 
 class CenterListView(ListView):
@@ -28,26 +29,35 @@ class CenterListView(ListView):
     def get_queryset(self):
         center = self.model.objects.all()
         query = self.request.GET.get("q")
-        center_area = self.model.objects.get_area_name(query)
         if query:
-            return center_area
+            center_area = self.model.objects.get_lga_name(query)
+            return center.filter(lga=center_area)
         else:
             return center
 
 def center_detail(request, slug):
     center = get_object_or_404(Center, slug=slug)
+    photo = CenterPhoto.objects.filter(center_id=center)
+
+    if photo:
+        for image in photo:
+            image = image.image
+    else:
+        image = ""
+
     return render(request, 'center_detail.html', {
         'center_name': center.name,
-        'center_img':center.image,
         'center_description':center.description,
-        'center_location':center.state_name,
-        'center_area':center.get_area_name,
+        'center_location':center.state,
+        'center_area':center.lga,
         'center_price':center.price,
         'center_owner':center.owner,
-        'center_capacity':center.capacity,
+        'center_capacity':center.get_facility,
         'center_address':center.address,
         'center_slug':center.slug,
         'Image_Effects':Image_Effects,
+        'photo':photo,
+        'image':image
     })
 
 def booking_view(request, slug, model_class=Center, form_class=BookingForm, template_name='centers/booking_form.html'):
@@ -59,6 +69,7 @@ def booking_view(request, slug, model_class=Center, form_class=BookingForm, temp
             if form.is_valid():
                 booking = form.save(commit=False)
                 booking.center = center
+                booking.user_id = request.user.id
                 booking.is_approved = False
                 booking.save()
                 args["slug"] = slug
@@ -80,55 +91,65 @@ def new_center(request):
         'invalid_param': 'Invalid parameters. \
                         Please make sure you fill in all fields',
     }
+
     center_form = CenterForm()
+    ImageFormSet = modelformset_factory(CenterPhoto, form=ImageForm, extra=3)
+    userid = request.user.id
+    form = CenterForm(request.POST or None)
+    formset = ImageFormSet(request.POST, request.FILES, queryset=CenterPhoto.objects.none())
 
     if request.POST:
-        form = CenterForm(request.POST, request.FILES)
         if request.user.is_authenticated():
-            if form.is_valid():
+            if form.is_valid() and formset.is_valid():
                 center = form.save(commit=False)
                 center.owner = request.user
+                center.user_id = userid
                 center.active = True
                 center.slug = form.cleaned_data['name'].replace(" ", "")
                 center.date_created = timezone.now()
                 center.date_last_modified = timezone.now()
                 center.save()
-                return render(request, 'center_detail.html', {
-                    'center_name': center.name,
-                    'center_img':center.image,
-                    'center_description':center.description,
-                    'center_location':center.state_name,
-                    'center_area':center.get_area_name,
-                    'center_price':center.price,
-                    'center_owner':center.owner,
-                    'center_capacity':center.capacity,
-                    'center_address':center.address,
-                    'center_slug':center.slug,
-                })
+                for form in formset.cleaned_data:
+                    image = form['image']
+                    photo = CenterPhoto(center=center, image=image)
+                    photo.user_id = userid
+                    photo.save()
+
+                return render(request, "updated_center.html", center=center)
         else:
             # Set error context
             error_msg = cls_default_msgs['not_signed_in']
             messages.add_message(request, messages.INFO, error_msg, form.errors)
-
             # Set template
-            template = Engine.get_default().get_template(
-                'login.html')
-
+            template = Engine.get_default().get_template('login.html')
             # Set result in RequestContext
             context = RequestContext(request)
             return HttpResponse(template.render(context))
 
-    return render(request, 'centers/new_center.html', {'form': center_form})
+    return render(request, 'centers/new_center.html', {'form': form, 'formset': ImageFormSet(queryset=CenterPhoto.objects.none())})
 
 @login_required
 def edit_center(request, slug=None):
     center = Center.objects.get(slug=slug)
+    ImageFormSet = modelformset_factory(CenterPhoto, form=ImageForm)
 
     if request.method == 'POST':
-        form = CenterForm(request.POST, request.FILES, instance=center)
-        if form.is_valid():
+        form = CenterForm(request.POST, instance=center)
+        formset = ImageFormSet(request.POST, request.FILES, queryset=CenterPhoto.objects.filter(center=center))
+
+        if form.is_valid() and formset.is_valid():
             form.save()
+            for form in formset:
+                try:
+                    image = form.cleaned_data['image']
+                    photo = CenterPhoto(center=center, image=image)
+                    photo.user_id = request.user.id
+                    photo.save()
+                except:
+                    messages.error(request, 'Technical error')
+
             return render(request, "updated_center.html", locals())
     else:
         form = CenterForm(instance=center)
-    return render(request, 'center_edit.html', {'form': form})
+        formset = ImageFormSet(queryset=CenterPhoto.objects.filter(center=center))
+    return render(request, 'center_edit.html', {'form': form, 'formset': formset})

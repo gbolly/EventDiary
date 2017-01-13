@@ -2,18 +2,10 @@
 {% load static %}
 
 {% block main %}
-    <div class="row">
-        <div class="col s12 m12 l9">
-            <div class="row">
-                <div class="card success">
-                    <div class="card-content">
-                        <div class="card-title center-align grey-text text-darken-3">
-                          <h4 class="red-text text-lighten-2"> {{form.name.value}} Has Been Successfully Edited</h4>
-                        </div>
-                    </div>
-                    <div><a class="view" href="{% url 'center_listing' %}">View Centers</a></div>
-                </div>
-            </div>
+    <div class="card card-inverse card-success text-xs-center center-message">
+        <div class="card-block">
+            <h4>{{form.name.value}} details has been successfully updated</h4>
+            <footer><a class="view" href="{% url 'center_detail' slug=center.slug %}">Click here to view {{form.name.value}} details.</a></footer>
         </div>
     </div>
 {% endblock %}
