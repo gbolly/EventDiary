@@ -357,7 +357,6 @@ class UserRegistrationView(View):
         signup_new_user = User.objects.filter(email__exact=email)
         if signup_new_user:
             args = {}
-            args.update(request)
             mssg = "Email already taken please signup with another email"
             messages.add_message(request, messages.INFO, mssg)
             return render(request, 'register.html', args)
@@ -368,12 +367,8 @@ class UserRegistrationView(View):
 
             # generate an activation hash url for new user account
             activation_hash = Hasher.gen_hash(new_user)
-            activation_hash_url = request.build_absolute_uri(
-                reverse_lazy(
-                    'activate_account',
-                    kwargs={'activation_hash': activation_hash},
-                )
-            )
+            url_str = str(reverse_lazy('activate_account', kwargs={'activation_hash': activation_hash}))
+            activation_hash_url = request.build_absolute_uri(url_str)
 
             # compose the email
             activation_email_context = RequestContext(
@@ -397,7 +392,6 @@ class UserRegistrationView(View):
             if response == 1:
                 new_user_email = new_user.email
                 messages.add_message(request, messages.INFO, new_user_email)
-                print(messages, "-"*50)
 
             return redirect(reverse_lazy('confirm_registration'))
 

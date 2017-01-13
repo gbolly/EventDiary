@@ -25,7 +25,8 @@
             </header>
             <div class="row reg-form">
                 <div class="col-sm-12">
-                    <form action="{% url 'register' %}" method="POST"><input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    <form action="{% url 'register' %}" method="POST">
+                        {% csrf_token %}
                         <div class="custom-form-group">
                             {{ form.email.errors }}
                             <div class="custom-input-group">
