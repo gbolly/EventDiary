@@ -23,14 +23,6 @@ class CenterListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CenterListView, self).get_context_data(**kwargs)
-        obj = self.object_list
-        for centers in obj:
-            photo = centers.centerphoto_set
-
-            if photo:
-                context['image'] = photo.last
-            else:
-                context['image'] = ""
         context['Image_Effects'] = Image_Effects
         return context
 
@@ -77,6 +69,7 @@ def booking_view(request, slug, model_class=Center, form_class=BookingForm, temp
             if form.is_valid():
                 booking = form.save(commit=False)
                 booking.center = center
+                booking.user_id = request.user.id
                 booking.is_approved = False
                 booking.save()
                 args["slug"] = slug
@@ -138,12 +131,25 @@ def new_center(request):
 @login_required
 def edit_center(request, slug=None):
     center = Center.objects.get(slug=slug)
+    ImageFormSet = modelformset_factory(CenterPhoto, form=ImageForm)
 
     if request.method == 'POST':
-        form = CenterForm(request.POST, request.FILES, instance=center)
-        if form.is_valid():
+        form = CenterForm(request.POST, instance=center)
+        formset = ImageFormSet(request.POST, request.FILES, queryset=CenterPhoto.objects.filter(center=center))
+
+        if form.is_valid() and formset.is_valid():
             form.save()
+            for form in formset:
+                try:
+                    image = form.cleaned_data['image']
+                    photo = CenterPhoto(center=center, image=image)
+                    photo.user_id = request.user.id
+                    photo.save()
+                except:
+                    messages.error(request, 'Technical error')
+
             return render(request, "updated_center.html", locals())
     else:
         form = CenterForm(instance=center)
-    return render(request, 'center_edit.html', {'form': form})
+        formset = ImageFormSet(queryset=CenterPhoto.objects.filter(center=center))
+    return render(request, 'center_edit.html', {'form': form, 'formset': formset})

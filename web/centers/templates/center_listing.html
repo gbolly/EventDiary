@@ -43,7 +43,9 @@
         {% for centers in object_list %}
             <div class="col-md-4">
                 <div class="card">
-                    {% cloudinary image.image Image_Effects.LISTING %}
+                    {% for image in centers.centerphoto_set.all|slice:"1" %}
+                        {% cloudinary image.image Image_Effects.LISTING %}
+                    {% endfor %}
                <div class="card-block">
                         <h4 class="card-title">{{ centers.name }}</h4>
                         <p class="card-text">{{centers.lga}}, {{ centers.state }}</p>

@@ -1,4 +1,4 @@
-.form-group.price, .form-group.theatre-arrangement, .form-group.banquet-arrangement, .form-group.state, .form-group.lga {
+.form-group.price, .form-group.theatre-arrangement, .form-group.banquet-arrangement, .form-group.state, .form-group.lga3 {
   width: 28.33333%;
   display: inline-block; }
 .form-group #id_center_type .checkbox,
@@ -16,5 +16,10 @@
 #id_description {
   width: 100%;
   height: 200px; }
+
+#form-0-image-clear_id,
+#form-1-image-clear_id {
+  height: initial;
+  width: initial; }
 
 /*# sourceMappingURL=new_center.css.map */
