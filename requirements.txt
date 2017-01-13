@@ -22,6 +22,7 @@ django-font-awesome==4.6.1
 django-hvad==1.6.0
 django-libs==1.67.7
 django-mailgun==0.9.1
+django-multiselectfield==0.1.5
 django-phonenumber-field==1.1.0
 django-toolbelt==0.0.1
 django-widget-tweaks==1.4.1
