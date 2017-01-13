@@ -17,6 +17,7 @@ django-bootstrap-form==3.2.1
 django-bootstrap3==8.1.0
 django-countries==4.0
 django-datetime-widget==0.9.3
+django-fancybox==0.1.4
 django-font-awesome==4.6.1
 django-hvad==1.6.0
 django-libs==1.67.7
