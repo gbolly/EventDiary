@@ -115,7 +115,7 @@ def new_center(request):
                     photo.user_id = userid
                     photo.save()
 
-                return render(request, "updated_center.html", center=center)
+                return render(request, "updated_center.html", {"center":center})
         else:
             # Set error context
             error_msg = cls_default_msgs['not_signed_in']
