@@ -59,7 +59,7 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
             empty = "Form should not be submitted empty"
             messages.add_message(request, messages.INFO, empty)
             return TemplateResponse(
-                request, 'account/profile.html', context_var
+                request, self.template_name, context_var
             )
 
         if form.is_valid():

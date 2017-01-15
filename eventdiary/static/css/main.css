@@ -400,6 +400,8 @@ body {
   .for-owners .owner-intro {
     width: 30%;
     padding: 40px 20px 0 0; }
+  .for-owners .owner-video {
+    background: #212121; }
   .for-owners h5, .for-owners p, .for-owners a {
     color: #fff;
     text-align: left;
