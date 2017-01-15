@@ -4,8 +4,8 @@
 {% block main %}
     <div class="card card-inverse card-success text-xs-center center-message">
         <div class="card-block">
-            <h4>{{form.name.value}} details has been successfully updated</h4>
-            <footer><a class="view" href="{% url 'center_detail' slug=center.slug %}">Click here to view {{form.name.value}} details.</a></footer>
+            <h4>{{center.name}} details has been successfully updated</h4>
+            <footer><a class="view" href="{% url 'center_detail' slug=center.slug %}">Click here to view {{center.name}} details.</a></footer>
         </div>
     </div>
 {% endblock %}

@@ -18,7 +18,9 @@
     .container-fluid .card img {
       width: 100%; }
       .container-fluid .card img.thumbnail {
-        padding: 0; }
+        padding: 0;
+        margin-bottom: 0;
+        height: 250px; }
     .container-fluid .card .card-block {
       padding: 15px; }
       .container-fluid .card .card-block .card-title {
