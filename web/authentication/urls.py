@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from web.authentication.views import UserLoginView, UserRegistrationView, UserConfirm, UserLogoutView, ActivateAccountView
+from web.authentication.views import UserLoginView, UserRegistrationView, UserConfirm, UserLogoutView, ActivateAccountView, ForgotPasswordView, ResetPasswordView
 
 
 urlpatterns = [
@@ -35,17 +35,17 @@ urlpatterns = [
         ActivateAccountView.as_view(),
         name='activate_account'),
 
-    # # pattern maps to view handling `GET` requests to
-    # # /recovery/
-    # url(r'^recovery/$',
-    #     ForgotPasswordView.as_view(),
-    #     name='account_forgot_password'),
+    # pattern maps to view handling `GET` requests to
+    # /recovery/
+    url(r'^recovery/$',
+        ForgotPasswordView.as_view(),
+        name='account_forgot_password'),
 
-    # # pattern maps to view handling `GET` requests to
-    # # /recovery/<recovery_hash>/
-    # url(r'^recovery/(?P<recovery_hash>([a-z0-9A-Z])+)$',
-    #     ResetPasswordView.as_view(),
-    #     name='account_reset_password'),
+    # pattern maps to view handling `GET` requests to
+    # /recovery/<recovery_hash>/
+    url(r'^recovery/(?P<recovery_hash>([a-z0-9A-Z])+)$',
+        ResetPasswordView.as_view(),
+        name='account_reset_password'),
     
 
 ]

@@ -169,9 +169,10 @@ class ForgotPasswordView(View):
             'page_title': 'Forgot Password',
             'email_form': EmailForm(auto_id=True),
         }
-        context.update(csrf(request))
-        return render(request, 'authentication/forgot_password.html', context)
+        context.update(request)
+        return render(request, 'forgot_password.html', context)
 
+    @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
         """Handles the POST request to the 'account_forgot_password' named route.
         Args: request.
@@ -187,29 +188,19 @@ class ForgotPasswordView(View):
 
                 # generate a recovery hash url for that account:
                 recovery_hash = Hasher.gen_hash(registered_user)
-                recovery_hash_url = request.build_absolute_uri(
-                    reverse_lazy(
-                        'account_reset_password',
-                        kwargs={'recovery_hash': recovery_hash}
-                    ))
+                url_str = str(reverse_lazy('account_reset_password',kwargs={'recovery_hash': recovery_hash}))
+                recovery_hash_url = request.build_absolute_uri(url_str)
 
                 # compose the email:
-                recovery_email_context = RequestContext(
-                    request,
-                    {'recovery_hash_url': recovery_hash_url})
-                recovery_email = SendGrid.compose(
-                    sender='Theeventdiary <mail@theeventdiary.com>',
-                    recipient=registered_user.email,
-                    subject='Theeventdiary: Password Recovery',
-                    html=loader.get_template(
-                        'authentication/forgot_password_recovery_email.html'
-                    ).render(recovery_email_context),
-                    text=loader.get_template(
-                        'authentication/forgot_password_recovery_email.txt'
-                    ).render(recovery_email_context),
-                )
-                # send it and get the request status:
-                email_status = SendGrid.send(recovery_email)
+                recovery_email_context = RequestContext(request, {'recovery_hash_url': recovery_hash_url})
+                subject, from_email, to = 'TheEventDiary: Password Recovery', 'Theeventdiary <info@theeventdiary.com>', registered_user.email
+                html=loader.get_template('forgot_password_recovery_email.html').render(recovery_email_context)
+                text=loader.get_template('forgot_password_recovery_email.txt').render(recovery_email_context)
+
+                msg = EmailMultiAlternatives(subject, text, from_email, [to])
+                msg.attach_alternative(html, "text/html")
+                email_status = msg.send()
+                print email_status
 
                 # inform the user of the status of the recovery mail:
                 context = {
@@ -217,10 +208,7 @@ class ForgotPasswordView(View):
                     'registered_user': registered_user,
                     'recovery_mail_status': email_status,
                 }
-                return render(
-                    request,
-                    'authentication/forgot_password_recovery_status.html',
-                    context)
+                return render(request, 'forgot_password_recovery_status.html', context)
 
             except ObjectDoesNotExist:
                 # set an error message:
@@ -233,8 +221,7 @@ class ForgotPasswordView(View):
             'page_title': 'Forgot Password',
             'email_form': email_form,
         }
-        context.update(csrf(request))
-        return render(request, 'authentication/forgot_password.html', context)
+        return render(request, 'forgot_password.html', context)
 
 
 class ResetPasswordView(View):
@@ -264,12 +251,7 @@ class ResetPasswordView(View):
                     'page_title': 'Reset Password',
                     'reset_password_form': ResetPasswordForm(auto_id=True),
                 }
-                context.update(csrf(request))
-                return render(
-                    request,
-                    'authentication/reset_password.html',
-                    context
-                )
+                return render(request,'reset_password.html',context)
             else:
                 # set an 'account not activated' error message
                 # and return forbidden response:
@@ -308,7 +290,7 @@ class ResetPasswordView(View):
                     'Your password was changed successfully!')
 
                 # redirect the user to the sign in:
-                return redirect(reverse_lazy('signin'))
+                return redirect(reverse_lazy('login'))
 
             except ObjectDoesNotExist:
                 # set an error message:
