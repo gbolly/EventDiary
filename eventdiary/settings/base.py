@@ -126,6 +126,11 @@ USE_TZ = True
 ANYMAIL = {
     "MAILGUN_API_KEY": envvars.get('ACCESS_KEY'),
     "MAILGUN_SENDER_DOMAIN": envvars.get('SENDER_DOMAIN'),
+    "MAILGUN_PUBLIC_KEY": envvars.get('MAILGUN_PUB_KEY'),
+    "MAILGUN_SMTP_LOGIN": envvars.get('MAILGUN_SMTP_LOGIN'),
+    "MAILGUN_SMTP_PASSWORD": envvars.get('MAILGUN_SMTP_PASSWORD'),
+    "MAILGUN_SMTP_PORT": envvars.get('MAILGUN_SMTP_PORT'),
+    "MAILGUN_SMTP_SERVER": envvars.get('MAILGUN_SMTP_SERVER'),
     "MAILGUN_SEND_DEFAULTS":{
         "esp_extra": {"sender_domain": "mail.theeventdiary.com"}
     }
