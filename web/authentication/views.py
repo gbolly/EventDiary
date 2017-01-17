@@ -397,8 +397,8 @@ class UserRegistrationView(View):
 
         else:
             args = {}
-            args.update(csrf(request))
-            return render(request, 'register.html', {'form': usersignupform})
+            args["form"] = usersignupform
+            return render(request, 'register.html', args)
 
 
 class ActivateAccountView(View):
