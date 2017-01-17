@@ -123,21 +123,29 @@ USE_L10N = True
 
 USE_TZ = True
 
-ANYMAIL = {
-    "MAILGUN_API_KEY": envvars.get('ACCESS_KEY'),
-    "MAILGUN_SENDER_DOMAIN": envvars.get('SENDER_DOMAIN'),
-    "MAILGUN_PUBLIC_KEY": envvars.get('MAILGUN_PUB_KEY'),
-    "MAILGUN_SMTP_LOGIN": envvars.get('MAILGUN_SMTP_LOGIN'),
-    "MAILGUN_SMTP_PASSWORD": envvars.get('MAILGUN_SMTP_PASSWORD'),
-    "MAILGUN_SMTP_PORT": envvars.get('MAILGUN_SMTP_PORT'),
-    "MAILGUN_SMTP_SERVER": envvars.get('MAILGUN_SMTP_SERVER'),
-    "MAILGUN_SEND_DEFAULTS":{
-        "esp_extra": {"sender_domain": "mail.theeventdiary.com"}
-    }
-}
+# ANYMAIL = {
+#     "MAILGUN_API_KEY": envvars.get('ACCESS_KEY'),
+#     "MAILGUN_SENDER_DOMAIN": envvars.get('SENDER_DOMAIN'),
+#     "MAILGUN_PUBLIC_KEY": envvars.get('MAILGUN_PUB_KEY'),
+#     "MAILGUN_SMTP_LOGIN": envvars.get('MAILGUN_SMTP_LOGIN'),
+#     "MAILGUN_SMTP_PASSWORD": envvars.get('MAILGUN_SMTP_PASSWORD'),
+#     "MAILGUN_SMTP_PORT": 587,
+#     "MAILGUN_SMTP_SERVER": envvars.get('MAILGUN_SMTP_SERVER'),
+#     "MAILGUN_SEND_DEFAULTS":{
+#         "esp_extra": {"sender_domain": "mail.theeventdiary.com"}
+#     }
+# }
 
-EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
-DEFAULT_FROM_EMAIL = "info@theeventdiary.com"
+# EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
+# DEFAULT_FROM_EMAIL = "info@theeventdiary.com"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = envvars.get('EMAIL_HOST')
+EMAIL_HOST_USER = envvars.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = envvars.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
