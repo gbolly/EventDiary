@@ -397,7 +397,7 @@ class UserRegistrationView(View):
 
         else:
             args = {}
-            args.update(request)
+            args.update(csrf(request))
             return render(request, 'register.html', {'form': usersignupform})
 
 
