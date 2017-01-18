@@ -15,7 +15,6 @@ $sky-blue: #54c7fc;
     margin-right: 0;
     .form-card {
         margin: 50px 45px;
-        text-align: center;
         h1 {
             font-size: 30px;
             font-family: 'Montserrat', sans-serif;
@@ -56,7 +55,7 @@ $sky-blue: #54c7fc;
                 margin: 16px 0;
                 background: $dark-sky-blue;
                 color: $white;
-                width: 100px;
+                width: 275px;
                 height: 45px;
                 text-transform: uppercase;
                 font-family: 'Montserrat', sans-serif;
@@ -67,6 +66,12 @@ $sky-blue: #54c7fc;
                 font-family: 'Montserrat', sans-serif;
                 letter-spacing: 1px;
                 font-size: 15px;
+            }
+            .forgot-password {
+                margin-top: 5px;
+                a {
+                    color: crimson;
+                }
             }
         }
     }
@@ -81,24 +86,25 @@ $sky-blue: #54c7fc;
             color: $cool-grey;
             text-align: center;
         }
-        .login-div {
-            border: solid 1px $sky-blue;
-            border-radius: 2px;
-            width: 120px;
-            height: 40px;
+
+        #user_login_link {
+            text-transform: uppercase;
             text-align: center;
-            margin: 10px auto;
-            padding-top: 10px;
-            #user_login_link {
-                text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: $black;
+            .login-div {
+                border: solid 1px $sky-blue;
+                border-radius: 2px;
+                width: 120px;
+                height: 40px;
                 text-align: center;
-                font-family: 'Montserrat', sans-serif;
-                font-size: 13px;
-                color: $black;
-            }
-            &:hover {
-                background: $sky-blue;
-                color: $white;
+                margin: 10px auto;
+                padding-top: 10px;
+                &:hover {
+                    background: $sky-blue;
+                    color: $white;
+                }
             }
         }
     } 

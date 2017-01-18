@@ -4,13 +4,6 @@
 {% block main %}
 
     <section class="row">
-        <!-- heading -->
-        <div class="col-sm-4 hidden-xs brand-col">
-            <div class="brand">
-               <img src="{% static 'img/logo-v-lg.png' %}" alt="Theeventdiary logo">
-            </div>
-        </div>
-
         {% if messages %}
 
             {% for message in messages %}
@@ -34,7 +27,6 @@
             </div>
 
         {% endif %}
-
     </section>
 
 {% endblock %}

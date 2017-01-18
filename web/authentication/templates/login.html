@@ -41,12 +41,13 @@
                         <div class="row center-buttons">
                             <div>
                                 <button id="loginBtn" type="submit" class="btn btn-action btn-form-submit">Sign in</button>
-                                <a href="{% url 'account_forgot_password' %}">Forgot Password</a>
-                            </div>    
-                            <div>
-                                <a href="/accounts/facebook/login/?process=login" id="facebooklogin">Sign up with facebook</a>
                             </div>
-                            {# <p><a href="{% url 'account_forgot_password' %}">Forgot your password?</a></p> #}
+                            OR 
+                            <div>
+                                <a href="/accounts/facebook/login/?process=login" id="facebooklogin">Login with facebook</a>
+                            </div>
+                            {# <a class="forgot-password" href="{% url 'account_forgot_password' %}">Forgot Password</a> #}
+                            <p class="forgot-password"><a href="{% url 'account_forgot_password' %}">Forgot your password?</a></p>
                         </div>
                     </form>
                 </div>
@@ -54,9 +55,9 @@
         </div>
         <div class="col-lg-4 existing-account" >
             <h2>Don't have an account?</h2>
-            <div class="login-div">
-                <a href="{% url 'register' %}" id="user_login_link">Sign up</a>
-            </div>
+                <a href="{% url 'register' %}" id="user_login_link">
+                    <div class="login-div">Sign up</div>
+                </a>
         </div>
     </div>
 {% endblock main %}
