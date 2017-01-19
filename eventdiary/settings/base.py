@@ -43,6 +43,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allaccess',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     'anymail',
     'bootstrap3',
     'cloudinary',
@@ -84,10 +90,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'django.core.context_processors.request',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    'allaccess.backends.AuthorizedServiceBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 WSGI_APPLICATION = 'eventdiary.wsgi.application'
 
@@ -123,22 +138,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# ANYMAIL = {
-#     "MAILGUN_API_KEY": envvars.get('ACCESS_KEY'),
-#     "MAILGUN_SENDER_DOMAIN": envvars.get('SENDER_DOMAIN'),
-#     "MAILGUN_PUBLIC_KEY": envvars.get('MAILGUN_PUB_KEY'),
-#     "MAILGUN_SMTP_LOGIN": envvars.get('MAILGUN_SMTP_LOGIN'),
-#     "MAILGUN_SMTP_PASSWORD": envvars.get('MAILGUN_SMTP_PASSWORD'),
-#     "MAILGUN_SMTP_PORT": 587,
-#     "MAILGUN_SMTP_SERVER": envvars.get('MAILGUN_SMTP_SERVER'),
-#     "MAILGUN_SEND_DEFAULTS":{
-#         "esp_extra": {"sender_domain": "mail.theeventdiary.com"}
-#     }
-# }
-
-# EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
-# DEFAULT_FROM_EMAIL = "info@theeventdiary.com"
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = envvars.get('EMAIL_HOST')
 EMAIL_HOST_USER = envvars.get('EMAIL_HOST_USER')
@@ -158,6 +157,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+LOGIN_REDIRECT_URL = '/center'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
@@ -165,8 +166,12 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
 
+# ACCOUNT_EMAIL_VERIFICATION = ('mandatory')
+SOCIALACCOUNT_EMAIL_REQUIRED = ('ACCOUNT_EMAIL_REQUIRED')
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
+
 cloudinary.config(
-  cloud_name = "theeventdiary",
-  api_key = "717232858138761",
-  api_secret = "P7ypHvEjMKDrc4OcLWfNSbo7mY4"
+  cloud_name = envvars.get("CLOUDINARY_NAME"),
+  api_key = envvars.get("CLOUDINARY_KEY"),
+  api_secret = envvars.get("CLOUDINARY_SECRET")
 )

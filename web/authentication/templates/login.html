@@ -1,5 +1,7 @@
 {% extends "standard_page.html" %}
-{% load static %} 
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 {% block extended_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/auth_styling.css' %}" /> 
 {% endblock extended_css %}
@@ -44,7 +46,7 @@
                                 <a href="{% url 'account_forgot_password' %}">Forgot Password</a>
                             </div>    
                             <div>
-                                <a href="/accounts/facebook/login/?process=login" id="facebooklogin">Sign up with facebook</a>
+                                <a href="/accounts/facebook/login/?process=login" id="facebooklogin">Sign in with facebook</a>
                             </div>
                             {# <p><a href="{% url 'account_forgot_password' %}">Forgot your password?</a></p> #}
                         </div>
