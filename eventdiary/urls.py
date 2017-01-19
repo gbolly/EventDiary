@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^', include('web.authentication.urls')),
     url(r'^account/', include('web.accounts.urls')),
     url(r'^center/', include('web.centers.urls')),
+    # third party apps:
+    url(r'^accounts/', include('allaccess.urls')),
+    url(r'^accounts/', include('allauth.urls')),
 ]
