@@ -158,7 +158,7 @@ class CenterPhoto(models.Model):
         resource_type='image',
         type='upload',
         blank=True,
-        default="http://res.cloudinary.com/theeventdiary/image/upload/v1483614044/lg_m8sc17.jpg",
+        default="http://res.cloudinary.com/theeventdiary/image/upload/v1484508199/ynwcl1sohwoamwvonmzb.jpg",
     )
 
     """ Informative name for mode """
