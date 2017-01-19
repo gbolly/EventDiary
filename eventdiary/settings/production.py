@@ -4,7 +4,7 @@ import dj_database_url
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = ['theeventdiary.herokuapp.com']
-SITE_ID = 2
+SITE_ID = 3
 DATABASES = {'default': dj_database_url.config()}
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False 
