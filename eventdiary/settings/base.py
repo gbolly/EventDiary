@@ -166,10 +166,6 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
 
-# ACCOUNT_EMAIL_VERIFICATION = ('mandatory')
-SOCIALACCOUNT_EMAIL_REQUIRED = ('ACCOUNT_EMAIL_REQUIRED')
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
-
 cloudinary.config(
   cloud_name = envvars.get("CLOUDINARY_NAME"),
   api_key = envvars.get("CLOUDINARY_KEY"),
