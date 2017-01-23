@@ -21,6 +21,8 @@ from hashs import UserHasher as Hasher
 from forms import EmailForm, ResetPasswordForm
 
 EMAIL_SENDER = 'info@theeventdiary.com'
+
+
 class LoginRequiredMixin(object):
     """
     This class acts as a mixin to enforce user authentication.
@@ -333,10 +335,11 @@ class UserRegistrationView(View):
             A HttpResponse with a register template, otherwise, redirects to the
             login page.
         """
-        usersignupform = UserSignupForm(request.POST)
+        usersignupform = UserSignupForm(request.POST or None)
         # get the user email address
         email = request.POST.get('email')
         signup_new_user = User.objects.filter(email__exact=email)
+
         if signup_new_user:
             args = {}
             mssg = "Email already taken please signup with another email"
