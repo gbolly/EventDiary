@@ -34,6 +34,7 @@ envvars.load()
 SECRET_KEY = envvars.get('SECRET_KEY')
 
 ALLOWED_HOSTS = ["*"]
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 # Application definition
 INSTALLED_APPS = (
@@ -62,6 +63,7 @@ INSTALLED_APPS = (
     'web.deals',
     'web.authentication',
     'web.centers',
+    'web.merchant',
 )
 
 MIDDLEWARE_CLASSES = (

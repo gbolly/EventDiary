@@ -478,4 +478,8 @@ body {
   .center-message .card-block footer {
     text-align: center; }
 
+.activation-msg {
+  text-align: center;
+  margin-left: 16%; }
+
 /*# sourceMappingURL=main.css.map */

@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 from web.deals.models import COUNTRY_CHOICES, ALL_LOCATIONS
 
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User)
+    is_merchant = models.BooleanField(default=False)
     location = models.SmallIntegerField(choices=ALL_LOCATIONS, default=84)
     phonenumber = models.CharField(blank=True, default='', max_length=20)
 
@@ -18,6 +20,7 @@ class UserProfile(models.Model):
                     setattr(self, field, request_value[field])
         self.save()
         return {
+            u'is_merchant': self.is_merchant,
             u'location': self.location,
             u'phonenumber': self.phonenumber,
         }
@@ -48,10 +51,11 @@ class UserProfile(models.Model):
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
+@receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-
     if created:
         UserProfile.objects.create(user=instance)
 
-    post_save.connect(create_user_profile, sender=User,
-                      dispatch_uid=create_user_profile)
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.userprofile.save()
