@@ -1,7 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Playfair+Display|Arvo|Montserrat|Roboto+Slab|Open+Sans:400italic,700italic,400,700);
-.form-card {
+.form-card,
+.card-block {
   margin: 50px 45px; }
-  .form-card h1 {
+  .form-card h1,
+  .card-block h1 {
     font-size: 30px;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
@@ -9,18 +11,23 @@
     line-height: 1.2em;
     font-weight: normal;
     color: #9fa3a7; }
-  .form-card .reg-form {
+  .form-card .reg-form,
+  .card-block .reg-form {
     margin: 15px 0 0 60px;
     max-width: 500px; }
-  .form-card .custom-form-group {
+  .form-card .custom-form-group,
+  .card-block .custom-form-group {
     width: 130%; }
-    .form-card .custom-form-group .errorlist {
+    .form-card .custom-form-group .errorlist,
+    .card-block .custom-form-group .errorlist {
       text-align: left;
       margin-left: 10px; }
-      .form-card .custom-form-group .errorlist li {
+      .form-card .custom-form-group .errorlist li,
+      .card-block .custom-form-group .errorlist li {
         list-style-type: none;
         color: #bb1717; }
-    .form-card .custom-form-group .custom-input-group input {
+    .form-card .custom-form-group .custom-input-group input,
+    .card-block .custom-form-group .custom-input-group input {
       font-family: 'Playfair Display', serif;
       font-style: italic;
       width: 80%;
@@ -30,11 +37,14 @@
       padding: 7px 12px;
       border: solid 1px #e8e9ed;
       margin: 15px 0; }
-    .form-card .custom-form-group .custom-input-group .control-label {
+    .form-card .custom-form-group .custom-input-group .control-label,
+    .card-block .custom-form-group .custom-input-group .control-label {
       text-transform: uppercase; }
-  .form-card .center-buttons {
+  .form-card .center-buttons,
+  .card-block .center-buttons {
     text-align: center; }
-    .form-card .center-buttons .btn-form-submit {
+    .form-card .center-buttons .btn-form-submit,
+    .card-block .center-buttons .btn-form-submit {
       margin: 16px 0;
       background: #28abec;
       color: #eeeeee;
@@ -43,5 +53,29 @@
       text-transform: uppercase;
       font-family: 'Montserrat', sans-serif;
       font-size: 13px; }
+
+.card-block {
+  text-align: center; }
+  .card-block h1 {
+    margin-bottom: 15px; }
+  .card-block .email-input-group input {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    width: 80%;
+    height: 40px;
+    border-radius: 1px;
+    font-size: 15px;
+    padding: 7px 12px;
+    border: solid 1px #e8e9ed;
+    margin: 15px 0; }
+  .card-block .btn-form-submit {
+    margin: 16px 0;
+    background: #28abec;
+    color: #eeeeee;
+    width: 170px;
+    height: 45px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; }
 
 /*# sourceMappingURL=forms.css.map */

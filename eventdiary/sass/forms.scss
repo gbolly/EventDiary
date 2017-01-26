@@ -10,7 +10,8 @@ $warm-grey: #757575;
 $white: #eeeeee;
 $sky-blue: #54c7fc;
 
-.form-card {
+.form-card,
+.card-block {
     margin: 50px 45px;
     h1 {
         font-size: 30px;
@@ -64,5 +65,35 @@ $sky-blue: #54c7fc;
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
         }
+    }
+}
+
+.card-block {
+    text-align: center;
+    h1 {
+        margin-bottom: 15px;
+    }
+    .email-input-group {
+        input {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            width: 80%;
+            height: 40px;
+            border-radius: 1px;
+            font-size: 15px;
+            padding: 7px 12px;
+            border: solid 1px $pale-grey;
+            margin: 15px 0;
+        }
+    }
+    .btn-form-submit {
+        margin: 16px 0;
+        background: $dark-sky-blue;
+        color: $white;
+        width: 170px;
+        height: 45px;
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
     }
 }
