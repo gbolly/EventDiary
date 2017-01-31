@@ -1,0 +1,44 @@
+{% extends "standard_page.html" %}
+{% load cloudinary %}
+{% load static %}
+
+{% block extended_css %}
+    <link rel="stylesheet" href="{% static 'css/centers/center_styling.css' %}">
+{% endblock extended_css %}
+
+
+{% block main %}
+    {% if messages %}
+        <div class="col-sm-12 no-left">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ message|safe }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="row container-fluid" id="deals-section">
+        {% for centers in rendered_center_list.listing %}
+            <div class="col-md-4">
+                <div class="card">
+                    {% for image in centers.centerphoto_set.all|slice:"1" %}
+                        {% cloudinary image.image Image_Effects.LISTING %}
+                    {% endfor %}
+                    <div class="card-block">
+                        <h4 class="card-title">{{ centers.name }}</h4>
+                        <p class="card-text">{{centers.lga}}, {{ centers.state }}</p>
+                        <p class="card-text">{{ centers.price }}</p>
+                        <p class="card-text updated"><small class="text-muted">Last updated {{ centers.date_last_modified }}</small></p>
+                        <p class="read-on">
+                            <a href="{% url 'center_detail' slug=centers.slug %}">More details</a>
+                        </p>
+                        {% if request.user.userprofile.is_merchant %}
+                            <a href="{% url 'merchant_manage_indv_center' username=request.user center_slug=centers.slug %}" class="btn btn-primary edit">Manage Center</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock main %}

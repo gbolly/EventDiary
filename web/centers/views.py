@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import render, get_object_or_404, render_to_response, redirect
 from django.template import RequestContext, Engine
 from django.utils import timezone
 from django.contrib import messages
@@ -133,23 +133,30 @@ def edit_center(request, slug=None):
     center = Center.objects.get(slug=slug)
     ImageFormSet = modelformset_factory(CenterPhoto, form=ImageForm)
 
-    if request.method == 'POST':
-        form = CenterForm(request.POST, instance=center)
-        formset = ImageFormSet(request.POST, request.FILES, queryset=CenterPhoto.objects.filter(center=center))
+    if request.user.is_staff:
+        if request.method == 'POST':
+            form = CenterForm(request.POST, instance=center)
+            formset = ImageFormSet(request.POST, request.FILES, queryset=CenterPhoto.objects.filter(center=center))
 
-        if form.is_valid() and formset.is_valid():
-            form.save()
-            for form in formset:
-                try:
-                    image = form.cleaned_data['image']
-                    photo = CenterPhoto(center=center, image=image)
-                    photo.user_id = request.user.id
-                    photo.save()
-                except:
-                    messages.error(request, 'Technical error')
+            if form.is_valid() and formset.is_valid():
+                form.save()
+                for form in formset:
+                    try:
+                        image = form.cleaned_data['image']
+                        photo = CenterPhoto(center=center, image=image)
+                        photo.user_id = request.user.id
+                        photo.save()
+                    except:
+                        messages.error(request, 'Technical error')
 
-            return render(request, "updated_center.html", locals())
+                return render(request, "updated_center.html", locals())
+        else:
+            form = CenterForm(instance=center)
+            formset = ImageFormSet(queryset=CenterPhoto.objects.filter(center=center))
+        return render(request, 'center_edit.html', {'form': form, 'formset': formset})
     else:
-        form = CenterForm(instance=center)
-        formset = ImageFormSet(queryset=CenterPhoto.objects.filter(center=center))
-    return render(request, 'center_edit.html', {'form': form, 'formset': formset})
+        messages.add_message(
+            request, messages.ERROR,
+            'You are not allowed to edit this center. Contact an eventdiary admin'
+        )
+        return redirect(reverse('center_listing'))

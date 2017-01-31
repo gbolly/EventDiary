@@ -34,6 +34,7 @@ envvars.load()
 SECRET_KEY = envvars.get('SECRET_KEY')
 
 ALLOWED_HOSTS = ["*"]
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 # Application definition
 INSTALLED_APPS = (
@@ -63,6 +64,7 @@ INSTALLED_APPS = (
     'web.deals',
     'web.authentication',
     'web.centers',
+    'web.merchant',
 )
 
 ROOT_URLCONF = 'eventdiary.urls'
@@ -172,3 +174,11 @@ cloudinary.config(
   api_key = envvars.get("CLOUDINARY_KEY"),
   api_secret = envvars.get("CLOUDINARY_SECRET")
 )
+
+# centers listings and search:
+Centers = {
+    'default_search_city': 25,
+    'num_page_items': 15,
+    'min_orphan_items': 2,
+}
+

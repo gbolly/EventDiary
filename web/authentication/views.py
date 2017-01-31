@@ -16,11 +16,17 @@ from django.template import RequestContext, loader, Engine
 from django.utils.decorators import method_decorator
 from django.core.mail import EmailMultiAlternatives
 
-from forms import UserSignupForm
 from hashs import UserHasher as Hasher
-from forms import EmailForm, ResetPasswordForm
+from forms import EmailForm, ResetPasswordForm, UserSignupForm
+from web.merchant.forms import MerchantForm
+from web.merchant.models import Merchant
+from web.accounts.models import UserProfile
+from web.accounts.forms import UserProfileForm
+
 
 EMAIL_SENDER = 'info@theeventdiary.com'
+
+
 class LoginRequiredMixin(object):
     """
     This class acts as a mixin to enforce user authentication.
@@ -100,6 +106,7 @@ class UserLoginView(View):
             except (ValidationError, User.DoesNotExist) as e:
                 pass
             user = authenticate(username=username, password=password)
+
             if user is not None and user.is_active:
                 # Correct password, and the user is marked "active"
                 login(self.request, user)
@@ -107,7 +114,10 @@ class UserLoginView(View):
                 # Redirect to a success page.
                 referer_view = self.get_referer_view(self.request)
 
-                return redirect('/center')
+                if user.userprofile.is_merchant:
+                    return redirect(reverse('merchant_manage_centers', kwargs={'username': user}))
+                else:
+                    return redirect('/center')
             else:
                 # Set error context
                 error_msg = self.cls_default_msgs['invalid_param']
@@ -200,7 +210,6 @@ class ForgotPasswordView(View):
                 msg = EmailMultiAlternatives(subject, text, from_email, [to])
                 msg.attach_alternative(html, "text/html")
                 email_status = msg.send()
-                print email_status
 
                 # inform the user of the status of the recovery mail:
                 context = {
@@ -347,6 +356,10 @@ class UserRegistrationView(View):
             usersignupform.save()
             new_user = User.objects.get(email__exact=email)
 
+            if request.POST.get('is_merchant', False):
+                new_user.userprofile.is_merchant = True
+                new_user.userprofile.save()
+
             # generate an activation hash url for new user account
             activation_hash = Hasher.gen_hash(new_user)
             url_str = str(reverse_lazy('activate_account', kwargs={'activation_hash': activation_hash}))
@@ -378,8 +391,9 @@ class UserRegistrationView(View):
             return redirect(reverse_lazy('confirm_registration'))
 
         else:
+            user_form = UserSignupForm()
             args = {}
-            args["form"] = usersignupform
+            args["signupform"] = user_form
             return render(request, 'register.html', args)
 
 
@@ -407,7 +421,7 @@ class ActivateAccountView(View):
                     return render(request, 'activation_successful.html')
 
         else:
-            raise Http404("/User does not exist")
+            raise Http404("User does not exist")
 
 
 class UserConfirm(TemplateView):

@@ -51,6 +51,12 @@
                                 <input type="password" name="password2" id="password2" placeholder="Retype Password">
                             </div>
                         </div>
+                        <div class="custom-form-group">
+                            {{ form.is_staff.errors }}
+                            <div class="custom-input-group">
+                                <input type="checkbox" name="is_merchant" value="is_merchant" id="user_status" />
+                            </div>
+                        </div>
                         <div class="row center-buttons">
                             <div>
                                 <button type="submit" style=""class="btn btn-action btn-form-submit">Sign up</button>
@@ -65,9 +71,9 @@
         </div>
         <div class="col-lg-4 existing-account" >
             <h2>Already have an account?</h2>
-            <div class="login-div">
-                <a href="{% url 'login' %}" id="user_login_link">Log in</a>
-            </div>
+            <a href="{% url 'login' %}" id="user_login_link">
+                <div class="login-div">Log in</div>
+            </a>
         </div>
     </div>
 {% endblock main %}

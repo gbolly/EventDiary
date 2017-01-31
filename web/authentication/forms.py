@@ -59,12 +59,13 @@ class UserSignupForm(UserCreationForm):
     """Field defined to override default field property."""
 
     email = forms.EmailField(required=True)
+    is_merchant = forms.BooleanField(required=False)
 
     class Meta:
         """UserCreationform uses the django User object."""
 
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2', 'is_merchant')
 
     def save(self, commit=True):
         """Save method used by the AbstractUser object.
