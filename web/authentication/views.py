@@ -23,6 +23,7 @@ from web.merchant.models import Merchant
 from web.accounts.models import UserProfile
 from web.accounts.forms import UserProfileForm
 
+
 EMAIL_SENDER = 'info@theeventdiary.com'
 
 
@@ -63,7 +64,6 @@ class UserLoginView(View):
         Returns: A HttpResponse with an authentication login template
         """
         if self.request.user.is_authenticated():
-            print self.request.user.is_merchant, "++++++++++"
             # Obtain referring view
             referer_view = self.get_referer_view(self.request)
             return HttpResponseRedirect(referer_view)
@@ -114,7 +114,10 @@ class UserLoginView(View):
                 # Redirect to a success page.
                 referer_view = self.get_referer_view(self.request)
 
-                return redirect('/center')
+                if user.userprofile.is_merchant:
+                    return redirect(reverse('merchant_manage_centers', kwargs={'username': user}))
+                else:
+                    return redirect('/center')
             else:
                 # Set error context
                 error_msg = self.cls_default_msgs['invalid_param']
@@ -207,7 +210,6 @@ class ForgotPasswordView(View):
                 msg = EmailMultiAlternatives(subject, text, from_email, [to])
                 msg.attach_alternative(html, "text/html")
                 email_status = msg.send()
-                print email_status
 
                 # inform the user of the status of the recovery mail:
                 context = {
@@ -419,7 +421,7 @@ class ActivateAccountView(View):
                     return render(request, 'activation_successful.html')
 
         else:
-            raise Http404("/User does not exist")
+            raise Http404("User does not exist")
 
 
 class UserConfirm(TemplateView):
