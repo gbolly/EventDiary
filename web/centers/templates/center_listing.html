@@ -55,7 +55,7 @@
                             <a href="{% url 'center_detail' slug=centers.slug %}">More details</a>
                         </p>
                         <a href="{% url 'booking_create' slug=centers.slug %}" class="btn btn-primary book">Book Center</a>
-                        {% if request.user.is_admin %}
+                        {% if request.user.is_staff %}
                             <a href="{% url 'edit-center' slug=centers.slug %}" class="btn btn-primary edit">Edit Center</a>
                         {% endif %}
                     </div>
