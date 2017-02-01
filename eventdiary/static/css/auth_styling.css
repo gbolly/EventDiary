@@ -3,8 +3,7 @@
   display: flex;
   margin-right: 0; }
   .content .form-card {
-    margin: 50px 45px;
-    text-align: center; }
+    margin: 50px 45px; }
     .content .form-card h1 {
       font-size: 30px;
       font-family: 'Montserrat', sans-serif;
@@ -62,9 +61,9 @@
       height: 40px;
       text-align: center;
       margin: 10px auto;
-      padding-top: 10px; }
+      padding-top: 10px;
+      text-transform: uppercase; }
       .content .existing-account .login-div #user_login_link {
-        text-transform: uppercase;
         text-align: center;
         font-family: 'Montserrat', sans-serif;
         font-size: 13px;
@@ -72,5 +71,17 @@
       .content .existing-account .login-div:hover {
         background: #54c7fc;
         color: #eeeeee; }
+  .content .merchant-label {
+    text-transform: uppercase; }
+    .content .merchant-label #user_status {
+      margin-left: 10px;
+      width: 15px;
+      height: 15px; }
+    .content .merchant-label .extra {
+      display: none; }
+    .content .merchant-label:hover .extra {
+      display: inline-block;
+      text-transform: lowercase;
+      font-size: xx-small; }
 
 /*# sourceMappingURL=auth_styling.css.map */

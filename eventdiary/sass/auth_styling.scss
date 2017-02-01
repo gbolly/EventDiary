@@ -15,7 +15,6 @@ $sky-blue: #54c7fc;
     margin-right: 0;
     .form-card {
         margin: 50px 45px;
-        text-align: center;
         h1 {
             font-size: 30px;
             font-family: 'Montserrat', sans-serif;
@@ -89,8 +88,8 @@ $sky-blue: #54c7fc;
             text-align: center;
             margin: 10px auto;
             padding-top: 10px;
+            text-transform: uppercase;
             #user_login_link {
-                text-transform: uppercase;
                 text-align: center;
                 font-family: 'Montserrat', sans-serif;
                 font-size: 13px;
@@ -101,5 +100,23 @@ $sky-blue: #54c7fc;
                 color: $white;
             }
         }
-    } 
+    }
+    .merchant-label {
+        text-transform: uppercase;
+        #user_status {
+            margin-left: 10px;
+            width: 15px;
+            height: 15px;
+        }
+        .extra {
+            display: none;
+        }
+
+        &:hover .extra {
+            display: inline-block;
+            text-transform: lowercase;
+            font-size: xx-small;
+
+        }
+    }
 }
