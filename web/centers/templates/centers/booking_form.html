@@ -18,8 +18,33 @@
                 <form method="post" action="">
                     {% csrf_token %}
                     <div class="custom-form-group">
+                        {{ form.customer_name.errors }}
                         <div class="custom-input-group">
-                            {{ form.as_p }}
+                            <input type="text" name="customer_name" id="customer_name" placeholder="Your Name">
+                        </div>
+                    </div>
+                    <div class="custom-form-group">
+                        {{ form.customer_email.errors }}
+                        <div class="custom-input-group">
+                            <input type="email" name="customer_email" id="customer_email" placeholder="Your Email">
+                        </div>
+                    </div>
+                    <div class="custom-form-group">
+                        {{ form.phone_number.errors }}
+                        <div class="custom-input-group">
+                            <input type="tel" name="phone_number" id="phone_number" placeholder="Enter Phone Number (eg +234123456789)">
+                        </div>
+                    </div>
+                    <div class="custom-form-group">
+                        {{ form.booking_start_date.errors }}
+                        <div class="custom-input-group">
+                            <input type="date" name="booking_start_date" id="booking_start_date" placeholder="Date of Event">
+                        </div>
+                    </div>
+                    <div class="custom-form-group">
+                        {{ form.booking_end_date.errors }}
+                        <div class="custom-input-group">
+                            <input type="date" name="booking_end_date" id="booking_end_date" placeholder="End Date of Event">
                         </div>
                     </div>
                     <div class="row center-buttons">

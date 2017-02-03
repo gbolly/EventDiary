@@ -32,6 +32,10 @@
       margin: 15px 0; }
     .form-card .custom-form-group .custom-input-group .control-label {
       text-transform: uppercase; }
+    .form-card .custom-form-group #booking-form label {
+      display: block; }
+    .form-card .custom-form-group #booking-form.id_phone_number:after {
+      content: "bla bla"; }
   .form-card .center-buttons {
     text-align: center; }
     .form-card .center-buttons .btn-form-submit {

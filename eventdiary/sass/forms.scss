@@ -51,6 +51,14 @@ $sky-blue: #54c7fc;
                 text-transform: uppercase;
             }
         }
+        #booking-form {
+            label {
+                display: block;
+            }
+            &.id_phone_number:after {
+                content: "bla bla"
+            }
+        }
     }
     .center-buttons {
         text-align: center;
