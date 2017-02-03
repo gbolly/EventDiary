@@ -19,6 +19,7 @@ class BookingForm(forms.ModelForm):
         super(BookingForm, self).__init__(*arg, **kwargs)
         self.fields['booking_start_date'].widget = widgets.AdminDateWidget()
         self.fields['booking_end_date'].widget = widgets.AdminDateWidget()
+        self.fields['phone_number'].error_messages = {'invalid': 'Please make sure you use your country code (e.g. +2340000000000)', 'required': 'Enter a valid phone number'}
 
     class Meta:
         model = Booking

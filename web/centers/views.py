@@ -61,6 +61,9 @@ def center_detail(request, slug):
     })
 
 def booking_view(request, slug, model_class=Center, form_class=BookingForm, template_name='centers/booking_form.html'):
+    cls_default_msgs = {
+        'not_signed_in': 'You must be signed in to book this event center',
+    }
     center = get_object_or_404(model_class, slug=slug)
     args = dict()
     if request.POST:
@@ -77,6 +80,15 @@ def booking_view(request, slug, model_class=Center, form_class=BookingForm, temp
                 return render(request, 'thank_you.html', {"center":center.name})
             else :
                 return render(request, template_name, {'form': form})
+        else:
+            # Set error context
+            error_msg = cls_default_msgs['not_signed_in']
+            messages.add_message(request, messages.INFO, error_msg, form.errors)
+            # Set template
+            template = Engine.get_default().get_template('login.html')
+            # Set result in RequestContext
+            context = RequestContext(request)
+            return HttpResponse(template.render(context))
 
     else:
         form = form_class(request.user, center)

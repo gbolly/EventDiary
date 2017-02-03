@@ -15,8 +15,7 @@
   .form-card .custom-form-group {
     width: 130%; }
     .form-card .custom-form-group .errorlist {
-      text-align: left;
-      margin-left: 10px; }
+      padding: 0; }
       .form-card .custom-form-group .errorlist li {
         list-style-type: none;
         color: #bb1717; }
