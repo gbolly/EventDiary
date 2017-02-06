@@ -29,7 +29,9 @@
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'account' %}">Profile</a></li>
-                                <li><a href="/center">Book a Center</a></li>
+                                {% if not request.user.userprofile.is_merchant %}
+                                    <li><a href="/center">Book a Center</a></li>
+                                {% endif %}
                                 {% if request.user.userprofile.is_merchant %}
                                     <li><a href="{% url 'new_center' %}">Add a new Center</a></li>
                                     <li><a href="{% url 'merchant_manage_centers' username=request.user %}">Manage you centers</a></li>

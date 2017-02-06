@@ -13,9 +13,11 @@
                 {% cloudinary image height='500' %}
                 <div id="top-image" class="bg-image">
                     <h1>{{ center_name }}</h1>
-                    <div class="ctas center">
-                        <a class="bright-blue-round-button book-now" href="{% url 'booking_create' slug=center_slug %}">Book now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                    </div>
+                    {% if not request.user.userprofile.is_merchant %}
+                        <div class="ctas center">
+                            <a class="bright-blue-round-button book-now" href="{% url 'booking_create' slug=center_slug %}">Book now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    {% endif %}
                 </div>
             </section>
             <div class="white-container">
@@ -71,11 +73,14 @@
                                         </div>
                                     {% endfor %}
                                 </div>
-
                                 <div class="btn-cta">
                                     <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
                                         <div class="apply center">
-                                            <a class="bright-blue-round-button btn-block apply-external" href="{% url 'booking_create' slug=center_slug %}" target="_blank">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                            {% if not request.user.userprofile.is_merchant %}
+                                                <a class="bright-blue-round-button btn-block apply-external" href="{% url 'booking_create' slug=center_slug %}" target="_blank">Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                            {% else %}
+                                                <a class="bright-blue-round-button btn-block apply-external" href="{% url 'merchant_manage_indv_center' username=request.user center_slug=center_slug %}">Manage <i class="fa fa-wrench" aria-hidden="true"></i></a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
