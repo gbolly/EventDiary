@@ -6,7 +6,6 @@ from django.views.generic import View, ListView
 from django.shortcuts import render, render_to_response, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.forms import modelformset_factory
-from django_tables2 import RequestConfig
 from django.core.mail import EmailMultiAlternatives
 from django.template import RequestContext, Engine, loader
 
