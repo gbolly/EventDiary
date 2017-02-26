@@ -35,6 +35,7 @@
                                 {% if request.user.userprofile.is_merchant %}
                                     <li><a href="{% url 'new_center' %}">Add a new Center</a></li>
                                     <li><a href="{% url 'merchant_manage_centers' username=request.user %}">Manage you centers</a></li>
+                                    <li><a href="{% url 'booking_list' username=request.user %}">Manage you your bookings</a></li>
                                 {% endif %}
                                 {% if request.user.is_staff %}
                                     <li><a href="/admin">Admin</a></li>

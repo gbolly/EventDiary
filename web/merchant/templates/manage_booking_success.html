@@ -1,0 +1,21 @@
+{% extends "standard_page.html" %}
+{% load static %}
+
+{% block main %}
+    {% if messages %}
+        <div class="col-sm-12 no-left">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ message|safe }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title">You have approved booking made by {{name}} and an email has been sent to {{email}}</h4>
+            <a href="{% url 'booking_list' username=request.user %}" class="btn btn-primary" id="{{ center_id }}">Back to bookings table<a/>
+        </div>
+    </div>
+{% endblock main %}

@@ -1,0 +1,27 @@
+$black: #212121;
+$cool-grey: #9fa3a7;
+$dark: #2e3240;
+$dark-sky-blue: #28abec;
+$greyish-brown: #525252;
+$pale-grey: #e8e9ed;
+$sun-yellow: #ffcc2e;
+$warm-grey: #757575;
+$white: #eeeeee;
+$sky-blue: #54c7fc;
+
+.container {
+    width: 1320px;
+}
+
+.table {
+    border: 1px solid #ddd;
+    margin-top: 50px;
+    .table-head {
+        tr {
+            th {
+                padding: 10px;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

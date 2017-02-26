@@ -47,12 +47,12 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
 
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
+        phonenumber = request.POST['phonenumber']
 
         profile = UserProfile.objects.get(id=request.user.profile.id)
         form_dict = profile.check_diff(request.POST)
 
-        form = self.form_class(
-            form_dict, instance=request.user.profile)
+        form = self.form_class(form_dict, instance=request.user.profile)
 
         if form.errors:
             context_var = {}
@@ -68,6 +68,7 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
             user = User.objects.get(id=request.user.id)
             user.first_name = first_name
             user.last_name = last_name
+            user.phonenumber = phonenumber
             user.save()
 
             messages.add_message(

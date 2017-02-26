@@ -186,7 +186,7 @@ def edit_center(request, slug=None):
     center = Center.objects.get(slug=slug)
     ImageFormSet = modelformset_factory(CenterPhoto, form=ImageForm)
 
-    if request.user.is_staff:
+    if request.user.is_merchant:
         if request.method == 'POST':
             form = CenterForm(request.POST, instance=center)
             formset = ImageFormSet(request.POST, request.FILES, queryset=CenterPhoto.objects.filter(center=center))
@@ -201,7 +201,6 @@ def edit_center(request, slug=None):
                         photo.save()
                     except:
                         messages.error(request, 'Technical error')
-
                 return render(request, "updated_center.html", locals())
         else:
             form = CenterForm(instance=center)
