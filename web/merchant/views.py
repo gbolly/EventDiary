@@ -13,7 +13,6 @@ from web.centers.baseviews import CenterListBaseView
 from web.centers.forms import CenterForm, ImageForm
 from web.centers.models import Center, CenterPhoto, Booking
 from web.centers.context_processor import Image_Effects
-from web.merchant.tables import BookingTable
 
 LOGIN_URL = '/login/'
 EMAIL_SENDER = 'info@theeventdiary.com'
