@@ -13,4 +13,4 @@ class UserProfileForm(forms.ModelForm):
             field: A tuple of the form fields that are fillable.
         """
         model = UserProfile
-        fields = ('phonenumber',)
+        fields = ['phonenumber', 'location']

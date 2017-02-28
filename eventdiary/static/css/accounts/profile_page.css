@@ -1,0 +1,16 @@
+.form-card {
+  width: 80%;
+  margin: 30px 10%; }
+  .form-card header h1 {
+    margin: 20px 0; }
+  .form-card .profile-save {
+    margin-left: 10%; }
+  .form-card button#save {
+    width: 40%;
+    height: 50px;
+    float: right;
+    background-color: #28abec;
+    text-transform: uppercase;
+    color: #fff; }
+
+/*# sourceMappingURL=profile_page.css.map */
