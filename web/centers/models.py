@@ -9,8 +9,6 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_libs.models_mixins import TranslationModelMixin
 
-from web.accounts.models import UserProfile
-
 
 # States in Nigeria
 NIGERIAN_LOCATIONS = [

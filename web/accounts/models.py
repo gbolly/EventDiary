@@ -9,6 +9,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     is_merchant = models.BooleanField(default=False)
     phonenumber = models.CharField(blank=True, default='', max_length=20)
+    location = models.CharField(blank=True, max_length=100, default='')
 
     def check_diff(self, request_value):
 
@@ -20,6 +21,8 @@ class UserProfile(models.Model):
         self.save()
         return {
             u'is_merchant': self.is_merchant,
+            u'phonenumber': self.phonenumber,
+            u'location': self.location,
         }
 
     def is_complete(self):
@@ -30,7 +33,7 @@ class UserProfile(models.Model):
                 if fieldattr == '':
                     return False
                 if type(fieldattr) == User:
-                    if fieldattr.first_name == '' or fieldattr.last_name == '' or fieldattr.phonenumber == '':
+                    if fieldattr.first_name == '' or fieldattr.last_name == '':
                         return False
             except:
                 pass

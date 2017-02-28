@@ -1,0 +1,21 @@
+$dark-sky-blue: #28abec;
+.form-card {
+    width: 80%;
+    margin: 30px 10%;
+    header {
+        h1 {
+            margin: 20px 0;
+        }
+    }
+    .profile-save {
+        margin-left: 10%;
+    }
+    button#save {
+        width: 40%;
+        height: 50px;
+        float: right;
+        background-color: $dark-sky-blue;
+        text-transform: uppercase;
+        color: #fff;
+    }
+}

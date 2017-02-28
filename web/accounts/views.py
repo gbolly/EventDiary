@@ -44,16 +44,14 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
         return context_var
 
     def post(self, request, **kwargs):
-
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         phonenumber = request.POST['phonenumber']
-
+        address = request.POST['location']
         profile = UserProfile.objects.get(id=request.user.profile.id)
         form_dict = profile.check_diff(request.POST)
 
         form = self.form_class(form_dict, instance=request.user.profile)
-
         if form.errors:
             context_var = {}
             empty = "Form should not be submitted empty"
@@ -69,6 +67,7 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
             user.first_name = first_name
             user.last_name = last_name
             user.phonenumber = phonenumber
+            user.location = address
             user.save()
 
             messages.add_message(
