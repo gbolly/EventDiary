@@ -11,7 +11,7 @@ Django==1.10.2
 django-all-access==0.9.0
 django-allauth==0.25.2
 django-allauth-bootstrap==0.2
-django-anymail==0.6
+django-anymail==1.2.1
 django-booking==0.7.2
 django-bootstrap-datepicker==1.1.1
 django-bootstrap-form==3.2.1
